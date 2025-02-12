@@ -8,6 +8,42 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <h1>這是一個單純123的示範網頁</h1>
+  <div>
+    <label for="nameInput">姓名:</label>
+    <input type="text" id="nameInput" placeholder="輸入姓名">
+    <button id="submitBtn">標示位置</button>
+  </div>
+
+  <div id="image-container" style="position: relative; width: 100%; max-width: 800px;">
+    <img src="./images/blank-image.png" alt="空白圖片" style="width: 100%; height: auto;">
+    <div id="marker" style="position: absolute; display: none; width: 20px; height: 20px; background-color: red; border-radius: 50%; transform: translate(-50%, -50%);">
+      <span style="color: white; font-size: 12px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">•</span>
+    </div>
+  </div>
+
+  <script>
+    const nameCoordinates = {
+      'Alice': { x: 100, y: 150 },
+      'Bob': { x: 200, y: 250 },
+      'Charlie': { x: 300, y: 350 }
+      // 可以根據需要新增更多姓名與座標
+    };
+
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      const name = document.getElementById('nameInput').value.trim();
+      const marker = document.getElementById('marker');
+      if(nameCoordinates[name]) {
+        const coords = nameCoordinates[name];
+        marker.style.left = `${coords.x}px`;
+        marker.style.top = `${coords.y}px`;
+        marker.style.display = 'block';
+        // 顯示姓名或其他資訊
+        marker.title = `${name} 的位置`;
+      } else {
+        alert('查無此姓名的座標資料。');
+        marker.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
