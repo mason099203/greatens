@@ -1,5 +1,200 @@
 body {
-    background-color: black;
+    background-color: rgb(65, 62, 62);
     color: white;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
   }
+  
+@keyframes backgroundZoom {
+  0% {
+    background-size: 100%;
+  }
+  100% {
+    background-size: 120%;
+  }
+}
+
+.intro-section {
+  background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 50px 0;
+  margin-bottom: 2rem;
+  animation: backgroundZoom 10s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 添加漸變效果的遮罩 */
+.intro-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  transition: background 0.5s ease;
+}
+
+.intro-section:hover::before {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.intro-container {
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  color: white;
+  width: 100%;
+  padding: 20px;
+}
+
+.intro-content {
+  margin-top: 30px;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* 修改搜尋區塊的樣式 */
+.search-section {
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container {
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.search-container label {
+  color: white;
+  font-weight: bold;
+}
+
+.search-container input {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+.search-container button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #45a049;
+}
+
+.parking-info-section{
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  background-color: #f5f5f5;
+  padding: 0.5rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  height: 8vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nav-buttons {
+  margin-top: 0.5rem;
+}
+
+.nav-buttons button {
+  padding: 8px 16px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-buttons button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.nav-buttons button:active {
+  transform: translateY(0);
+}
+
+/* 調整圖片容器大小 */
+#image-container {
+  max-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#image-container img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+main {
+  margin: 0 auto;
+}
+
+.search-section {
+  margin-bottom: 2rem;
+}
+
+.search-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-section {
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
   
