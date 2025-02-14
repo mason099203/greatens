@@ -115,7 +115,7 @@
       <img src="./images/mvdlogo.png" alt="Logo 1" class="footer-logo">
     </div>
     <div class="nav-buttons">
-      <button onclick="scrollToSection('intro-section')">系統簡介</button>
+      <button onclick="scrollToSection('intro-section')">簡介</button>
       <button onclick="scrollToSection('search-section')">座位查詢</button>
       <button onclick="scrollToSection('parking-info-section')">停車場資訊</button>
     </div>
@@ -126,7 +126,7 @@
       <div class="intro-container">
         <h2>200席家宴</h2>
         <div class="intro-content">
-          <p>範例</p>
+          <p>簡介內容</p>
           <p>旅行中，特別地想款待味覺，在桂田的飲食時光，是身體認同的印記。時空流轉，在味覺的邊境上，桂田獨特的飲食風格，展現台南城市文化的力量，會讓您依然記得，那就是廚房裡的桂田職人們用精神與雙手，帶來旅途中酒足飯飽的那一刻。</p>
 
         </div>
@@ -192,7 +192,7 @@
       <!-- 版權資訊 -->
         <p>&copy; Copyright © 2025 台南桂田酒店 All Rights Reserved.Design by Metavision </p>
       </div>
-      <div class="footer-images">
+      <!-- <div class="footer-images">
         
         <div class="line-item">
           <img src="./images/lineQRcode.png" alt="Logo 2" class="footer-logo" style="width: 100px; height: 100px;">
@@ -201,7 +201,7 @@
           <i class="bi bi-line"></i>
           <span><b>LINE：</b> @997mujfs </span>
         </div>
-    </div>
+      </div> -->
   </footer>
 
   <script>
@@ -209,7 +209,7 @@
 
     // 從 GitHub 讀取座標資料
     $.ajax({
-      url: 'https://raw.githubusercontent.com/mason099203/0331/main/src/public/circles.txt',
+      url: 'https://raw.githubusercontent.com/mason099203/0331/main/src/123.json',
       method: 'GET',
       success: function(response) {
         try {
@@ -232,70 +232,52 @@
         
         // 先清空之前的結果
         marker.hide();
-        searchResult.empty();  // 使用 empty() 確保完全清空
+        searchResult.empty();
         
-        // 將輸入值轉為數字
-        const number = parseInt(inputValue);
+        // 在 nameCoordinates 中查找對應的資料
+        const foundPerson = Object.values(nameCoordinates).find(person => 
+          person.name.toString() === inputValue
+        );
         
-        // 檢查是否在 1-1000 範圍內
-        if (!isNaN(number) && number >= 1 && number <= 1000) {
-          const mappedNumber = ((number) % 100 ).toString();
+        if (foundPerson) {
+          // 顯示標記
+          marker.css({
+            'left': `${foundPerson.x}px`,
+            'top': `${foundPerson.y}px`,
+            'display': 'block'
+          });
           
-          if(nameCoordinates[mappedNumber]) {
-            const coords = nameCoordinates[mappedNumber];
-            marker.css({
-              'left': `${coords.x}px`,
-              'top': `${coords.y}px`,
-              'display': 'block'
-            });
-            
-            // 計算同桌的編號
-            const tableNumber = number;
-            const tableMembers = [
-            tableNumber,
-            tableNumber + 100,
-            tableNumber + 200,
-            tableNumber + 300,
-            tableNumber + 400,
-            tableNumber + 500,
-            tableNumber + 600,
-            tableNumber + 700,
-            tableNumber + 800,
-            tableNumber + 900
-            ].filter(num => num <= 1000);
-            
-            marker.attr('title', `${tableNumber}桌: ${tableMembers.join(', ')}`);
-            
-            // 建立完整的搜尋結果 HTML
-            const resultHtml = `
-              <table ">
-                <tr>
-                  <th >編號</th>
-                  <th >座位</th>
-                  <th >桌次</th>
-                  <th >停車場</th>
-                </tr>
-                <tr>
-                  <td>${number}</td>
-                  <td>${number}</td>
-                  <td>${number%100}桌</td>
-                  <td>P ${number%100%12}</td>
-                </tr>
-              </table>
-              <div class="table-members">
-                <p>同桌編號：${tableMembers.join(', ')}</p>
-              </div>
-            `;
-            
-            // 一次性更新整個搜尋結果區域
-            searchResult.html(resultHtml);
-          } else {
-            alert('查無此編號的座標資料。');
-            marker.hide();
-            searchResult.empty();
-          }
+          // 找出同桌的人
+          const sameTablePersons = Object.values(nameCoordinates)
+            .filter(person => person.table === foundPerson.table)
+            .map(person => person.name)
+            .join(', ');
+          
+          // 建立完整的搜尋結果 HTML
+          const resultHtml = `
+            <table>
+              <tr>
+                <th>編號</th>
+                <th>座位</th>
+                <th>桌次</th>
+                <th>停車場</th>
+              </tr>
+              <tr>
+                <td>${foundPerson.ID}</td>
+                <td>${foundPerson.name}</td>
+                <td>${foundPerson.table}桌</td>
+                <td>P${foundPerson.park}</td>
+              </tr>
+            </table>
+            <div class="table-members">
+              <p>同桌編號：${sameTablePersons}</p>
+            </div>
+          `;
+          
+          // 更新搜尋結果區域
+          searchResult.html(resultHtml);
         } else {
-          alert('請輸入 1-1000 之間的數字。');
+          alert('查無此編號的桌位。');
           marker.hide();
           searchResult.empty();
         }
