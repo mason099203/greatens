@@ -378,4 +378,50 @@ footer p{
   height: auto;
   object-fit: contain; /* 保持圖片比例 */
 }
+
+/* 自定義滾輪樣式 */
+body::-webkit-scrollbar {
+  width: 8px;  /* 滾輪寬度 */
+}
+
+body::-webkit-scrollbar-track {
+  background: #1a1a1a;  /* 深灰色軌道 */
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #666666;  /* 中灰色滾動條 */
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #888888;  /* 淺灰色懸停效果 */
+}
+
+/* 其他容器的滾輪樣式 */
+.intro-content::-webkit-scrollbar,
+.search-container::-webkit-scrollbar,
+.parking-info-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.intro-content::-webkit-scrollbar-track,
+.search-container::-webkit-scrollbar-track,
+.parking-info-container::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+.intro-content::-webkit-scrollbar-thumb,
+.search-container::-webkit-scrollbar-thumb,
+.parking-info-container::-webkit-scrollbar-thumb {
+  background: #666666;
+  border-radius: 4px;
+}
+
+.intro-content::-webkit-scrollbar-thumb:hover,
+.search-container::-webkit-scrollbar-thumb:hover,
+.parking-info-container::-webkit-scrollbar-thumb:hover {
+  background: #888888;
+}
   
