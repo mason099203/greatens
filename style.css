@@ -1,6 +1,6 @@
 body {
-    background-color: rgb(168, 118, 118);
-    /* color: rgb(255, 255, 255); */
+    background-color: #ffffff;
+    color: rgb(199, 197, 197);
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -15,6 +15,83 @@ body {
     background-size: 120%;
   }
 }
+
+/* 為了確保內容可讀性，可以添加半透明背景 */
+.intro-container,
+.search-container,
+.parking-info-container {
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+/* 修改表格樣式 */
+table {
+  z-index: 100;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  background-color: rgb(0, 0, 0);  /* 改為完全不透明的黑色 */
+}
+
+table th,
+table td {
+  border: 1px solid #000000;
+  padding: 8px;
+  text-align: left;
+  color: rgb(255, 255, 255);  
+}
+
+.table-members p {
+  color: rgb(255, 255, 255);  
+  opacity: 1;  /* 確保完全不透明 */
+}
+
+/* 修改按鈕樣式 */
+button, input {
+  background-color: #000000;
+  color: white;
+  border: 1px solid #444;
+}
+
+/* button:hover {
+  background-color: #444;
+} */
+
+/* 修改搜尋結果文字顏色 */
+#search-result {
+  color: white;
+}
+
+/* 修改標籤文字顏色 */
+label {
+  color: white;
+}
+
+
+/* 新增背景圖片樣式 */
+.intro-section {
+  background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.search-section {
+  background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21K26_iYIkoTZ3N5.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.parking-info-section {
+  background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 .intro-section,
 .search-section,
@@ -33,13 +110,11 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
   transition: background 0.5s ease;
 }
 
 /* hover效果 */
 .intro-section:hover::before,
-.search-section:hover::before,
 .parking-info-section:hover::before {
   background: rgba(0, 0, 0, 0.5);
 }
@@ -61,7 +136,6 @@ body {
 }
 
 .intro-section {
-  background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
   background-position: center;
   background-repeat: no-repeat;
   /* animation: backgroundZoom 10s ease-in-out infinite alternate; */
@@ -92,7 +166,7 @@ body {
 
 /* 修改搜尋區塊的樣式 */
 .search-section {
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
   height: 92vh;
   display: flex;
   flex-direction: column;
@@ -219,11 +293,19 @@ header {
   justify-content: center;
 }
 
+.parking-marker {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
+  cursor: pointer;
+}
+
 footer {
   background-color: #ffffff;
   text-align: center;
   color: rgb(199, 197, 197);
-  /* position: fixed; */
   bottom: 0;
   width: 100%;
 }
