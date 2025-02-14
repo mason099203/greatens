@@ -54,6 +54,87 @@
       margin: 0 auto;
       max-width: 800px;
     }
+
+    /* RWD 設定 */
+    @media screen and (max-width: 768px) {
+      /* 頁首設定 */
+      header {
+        flex-direction: row;
+      }
+      
+      .nav-buttons {
+        gap: 0;
+        align-items: center;
+        /* height: 10%; */
+        margin: 0;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .nav-buttons button {
+        font-size: 1rem;
+      }
+      
+      /* 內容區塊設定 */
+      .intro-container,
+      .parking-info-container {
+        padding: 10px;
+        margin: 10px;
+        width: 90%;
+      }
+      
+      /* 停車場資訊區塊設定 */
+      #parking-image-container {
+        width: 100% !important;
+        height: auto !important;
+      }
+      
+      #parking-image-container img {
+        width: 100% !important;
+        height: auto !important;
+      }
+      
+      /* 頁尾設定 */
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-images {
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      
+      .footer-contact {
+        width: 100%;
+        padding: 0 10px;
+      }
+      
+      .contact-item {
+        justify-content: center;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      /* 更小螢幕的額外設定 */
+      .intro-container h2,
+      .parking-info-container h2 {
+        font-size: 1.5em;
+      }
+      
+      .footer-logo {
+        width: 80px;
+        height: auto;
+      }
+      
+      .parking-marker {
+        padding: 3px 6px;
+        font-size: 12px;
+      }
+    }
   </style>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- 添加 Bootstrap Icons CDN -->
@@ -64,11 +145,11 @@
     <div class="header-images">
       <img src="./images/mvdlogo.png" alt="Logo 1" class="footer-logo">
     </div>
-    <nav class="nav-buttons">
+    <div class="nav-buttons">
       <button onclick="scrollToSection('intro-section')">系統簡介</button>
       <button onclick="scrollToSection('search-section')">座位查詢</button>
       <button onclick="scrollToSection('parking-info-section')">停車場資訊</button>
-    </nav>
+    </div>
   </header>
 
   <main>
@@ -191,7 +272,13 @@
     // 新增滾動功能
     function scrollToSection(sectionClass) {
       const section = document.querySelector('.' + sectionClass);
-      section.scrollIntoView({ behavior: 'smooth' });
+      const headerHeight = document.querySelector('header').offsetHeight;
+      const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
+      
+      window.scrollTo({
+        top: elementPosition - headerHeight,
+        behavior: 'smooth'
+      });
     }
   </script>
 </body>

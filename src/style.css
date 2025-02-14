@@ -86,7 +86,7 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 8px;
-  max-height: 70vh;
+  max-height: 100vh;
   overflow-y: auto;
 }
 
@@ -142,7 +142,7 @@ body {
 header {
   background-color: #ffffff;
   text-align: center;
-  /* position: sticky; */
+  position: sticky;
   top: 0;
   z-index: 100;
 
@@ -173,14 +173,13 @@ header {
   transition: all 0.3s ease;
   height: 50%;
   width: 20%; /* 設定按鈕寬度 */
-  padding-bottom: 0;
-  margin-bottom: 0;
   display: flex;
   align-items: flex-end; /* 文字靠底 */
   justify-content: center; /* 文字水平置中 */
 }
 
-.nav-buttons button:hover {
+
+.nav-buttons :hover {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   /* background: linear-gradient(to top, #959bada6, #ffffff); hover時的漸層顏色 */
   color: rgb(0, 0, 0);
