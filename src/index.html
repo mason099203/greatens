@@ -269,7 +269,7 @@
         // 將輸入值轉為數字並取餘數
         const number = parseInt(inputValue);
         if (!isNaN(number)) {
-          const mappedNumber = ((number - 1) % 100 + 1).toString();
+          const mappedNumber = ((number - 1) % 100 ).toString();
           
           if(nameCoordinates[mappedNumber]) {
             const coords = nameCoordinates[mappedNumber];
