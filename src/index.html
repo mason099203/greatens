@@ -115,7 +115,7 @@
       <img src="./images/mvdlogo.png" alt="Logo 1" class="footer-logo">
     </div>
     <div class="nav-buttons">
-      <button onclick="scrollToSection('intro-section')">系統簡介</button>
+      <button onclick="scrollToSection('intro-section')">簡介</button>
       <button onclick="scrollToSection('search-section')">座位查詢</button>
       <button onclick="scrollToSection('parking-info-section')">停車場資訊</button>
     </div>
@@ -126,7 +126,7 @@
       <div class="intro-container">
         <h2>200席家宴</h2>
         <div class="intro-content">
-          <p>範例</p>
+          <p>簡介內容</p>
           <p>旅行中，特別地想款待味覺，在桂田的飲食時光，是身體認同的印記。時空流轉，在味覺的邊境上，桂田獨特的飲食風格，展現台南城市文化的力量，會讓您依然記得，那就是廚房裡的桂田職人們用精神與雙手，帶來旅途中酒足飯飽的那一刻。</p>
 
         </div>
@@ -192,7 +192,7 @@
       <!-- 版權資訊 -->
         <p>&copy; Copyright © 2025 台南桂田酒店 All Rights Reserved.Design by Metavision </p>
       </div>
-      <div class="footer-images">
+      <!-- <div class="footer-images">
         
         <div class="line-item">
           <img src="./images/lineQRcode.png" alt="Logo 2" class="footer-logo" style="width: 100px; height: 100px;">
@@ -201,7 +201,7 @@
           <i class="bi bi-line"></i>
           <span><b>LINE：</b> @997mujfs </span>
         </div>
-    </div>
+      </div> -->
   </footer>
 
   <script>
@@ -277,7 +277,7 @@
           // 更新搜尋結果區域
           searchResult.html(resultHtml);
         } else {
-          alert('查無此編號的座標資料。');
+          alert('查無此編號的桌位。');
           marker.hide();
           searchResult.empty();
         }
