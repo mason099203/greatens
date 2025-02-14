@@ -1,5 +1,296 @@
 body {
-    background-color: black;
-    color: white;
+    background-color: rgb(168, 118, 118);
+    color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
   }
+
+  
+@keyframes backgroundZoom {
+  0% {
+    background-size: 100%;
+  }
+  100% {
+    background-size: 120%;
+  }
+}
+
+.intro-section,
+.search-section,
+.parking-info-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 為三個section添加漸變遮罩 */
+.intro-section::before,
+.search-section::before,
+.parking-info-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  transition: background 0.5s ease;
+}
+
+/* hover效果 */
+.intro-section:hover::before,
+.search-section:hover::before,
+.parking-info-section:hover::before {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* 確保內容在遮罩上層 */
+.intro-container,
+.search-container,
+.parking-info-container {
+  position: relative;
+  z-index: 1;
+}
+
+.parking-info-container img{
+  border-radius: 10px;
+}
+
+.search-section img{
+  border-radius: 10px;
+}
+
+.intro-section {
+  background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  /* animation: backgroundZoom 10s ease-in-out infinite alternate; */
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-container {
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  width: 100%;
+  padding: 20px;
+}
+
+.intro-content {
+  margin-top: 30px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* 修改搜尋區塊的樣式 */
+.search-section {
+  background-color: #f9f9f9;
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.search-container label {
+  color: white;
+  font-weight: bold;
+}
+
+.search-container input {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+.search-container button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: #e7a4a4b6;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #dfd771b6;
+  transform: translateY(-2px);
+}
+
+.parking-info-section{
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  background-color: #f5f5f5;
+  text-align: center;
+  /* position: sticky; */
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  height: 8vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.nav-buttons {
+  margin: 0.5rem 0.5rem 0 0.5rem;
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.nav-buttons button {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  background: linear-gradient(to top, #10225ea6, #ffffff); /* 由下往上漸層 */
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 50%;
+  width: 20%; /* 設定按鈕寬度 */
+  padding-bottom: 0;
+  margin-bottom: 0;
+  display: flex;
+  align-items: flex-end; /* 文字靠底 */
+  justify-content: center; /* 文字水平置中 */
+}
+
+.nav-buttons button:hover {
+  background: linear-gradient(to top, #10225e, #ffffff); /* hover時的漸層顏色 */
+  color: white;
+  transform: translateY(-2px);
+}
+
+.nav-buttons button:active {
+  transform: translateY(0);
+}
+
+/* 調整圖片容器大小 */
+#image-container {
+  max-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#image-container img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+
+
+.search-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-section {
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+  background-color: #ffffff;
+  text-align: center;
+  color: rgb(199, 197, 197);
+  /* position: fixed; */
+  bottom: 0;
+  width: 100%;
+}
+footer p{
+  font-size: 0.5rem;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.footer-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 30%;
+  height: 100%;
+}
+
+.footer-logo {
+  width: 150px;
+  height: auto;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 70%; /* 右側佔70% */
+  text-align: center; /* 文字置中 */
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: black;
+}
+.contact-item b{
+  font-size: 0.8rem;
+}
+
+.contact-item i {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.footer-copyright {
+  text-align: center;
+  margin-top: 15px;
+  color: black;
+}
+
+.header-images {
+  display: flex;
+  align-items: center; /* 垂直置中 */
+  justify-content: center; /* 水平置中 */
+  height: 100%; /* 確保有足夠高度進行垂直置中 */
+  width: 30%;
+}
+
+.header-images img {
+  width: 120px;
+  height: auto;
+  object-fit: contain; /* 保持圖片比例 */
+}
   

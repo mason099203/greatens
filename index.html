@@ -6,44 +6,187 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IsRayNotArray gh-pages</title>
   <link rel="stylesheet" href="./style.css">
+  <style>
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+    .parking-marker {
+      background-color: rgba(255, 255, 0, 0.8);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      color: black;
+      cursor: pointer;
+    }
+    
+    /* 新增背景圖片樣式 */
+    .intro-section {
+      background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .search-section {
+      background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21K26_iYIkoTZ3N5.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .parking-info-section {
+      background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* 為了確保內容可讀性，可以添加半透明背景 */
+    .intro-container,
+    .search-container,
+    .parking-info-container {
+      /* background-color: rgba(0, 0, 0, 0.9); */
+      padding: 20px;
+      border-radius: 10px;
+      margin: 0 auto;
+      max-width: 800px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- 添加 Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-  <div>
-    <label for="nameInput">姓名:</label>
-    <input type="text" id="nameInput" placeholder="輸入姓名">
-    <button id="submitBtn">標示位置</button>
-  </div>
-
-  <div id="image-container" style="position: relative; width: 100%; max-width: 800px;">
-    <img src="./images/blank-image.png" alt="空白圖片" style="width: 100%; height: auto;">
-    <div id="marker" style="position: absolute; display: none; width: 20px; height: 20px; background-color: red; border-radius: 50%; transform: translate(-50%, -50%);">
-      <span style="color: white; font-size: 12px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">•</span>
+  <header>
+    <div class="header-images">
+      <img src="./images/mvdlogo.png" alt="Logo 1" class="footer-logo">
     </div>
-  </div>
+    <nav class="nav-buttons">
+      <button onclick="scrollToSection('intro-section')">系統簡介</button>
+      <button onclick="scrollToSection('search-section')">座位查詢</button>
+      <button onclick="scrollToSection('parking-info-section')">停車場資訊</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro-section">
+      <div class="intro-container">
+        <h2>200席家宴</h2>
+        <div class="intro-content">
+          <p>範例</p>
+          <p>旅行中，特別地想款待味覺，在桂田的飲食時光，是身體認同的印記。時空流轉，在味覺的邊境上，桂田獨特的飲食風格，展現台南城市文化的力量，會讓您依然記得，那就是廚房裡的桂田職人們用精神與雙手，帶來旅途中酒足飯飽的那一刻。</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="search-section">
+      <div class="search-container">
+        <label for="nameInput">姓名:</label>
+        <input type="text" id="nameInput" placeholder="輸入姓名">
+        <button id="submitBtn">查找位置</button>
+      </div>
+      <div id="image-container" style="position: relative; width: 439px; height: 332px;">
+        <img src="./images/result_with_circles.jpg" alt="空白圖片" style="width: 439px; height: 332px;">
+        <div id="marker" style="position: absolute; display: none; width: 40px; height: 40px; border: 2px solid yellow; background-color: transparent; border-radius: 50%; transform: translate(-50%, -50%); animation: blink 1s infinite;"></div>
+      </div>
+    </section>
+
+    <section class="parking-info-section">
+      <div class="parking-info-container">
+        <h2>停車場資訊</h2>
+        <div id="parking-image-container" style="position: relative; width: 439px; height: 332px;">
+          <img src="./images/park.png" alt="停車場地圖" style="width: 439px; height: 332px;">
+          <div class="parking-marker" style="position: absolute; left: 50px; top: 100px;">P1</div>
+          <div class="parking-marker" style="position: absolute; left: 150px; top: 150px;">P2</div>
+          <div class="parking-marker" style="position: absolute; left: 250px; top: 100px;">P3</div>
+          <div class="parking-marker" style="position: absolute; left: 350px; top: 150px;">P4</div>
+          <div class="parking-marker" style="position: absolute; left: 200px; top: 250px;">P5</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <!-- 左側圖片區 -->
+      <div class="footer-images">
+        <img src="./images/mvdlogo.png" alt="Logo 1" class="footer-logo">
+        <img src="./images/mvdlogo_o.png" alt="Logo 2" class="footer-logo">
+      </div>
+      
+      <!-- 聯絡資訊區 -->
+      <div class="footer-contact">
+        <div class="contact-item">
+          <i class="bi bi-telephone-fill"></i>
+          <span><b>電話：</b>(06) 2793725</span>
+        </div>
+        <div class="contact-item">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span><b>地址：</b>台南市東區東門路三段253號10樓之1</span>
+        </div>
+        <div class="contact-item">
+          <i class="bi bi-envelope-fill"></i>
+          <span><b>信箱：</b>mvd.sales@metavision.tw</span>
+        </div>
+        <div class="contact-item">
+          <i class="bi bi-line"></i>
+          <span><b>LINE：</b> @997mujfs </span>
+        </div>
+      
+      <!-- 版權資訊 -->
+        <p>&copy; Copyright © 2025 台南桂田酒店 All Rights Reserved.Design by Metavision </p>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    const nameCoordinates = {
-      'Alice': { x: 100, y: 150 },
-      'Bob': { x: 200, y: 250 },
-      'Charlie': { x: 300, y: 350 }
-      // 可以根據需要新增更多姓名與座標
-    };
+    let nameCoordinates = {};
 
-    document.getElementById('submitBtn').addEventListener('click', () => {
-      const name = document.getElementById('nameInput').value.trim();
-      const marker = document.getElementById('marker');
-      if(nameCoordinates[name]) {
-        const coords = nameCoordinates[name];
-        marker.style.left = `${coords.x}px`;
-        marker.style.top = `${coords.y}px`;
-        marker.style.display = 'block';
-        // 顯示姓名或其他資訊
-        marker.title = `${name} 的位置`;
-      } else {
-        alert('查無此姓名的座標資料。');
-        marker.style.display = 'none';
-      }
+    // 從 Flask API 讀取座標資料
+    $.get('http://10.214.57.75:7860/get_coordinates', function(data) {
+      nameCoordinates = data;
+    }).fail(function(error) {
+      console.error('讀取座標資料失敗:', error);
     });
+
+    $(document).ready(function() {
+      $('#submitBtn').click(function() {
+        const inputValue = $('#nameInput').val().trim();
+        const marker = $('#marker');
+        
+        // 將輸入值轉為數字並取餘數
+        const number = parseInt(inputValue);
+        if (!isNaN(number)) {
+          const mappedNumber = ((number - 1) % 100 + 1).toString();
+          
+          if(nameCoordinates[mappedNumber]) {
+            const coords = nameCoordinates[mappedNumber];
+            marker.css({
+              'left': `${coords.x}px`,
+              'top': `${coords.y}px`,
+              'display': 'block'
+            });
+            marker.attr('title', `${inputValue} -> ${mappedNumber} 的位置`);
+          } else {
+            alert('查無此編號的座標資料。');
+            marker.hide();
+          }
+        } else {
+          alert('請輸入有效的數字。');
+          marker.hide();
+        }
+      });
+    });
+
+    // 新增滾動功能
+    function scrollToSection(sectionClass) {
+      const section = document.querySelector('.' + sectionClass);
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>
