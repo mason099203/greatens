@@ -1,10 +1,11 @@
 body {
-    background-color: rgb(65, 62, 62);
-    color: white;
+    background-color: rgb(168, 118, 118);
+    color: rgb(255, 255, 255);
     margin: 0;
     padding: 0;
     min-height: 100vh;
   }
+
   
 @keyframes backgroundZoom {
   0% {
@@ -15,24 +16,17 @@ body {
   }
 }
 
-.intro-section {
-  background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 50px 0;
-  margin-bottom: 2rem;
-  animation: backgroundZoom 10s ease-in-out infinite alternate;
+.intro-section,
+.search-section,
+.parking-info-section {
   position: relative;
   overflow: hidden;
-  height: 92vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-/* 添加漸變效果的遮罩 */
-.intro-section::before {
+/* 為三個section添加漸變遮罩 */
+.intro-section::before,
+.search-section::before,
+.parking-info-section::before {
   content: '';
   position: absolute;
   top: 0;
@@ -43,15 +37,44 @@ body {
   transition: background 0.5s ease;
 }
 
-.intro-section:hover::before {
+/* hover效果 */
+.intro-section:hover::before,
+.search-section:hover::before,
+.parking-info-section:hover::before {
   background: rgba(0, 0, 0, 0.5);
+}
+
+/* 確保內容在遮罩上層 */
+.intro-container,
+.search-container,
+.parking-info-container {
+  position: relative;
+  z-index: 1;
+}
+
+.parking-info-container img{
+  border-radius: 10px;
+}
+
+.search-section img{
+  border-radius: 10px;
+}
+
+.intro-section {
+  background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  /* animation: backgroundZoom 10s ease-in-out infinite alternate; */
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .intro-container {
   margin: 0 auto;
   text-align: center;
-  position: relative;
-  z-index: 1;
   color: white;
   width: 100%;
   padding: 20px;
@@ -59,7 +82,7 @@ body {
 
 .intro-content {
   margin-top: 30px;
-  text-align: left;
+  text-align: center;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 8px;
@@ -69,7 +92,6 @@ body {
 
 /* 修改搜尋區塊的樣式 */
 .search-section {
-  padding: 50px 20px;
   background-color: #f9f9f9;
   height: 92vh;
   display: flex;
@@ -81,7 +103,6 @@ body {
 .search-container {
   margin: 0 auto;
   text-align: center;
-  padding: 20px;
   width: 100%;
 }
 
@@ -100,13 +121,14 @@ body {
   padding: 8px 16px;
   border-radius: 4px;
   border: none;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #e7a4a4b6;
+  color: rgb(0, 0, 0);
   cursor: pointer;
 }
 
 .search-container button:hover {
-  background-color: #45a049;
+  background-color: #dfd771b6;
+  transform: translateY(-2px);
 }
 
 .parking-info-section{
@@ -119,35 +141,46 @@ body {
 
 header {
   background-color: #f5f5f5;
-  padding: 0.5rem;
   text-align: center;
-  position: sticky;
+  /* position: sticky; */
   top: 0;
   z-index: 100;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   height: 8vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
 }
 
 .nav-buttons {
-  margin-top: 0.5rem;
+  margin: 0.5rem 0.5rem 0 0.5rem;
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  align-items: flex-end;
 }
 
 .nav-buttons button {
-  padding: 8px 16px;
-  margin: 0 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
   border: none;
-  border-radius: 4px;
-  background-color: #4CAF50;
-  color: white;
+  background: linear-gradient(to top, #10225ea6, #ffffff); /* 由下往上漸層 */
+  color: rgb(0, 0, 0);
   cursor: pointer;
   transition: all 0.3s ease;
+  height: 50%;
+  width: 20%; /* 設定按鈕寬度 */
+  padding-bottom: 0;
+  margin-bottom: 0;
+  display: flex;
+  align-items: flex-end; /* 文字靠底 */
+  justify-content: center; /* 文字水平置中 */
 }
 
 .nav-buttons button:hover {
-  background-color: #45a049;
+  background: linear-gradient(to top, #10225e, #ffffff); /* hover時的漸層顏色 */
+  color: white;
   transform: translateY(-2px);
 }
 
@@ -169,13 +202,7 @@ header {
   object-fit: contain;
 }
 
-main {
-  margin: 0 auto;
-}
 
-.search-section {
-  margin-bottom: 2rem;
-}
 
 .search-container {
   display: flex;
@@ -190,11 +217,80 @@ main {
 }
 
 footer {
-  background-color: #f5f5f5;
-  padding: 1rem;
+  background-color: #ffffff;
   text-align: center;
-  position: fixed;
+  color: rgb(199, 197, 197);
+  /* position: fixed; */
   bottom: 0;
   width: 100%;
+}
+footer p{
+  font-size: 0.5rem;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.footer-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 30%;
+  height: 100%;
+}
+
+.footer-logo {
+  width: 150px;
+  height: auto;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 70%; /* 右側佔70% */
+  text-align: center; /* 文字置中 */
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: black;
+}
+.contact-item b{
+  font-size: 0.8rem;
+}
+
+.contact-item i {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.footer-copyright {
+  text-align: center;
+  margin-top: 15px;
+  color: black;
+}
+
+.header-images {
+  display: flex;
+  align-items: center; /* 垂直置中 */
+  justify-content: center; /* 水平置中 */
+  height: 100%; /* 確保有足夠高度進行垂直置中 */
+  width: 30%;
+}
+
+.header-images img {
+  width: 120px;
+  height: auto;
+  object-fit: contain; /* 保持圖片比例 */
 }
   

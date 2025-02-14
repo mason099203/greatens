@@ -21,11 +21,49 @@
       color: black;
       cursor: pointer;
     }
+    
+    /* 新增背景圖片樣式 */
+    .intro-section {
+      background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .search-section {
+      background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21K26_iYIkoTZ3N5.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .parking-info-section {
+      background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* 為了確保內容可讀性，可以添加半透明背景 */
+    .intro-container,
+    .search-container,
+    .parking-info-container {
+      /* background-color: rgba(0, 0, 0, 0.9); */
+      padding: 20px;
+      border-radius: 10px;
+      margin: 0 auto;
+      max-width: 800px;
+    }
   </style>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- 添加 Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
   <header>
+    <div class="header-images">
+      <img src="./images/mvdlogo.png" alt="Logo 1" class="footer-logo">
+    </div>
     <nav class="nav-buttons">
       <button onclick="scrollToSection('intro-section')">系統簡介</button>
       <button onclick="scrollToSection('search-section')">座位查詢</button>
@@ -36,15 +74,11 @@
   <main>
     <section class="intro-section">
       <div class="intro-container">
-        <h2>系統簡介</h2>
+        <h2>200席家宴</h2>
         <div class="intro-content">
-          <p>歡迎使用座標查詢系統</p>
-          <p>本系統提供以下功能：</p>
-          <ul>
-            <li>快速座位查詢</li>
-            <li>即時座位顯示</li>
-            <li>停車場資訊查詢</li>
-          </ul>
+          <p>範例</p>
+          <p>旅行中，特別地想款待味覺，在桂田的飲食時光，是身體認同的印記。時空流轉，在味覺的邊境上，桂田獨特的飲食風格，展現台南城市文化的力量，會讓您依然記得，那就是廚房裡的桂田職人們用精神與雙手，帶來旅途中酒足飯飽的那一刻。</p>
+
         </div>
       </div>
     </section>
@@ -53,7 +87,7 @@
       <div class="search-container">
         <label for="nameInput">姓名:</label>
         <input type="text" id="nameInput" placeholder="輸入姓名">
-        <button id="submitBtn">標示位置</button>
+        <button id="submitBtn">查找位置</button>
       </div>
       <div id="image-container" style="position: relative; width: 439px; height: 332px;">
         <img src="./images/result_with_circles.jpg" alt="空白圖片" style="width: 439px; height: 332px;">
@@ -77,7 +111,36 @@
   </main>
 
   <footer>
-    <p>&copy; 2024 座標查詢系統</p>
+    <div class="footer-container">
+      <!-- 左側圖片區 -->
+      <div class="footer-images">
+        <img src="./images/mvdlogo.png" alt="Logo 1" class="footer-logo">
+        <img src="./images/mvdlogo_o.png" alt="Logo 2" class="footer-logo">
+      </div>
+      
+      <!-- 聯絡資訊區 -->
+      <div class="footer-contact">
+        <div class="contact-item">
+          <i class="bi bi-telephone-fill"></i>
+          <span><b>電話：</b>(06) 2793725</span>
+        </div>
+        <div class="contact-item">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span><b>地址：</b>台南市東區東門路三段253號10樓之1</span>
+        </div>
+        <div class="contact-item">
+          <i class="bi bi-envelope-fill"></i>
+          <span><b>信箱：</b>mvd.sales@metavision.tw</span>
+        </div>
+        <div class="contact-item">
+          <i class="bi bi-line"></i>
+          <span><b>LINE：</b> @997mujfs </span>
+        </div>
+      
+      <!-- 版權資訊 -->
+        <p>&copy; Copyright © 2025 台南桂田酒店 All Rights Reserved.Design by Metavision </p>
+      </div>
+    </div>
   </footer>
 
   <script>
