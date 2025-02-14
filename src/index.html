@@ -244,11 +244,21 @@
   <script>
     let nameCoordinates = {};
 
-    // 從 Flask API 讀取座標資料
-    $.get('http://10.214.57.75:7860/get_coordinates', function(data) {
-      nameCoordinates = data;
-    }).fail(function(error) {
-      console.error('讀取座標資料失敗:', error);
+    // 從 GitHub 讀取座標資料
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/mason099203/0331/main/src/public/circles.txt',
+      method: 'GET',
+      success: function(response) {
+        try {
+          nameCoordinates = JSON.parse(response);
+          console.log('成功載入座標數據:', nameCoordinates);
+        } catch (e) {
+          console.error('解析數據失敗:', e);
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error('讀取座標資料失敗:', error);
+      }
     });
 
     $(document).ready(function() {
