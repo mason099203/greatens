@@ -12,48 +12,6 @@
       50% { opacity: 0.3; }
       100% { opacity: 1; }
     }
-    .parking-marker {
-      background-color: rgba(255, 255, 0, 0.8);
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-weight: bold;
-      font-size: 14px;
-      color: black;
-      cursor: pointer;
-    }
-    
-    /* 新增背景圖片樣式 */
-    .intro-section {
-      background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    .search-section {
-      background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21K26_iYIkoTZ3N5.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    .parking-info-section {
-      background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    /* 為了確保內容可讀性，可以添加半透明背景 */
-    .intro-container,
-    .search-container,
-    .parking-info-container {
-      /* background-color: rgba(0, 0, 0, 0.9); */
-      padding: 20px;
-      border-radius: 10px;
-      margin: 0 auto;
-      max-width: 800px;
-    }
 
     /* RWD 設定 */
     @media screen and (max-width: 768px) {
@@ -163,7 +121,7 @@
     </div>
   </header>
 
-  <main>
+  <main >
     <section class="intro-section">
       <div class="intro-container">
         <h2>200席家宴</h2>
@@ -175,11 +133,16 @@
       </div>
     </section>
 
-    <section class="search-section">
+    <section class="search-section" style="background-color: #ffffff;">
       <div class="search-container">
         <label for="nameInput">姓名:</label>
         <input type="text" id="nameInput" placeholder="輸入姓名">
         <button id="submitBtn">查找位置</button>
+      </div>
+      <div class="search-result">
+        <p id="search-result">
+          
+        </p>
       </div>
       <div id="image-container" style="position: relative; width: 439px; height: 332px;">
         <img src="./images/result_with_circles.jpg" alt="空白圖片" style="width: 439px; height: 332px;">
@@ -265,10 +228,17 @@
       $('#submitBtn').click(function() {
         const inputValue = $('#nameInput').val().trim();
         const marker = $('#marker');
+        const searchResult = $('#search-result');
         
-        // 將輸入值轉為數字並取餘數
+        // 先清空之前的結果
+        marker.hide();
+        searchResult.empty();  // 使用 empty() 確保完全清空
+        
+        // 將輸入值轉為數字
         const number = parseInt(inputValue);
-        if (!isNaN(number)) {
+        
+        // 檢查是否在 1-1000 範圍內
+        if (!isNaN(number) && number >= 1 && number <= 1000) {
           const mappedNumber = ((number) % 100 ).toString();
           
           if(nameCoordinates[mappedNumber]) {
@@ -278,15 +248,60 @@
               'top': `${coords.y}px`,
               'display': 'block'
             });
-            marker.attr('title', `${inputValue} -> ${mappedNumber} 的位置`);
+            
+            // 計算同桌的編號
+            const tableNumber = number;
+            const tableMembers = [
+            tableNumber,
+            tableNumber + 100,
+            tableNumber + 200,
+            tableNumber + 300,
+            tableNumber + 400,
+            tableNumber + 500,
+            tableNumber + 600,
+            tableNumber + 700,
+            tableNumber + 800,
+            tableNumber + 900
+            ].filter(num => num <= 1000);
+            
+            marker.attr('title', `${tableNumber}桌: ${tableMembers.join(', ')}`);
+            
+            // 建立完整的搜尋結果 HTML
+            const resultHtml = `
+              <table ">
+                <tr>
+                  <th >編號</th>
+                  <th >座位</th>
+                  <th >桌次</th>
+                  <th >停車場</th>
+                </tr>
+                <tr>
+                  <td>${number}</td>
+                  <td>${number}</td>
+                  <td>${number%100}桌</td>
+                  <td>P ${number%100%12}</td>
+                </tr>
+              </table>
+              <div class="table-members">
+                <p>同桌編號：${tableMembers.join(', ')}</p>
+              </div>
+            `;
+            
+            // 一次性更新整個搜尋結果區域
+            searchResult.html(resultHtml);
           } else {
             alert('查無此編號的座標資料。');
             marker.hide();
+            searchResult.empty();
           }
         } else {
-          alert('請輸入有效的數字。');
+          alert('請輸入 1-1000 之間的數字。');
           marker.hide();
+          searchResult.empty();
         }
+        
+        // 清空輸入框
+        $('#nameInput').val('');
       });
     });
 
