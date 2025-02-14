@@ -1,6 +1,6 @@
 body {
     background-color: rgb(168, 118, 118);
-    color: rgb(255, 255, 255);
+    /* color: rgb(255, 255, 255); */
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -53,11 +53,11 @@ body {
 }
 
 .parking-info-container img{
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .search-section img{
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .intro-section {
@@ -140,12 +140,12 @@ body {
 }
 
 header {
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   text-align: center;
   /* position: sticky; */
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
   height: 8vh;
   display: flex;
   flex-direction: row;
@@ -154,6 +154,7 @@ header {
 
 .nav-buttons {
   margin: 0.5rem 0.5rem 0 0.5rem;
+  
   width: 70%;
   display: flex;
   justify-content: flex-end;
@@ -162,11 +163,12 @@ header {
 }
 
 .nav-buttons button {
+  background-color: #ffffff;
   font-size: 1.2rem;
   font-weight: bold;
   border: none;
-  background: linear-gradient(to top, #10225ea6, #ffffff); /* 由下往上漸層 */
-  color: rgb(0, 0, 0);
+  /* background: linear-gradient(to top, #969cafa6, #ffffff); 由下往上漸層 */
+  color: rgb(32, 32, 32);
   cursor: pointer;
   transition: all 0.3s ease;
   height: 50%;
@@ -179,9 +181,11 @@ header {
 }
 
 .nav-buttons button:hover {
-  background: linear-gradient(to top, #10225e, #ffffff); /* hover時的漸層顏色 */
-  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  /* background: linear-gradient(to top, #959bada6, #ffffff); hover時的漸層顏色 */
+  color: rgb(0, 0, 0);
   transform: translateY(-2px);
+  border: 1px solid #000000;
 }
 
 .nav-buttons button:active {
