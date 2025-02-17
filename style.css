@@ -1,12 +1,15 @@
 body {
-    background-color: #ffffff;
-    color: rgb(199, 197, 197);
     margin: 0;
     padding: 0;
     min-height: 100vh;
-  }
+    background-image: url('./images/section_park_2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;  /* 固定背景 */
+    background-repeat: no-repeat;
+    color: rgb(199, 197, 197);
+}
 
-  
 @keyframes backgroundZoom {
   0% {
     background-size: 100%;
@@ -20,9 +23,11 @@ body {
 .intro-container,
 .search-container,
 .parking-info-container {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   border-radius: 10px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   max-width: 800px;
   text-align: center;
 }
@@ -73,72 +78,46 @@ label {
   color: white;
 }
 
-
-/* 新增背景圖片樣式 */
-.intro-section {
-  background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.search-section {
-  background-image: url('./images/section_park.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-}
-
-.parking-info-section {
-  background-image: url('./images/section_park_2.jpg');
-  background-size: cover;
-  background-position: center calc(40%);
-  background-repeat: no-repeat;
-}
-
-
+/* 移除各 section 原本的背景圖片設定 */
 .intro-section,
 .search-section,
 .parking-info-section {
-  position: relative;
-  overflow: hidden;
+    background-image: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
-/* 為三個section添加漸變遮罩 */
+/* 為各 section 添加半透明遮罩 */
 .intro-section::before,
 .search-section::before,
 .parking-info-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: background 0.5s ease;
-}
-
-/* hover效果 */
-.intro-section:hover::before,
-.parking-info-section:hover::before {
-  background: rgba(0, 0, 0, 0.5);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background: rgba(247, 235, 235, 0.651);  */
+    z-index: -1;
 }
 
 /* 確保內容在遮罩上層 */
 .intro-container,
 .search-container,
 .parking-info-container {
-  position: relative;
-  z-index: 1;
+    position: relative;
+    z-index: 2;
 }
 
 .parking-info-container img{
   border-radius: 5px;
 }
 
+
 #parking-image{
-  width: 470px; 
-  height: 332px;
+  width: 700px; 
+  height: 494px;
 }
 
 .search-section img{
@@ -167,11 +146,19 @@ label {
 .intro-content {
   margin-top: 30px;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 8px;
   max-height: 100vh;
   overflow-y: auto;
+}
+
+.intro-content p{
+  font-size: 1.2rem;
+  color:#643601;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 40px 20px;
+  background-color: rgba(235, 228, 210, 0.918);
 }
 
 /* 修改搜尋區塊的樣式 */
@@ -182,6 +169,34 @@ label {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#nameInput{
+  padding: 10px; 
+  width: 200px; 
+  font-size: 1.3rem; 
+  background-color: rgba(235, 228, 210, 0.918);
+  color: #000000;
+}
+
+.parking-info-container h2{
+  align-self: center;
+  width: 20%;
+  font-size: 1.2rem;
+  color: #40321B;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(235, 228, 210, 0.918);
+}
+
+.search-container h2{
+  font-size: 1.2rem;
+  color: #40321B;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px ;
+  background-color: rgba(235, 228, 210, 0.918);
 }
 
 .search-container {
@@ -306,7 +321,7 @@ header {
 .parking-marker {
   position: absolute;
   border: 2px solid #000000;
-  font-size: 1.5rem; 
+  font-size: 2rem; 
   opacity: 0;
   padding: 5px 10px;
   border-radius: 5px;
@@ -316,28 +331,38 @@ header {
 }
 
 .p1{
-  left: 77%;
+  left: 74%;
   top: 50%;
 }
 
 .p2{
-  left: 50%;
-  top: 31%; 
+  left: 57%;
+  top: 27%; 
 }
 
 .p3{
-  left: 25%;
-  top: 40%;
+  left: 32%;
+  top: 35%;
 } 
 
 .p4{
-  left: 15%;
-  top: 70%;
+  left: 25%;
+  top: 67%;
 } 
 
 .p5{
-  left: 65%;
-  top: 75%;
+  left: 68%;
+  top: 70%;
+}
+
+.p6{
+  left: 12%;
+  top: 72%;
+}
+
+.p7{
+  left: 30%;
+  top: 45%;
 }
 
 
@@ -360,12 +385,12 @@ header {
 
 .home-marker {
   position: absolute;
-  width: 51px;
-  height: 51px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   border: 2px solid #ff0000;
-  left: 50%; 
-  top: 52%;
+  left: 52%; 
+  top: 47%;
   animation: homeBlink 2s infinite ease-in-out;
 }
 
@@ -375,6 +400,8 @@ footer {
   color: rgb(199, 197, 197);
   bottom: 0;
   width: 100%;
+  position: relative;
+  z-index: 100;
 }
 footer p{
   font-size: 0.5rem;
@@ -539,6 +566,16 @@ body::-webkit-scrollbar-thumb:hover {
     flex-direction: row;
   }
   
+  .parking-info-container h2{
+    width: 50%;
+  }
+
+  .intro-content p{
+    font-size: 0.5rem;
+    padding: 20px 10px;
+  }
+
+
   .nav-buttons {
     gap: 0;
     align-items: center;
@@ -560,7 +597,7 @@ body::-webkit-scrollbar-thumb:hover {
   .home-marker {
     width: 40px;
     height: 40px;
-    left: 49%; 
+    left: 52%; 
     top: 55%;
   }
   
@@ -602,28 +639,38 @@ body::-webkit-scrollbar-thumb:hover {
   }
 
   .p1{
-    left: 75%;
-    top: 52%;
+    left: 70%;
+    top: 58%;
   }
 
   .p2{
-    left: 50%;
-    top: 35%; 
+    left: 55%;
+    top: 41%; 
   }
 
   .p3{
-    left: 24%;
-    top: 43%;
+    left: 32%;
+    top: 46%;
   } 
 
   .p4{
-    left: 15%;
+    left: 25%;
     top: 70%;
   } 
 
   .p5{
-    left: 62%;
-    top: 75%;
+    left: 65%;
+    top: 74%;
+  }
+
+  .p6{
+    left: 10%;
+    top: 73%;
+  } 
+
+  .p7{
+    left: 30%;
+    top: 56%;
   }
 
 }
