@@ -307,7 +307,7 @@ header {
   position: absolute;
   border: 2px solid #000000;
   font-size: 1.5rem; 
-  /* opacity: 0; */
+  opacity: 0;
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: bold;
