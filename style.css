@@ -24,6 +24,7 @@ body {
   border-radius: 10px;
   margin: 0 auto;
   max-width: 800px;
+  text-align: center;
 }
 
 /* 修改表格樣式 */
@@ -63,6 +64,9 @@ button, input {
 #search-result {
   color: white;
 }
+.search-result{
+  z-index: 100;
+}
 
 /* 修改標籤文字顏色 */
 label {
@@ -79,16 +83,17 @@ label {
 }
 
 .search-section {
-  background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21K26_iYIkoTZ3N5.jpg');
+  background-image: url('./images/section_park.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
 }
 
 .parking-info-section {
-  background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
+  background-image: url('./images/section_park_2.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center calc(40%);
   background-repeat: no-repeat;
 }
 
@@ -129,6 +134,11 @@ label {
 
 .parking-info-container img{
   border-radius: 5px;
+}
+
+#parking-image{
+  width: 470px; 
+  height: 332px;
 }
 
 .search-section img{
@@ -294,10 +304,13 @@ header {
 }
 
 .parking-marker {
+  position: absolute;
+  border: 2px solid #000000;
+  font-size: 1.5rem; 
+  /* opacity: 0; */
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: bold;
-  font-size: 14px;
   color: black;
   cursor: pointer;
 }
@@ -371,6 +384,7 @@ footer p{
   justify-content: center; /* 水平置中 */
   height: 100%; /* 確保有足夠高度進行垂直置中 */
   width: 30%;
+  z-index: 900;
 }
 
 .header-images img {
