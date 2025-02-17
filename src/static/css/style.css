@@ -1,0 +1,653 @@
+body {
+    background-color: #ffffff;
+    color: rgb(199, 197, 197);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  
+@keyframes backgroundZoom {
+  0% {
+    background-size: 100%;
+  }
+  100% {
+    background-size: 120%;
+  }
+}
+
+/* 為了確保內容可讀性，可以添加半透明背景 */
+.intro-container,
+.search-container,
+.parking-info-container {
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+  max-width: 800px;
+  text-align: center;
+}
+
+/* 修改表格樣式 */
+table {
+  z-index: 100;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  background-color: rgb(0, 0, 0);  /* 改為完全不透明的黑色 */
+}
+
+table th,
+table td {
+  border: 1px solid #000000;
+  padding: 8px;
+  text-align: left;
+  color: rgb(255, 255, 255);  
+}
+
+.table-members p {
+  color: rgb(255, 255, 255);  
+  opacity: 1;  /* 確保完全不透明 */
+}
+
+/* 修改按鈕樣式 */
+button, input {
+  background-color: #000000;
+  color: white;
+  border: 1px solid #444;
+}
+
+/* button:hover {
+  background-color: #444;
+} */
+
+/* 修改搜尋結果文字顏色 */
+#search-result {
+  color: white;
+}
+.search-result{
+  z-index: 100;
+}
+
+/* 修改標籤文字顏色 */
+label {
+  color: white;
+}
+
+
+/* 新增背景圖片樣式 */
+.intro-section {
+  background-image: url('https://www.tainan.queenaplaza.com/upload/banner_list/twL_banner_21L17_dS9yTcKtsq.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.search-section {
+  background-image: url('./images/section_park.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.parking-info-section {
+  background-image: url('./images/section_park_2.jpg');
+  background-size: cover;
+  background-position: center calc(40%);
+  background-repeat: no-repeat;
+}
+
+
+.intro-section,
+.search-section,
+.parking-info-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 為三個section添加漸變遮罩 */
+.intro-section::before,
+.search-section::before,
+.parking-info-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: background 0.5s ease;
+}
+
+/* hover效果 */
+.intro-section:hover::before,
+.parking-info-section:hover::before {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* 確保內容在遮罩上層 */
+.intro-container,
+.search-container,
+.parking-info-container {
+  position: relative;
+  z-index: 1;
+}
+
+.parking-info-container img{
+  border-radius: 5px;
+}
+
+#parking-image{
+  width: 470px; 
+  height: 332px;
+}
+
+.search-section img{
+  border-radius: 5px;
+}
+
+.intro-section {
+  background-position: center;
+  background-repeat: no-repeat;
+  /* animation: backgroundZoom 10s ease-in-out infinite alternate; */
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-container {
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  width: 100%;
+  padding: 20px;
+}
+
+.intro-content {
+  margin-top: 30px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+/* 修改搜尋區塊的樣式 */
+.search-section {
+  /* background-color: #f9f9f9; */
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.search-container label {
+  color: white;
+  font-weight: bold;
+}
+
+.search-container input {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+.search-container button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: #e7a4a4b6;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #dfd771b6;
+  transform: translateY(-2px);
+}
+
+.parking-info-section{
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  background-color: #ffffff;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  height: 8vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.nav-buttons {
+  margin: 0.5rem 0.5rem 0 0.5rem;
+  
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.nav-buttons button {
+  background-color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  /* background: linear-gradient(to top, #969cafa6, #ffffff); 由下往上漸層 */
+  color: rgb(32, 32, 32);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 50%;
+  width: 20%; /* 設定按鈕寬度 */
+  display: flex;
+  align-items: flex-end; /* 文字靠底 */
+  justify-content: center; /* 文字水平置中 */
+}
+
+
+.nav-buttons :hover {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  /* background: linear-gradient(to top, #959bada6, #ffffff); hover時的漸層顏色 */
+  color: rgb(0, 0, 0);
+  transform: translateY(-2px);
+  border: 1px solid #000000;
+}
+
+.nav-buttons button:active {
+  transform: translateY(0);
+}
+
+/* 調整圖片容器大小 */
+#image-container {
+  max-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#image-container img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+
+
+.search-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-section {
+  display: flex;
+  justify-content: center;
+}
+
+.parking-marker {
+  position: absolute;
+  border: 2px solid #000000;
+  font-size: 1.5rem; 
+  opacity: 0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+}
+
+.p1{
+  left: 77%;
+  top: 50%;
+}
+
+.p2{
+  left: 50%;
+  top: 31%; 
+}
+
+.p3{
+  left: 25%;
+  top: 40%;
+} 
+
+.p4{
+  left: 15%;
+  top: 70%;
+} 
+
+.p5{
+  left: 65%;
+  top: 75%;
+}
+
+
+
+@keyframes homeBlink {
+  0% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  50% {
+    opacity: 0.2;
+    border: 2px solid #990000;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.home-marker {
+  position: absolute;
+  width: 51px;
+  height: 51px;
+  border-radius: 50%;
+  border: 2px solid #ff0000;
+  left: 50%; 
+  top: 52%;
+  animation: homeBlink 2s infinite ease-in-out;
+}
+
+footer {
+  background-color: #ffffff;
+  text-align: center;
+  color: rgb(199, 197, 197);
+  bottom: 0;
+  width: 100%;
+}
+footer p{
+  font-size: 0.5rem;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.footer-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 30%;
+  height: 100%;
+}
+
+.footer-logo {
+  width: 150px;
+  height: auto;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 70%; /* 右側佔70% */
+  text-align: center; /* 文字置中 */
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: black;
+}
+.contact-item b{
+  font-size: 0.8rem;
+}
+
+.contact-item i {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.footer-copyright {
+  text-align: center;
+  margin-top: 15px;
+  color: black;
+}
+
+.header-images {
+  display: flex;
+  align-items: center; /* 垂直置中 */
+  justify-content: center; /* 水平置中 */
+  height: 100%; /* 確保有足夠高度進行垂直置中 */
+  width: 30%;
+  z-index: 900;
+}
+
+.header-images img {
+  width: 120px;
+  height: auto;
+  object-fit: contain; /* 保持圖片比例 */
+}
+
+/* 自定義滾輪樣式 */
+body::-webkit-scrollbar {
+  width: 8px;  /* 滾輪寬度 */
+}
+
+body::-webkit-scrollbar-track {
+  background: #1a1a1a;  /* 深灰色軌道 */
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #666666;  /* 中灰色滾動條 */
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #888888;  /* 淺灰色懸停效果 */
+}
+
+/* 其他容器的滾輪樣式 */
+.intro-content::-webkit-scrollbar,
+.search-container::-webkit-scrollbar,
+.parking-info-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.intro-content::-webkit-scrollbar-track,
+.search-container::-webkit-scrollbar-track,
+.parking-info-container::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+.intro-content::-webkit-scrollbar-thumb,
+.search-container::-webkit-scrollbar-thumb,
+.parking-info-container::-webkit-scrollbar-thumb {
+  background: #666666;
+  border-radius: 4px;
+}
+
+.intro-content::-webkit-scrollbar-thumb:hover,
+.search-container::-webkit-scrollbar-thumb:hover,
+.parking-info-container::-webkit-scrollbar-thumb:hover {
+  background: #888888;
+}
+  
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+
+
+
+.parking-marker.highlight {
+  animation: blink 1s infinite;
+  color:transparent;
+  font-weight: bold;
+}
+
+/* 彈出圖片的樣式 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+  cursor: pointer;
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90vh;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+/* RWD 設定 */
+@media screen and (max-width: 768px) {
+  /* 頁首設定 */
+  header {
+    flex-direction: row;
+  }
+  
+  .nav-buttons {
+    gap: 0;
+    align-items: center;
+    /* height: 10%; */
+    margin: 0;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .nav-buttons button {
+    font-size: 1rem;
+    
+    width: 30%;  /* 設定每個按鈕佔 30% 寬度 */
+  }
+
+  .home-marker {
+    width: 40px;
+    height: 40px;
+    left: 49%; 
+    top: 55%;
+  }
+  
+  /* 內容區塊設定 */
+  .intro-container {
+    padding: 10px;
+    margin: 10px;
+    width: 90%;
+  }
+
+  #parking-image{
+    width: 304px;
+    height: 215px;
+  }
+  
+  
+  /* 頁尾設定 */
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-images {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .footer-contact {
+    width: 100%;
+    padding: 0 10px;
+  }
+  
+  .contact-item {
+    justify-content: center;
+  }
+
+  .parking-marker {
+    font-size: 1rem;
+  }
+
+  .p1{
+    left: 75%;
+    top: 52%;
+  }
+
+  .p2{
+    left: 50%;
+    top: 35%; 
+  }
+
+  .p3{
+    left: 24%;
+    top: 43%;
+  } 
+
+  .p4{
+    left: 15%;
+    top: 70%;
+  } 
+
+  .p5{
+    left: 62%;
+    top: 75%;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  /* 更小螢幕的額外設定 */
+  .intro-container h2,
+  .parking-info-container h2 {
+    font-size: 1.5em;
+  }
+
+  .nav-buttons button {
+    font-size: 1rem;
+    width: 30%;  /* 設定每個按鈕佔 30% 寬度 */
+  }
+
+  .header-images{
+    display: none;
+  }
+  
+  .footer-logo {
+    width: 80px;
+    height: auto;
+  }
+  
+
+}
