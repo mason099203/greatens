@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, send_from_directory
+from flask import Flask, render_template, jsonify, request, send_from_directory, send_file
 from flask_cors import CORS
 import os
 
@@ -13,7 +13,7 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return send_file('index.html')
 
 @app.route('/images/<path:filename>')
 def serve_image(filename):
@@ -21,7 +21,7 @@ def serve_image(filename):
 
 @app.route('/style.css')
 def serve_css():
-    return send_from_directory('static/css', 'style.css')
+    return send_file('style.css')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=7860, debug=True)
