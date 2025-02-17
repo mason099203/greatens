@@ -39,23 +39,17 @@
       }
       
       /* 內容區塊設定 */
-      .intro-container,
-      .parking-info-container {
+      .intro-container {
         padding: 10px;
         margin: 10px;
         width: 90%;
       }
-      
-      /* 停車場資訊區塊設定 */
-      #parking-image-container {
-        width: 100% !important;
-        height: auto !important;
+
+      #parking-image{
+        width: 304px;
+        height: 215px;
       }
       
-      #parking-image-container img {
-        width: 100% !important;
-        height: auto !important;
-      }
       
       /* 頁尾設定 */
       .footer-container {
@@ -76,6 +70,11 @@
       .contact-item {
         justify-content: center;
       }
+
+      .parking-marker {
+        font-size: 1rem;
+      }
+
     }
     
     @media screen and (max-width: 480px) {
@@ -99,10 +98,18 @@
         height: auto;
       }
       
-      .parking-marker {
-        padding: 3px 6px;
-        font-size: 12px;
-      }
+
+    }
+    
+    .parking-marker {
+      position: absolute;
+      font-weight: bold;
+    }
+    
+    .parking-marker.highlight {
+      animation: blink 1s infinite;
+      color:transparent;
+      font-weight: bold;
     }
   </style>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -139,35 +146,39 @@
         <input type="text" id="nameInput" placeholder="輸入姓名">
         <button id="submitBtn">查找位置</button>
       </div>
+      
+      <div id="image-container" style="position: relative; width: 439px; height: 332px;">
+        <img src="./images/result_with_circles.jpg" alt="空白圖片" style="width: 439px; height: 332px;">
+        <div id="marker" style="position: absolute; display: none; width: 40px; height: 40px; border: 2px solid yellow; background-color: transparent; border-radius: 50%; transform: translate(-50%, -50%); animation: blink 1s infinite;"></div>
+      </div>
       <div class="search-result">
         <p id="search-result">
           
         </p>
-      </div>
-      <div id="image-container" style="position: relative; width: 439px; height: 332px;">
-        <img src="./images/result_with_circles.jpg" alt="空白圖片" style="width: 439px; height: 332px;">
-        <div id="marker" style="position: absolute; display: none; width: 40px; height: 40px; border: 2px solid yellow; background-color: transparent; border-radius: 50%; transform: translate(-50%, -50%); animation: blink 1s infinite;"></div>
       </div>
     </section>
 
     <section class="parking-info-section">
       <div class="parking-info-container">
         <h2>停車場資訊</h2>
-        <div id="parking-image-container" style="width: 600px; height: 500px;">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1836.6364963344342!2d120.23648424010695!3d22.97699795143346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e76a6fa9993ef%3A0x7ce61cdeeb2cc3cd!2z6Ie654Gj5Zyf5Zyw6YqA6KGMIOadseWPsOWNl-WIhuihjA!5e0!3m2!1szh-TW!2stw!4v1739520843038!5m2!1szh-TW!2stw" 
-            width="100%" 
-            height="100%" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-          <div class="parking-marker" style="position: absolute; left: 50px; top: 100px; font-size: 1.5rem;">P1</div>
-          <div class="parking-marker" style="position: absolute; left: 150px; top: 150px; font-size: 1.5rem; ">P2</div>
-          <div class="parking-marker" style="position: absolute; left: 270px; top: 400px; font-size: 1.5rem;">P3</div>
-          <div class="parking-marker" style="position: absolute; left: 500px; top: 450px; font-size: 1.5rem;">P4</div>
-          <div class="parking-marker" style="position: absolute; left: 200px; top: 250px; font-size: 1.5rem;">P5</div>
+        <div id="parking-image-container" >
+          <img id="parking-image" src="./images/park_v1.jpg" alt="空白圖片" >
+          <a href="https://reurl.cc/zpanl6" target="_blank">
+            <!-- 470 332 -->
+            <div class="parking-marker" style="left: 77%; top: 50%;">P1</div>
+          </a>
+          <a href="https://reurl.cc/748zkD" target="_blank">
+            <div class="parking-marker" style="left: 50%; top: 31%">P2</div>
+          </a>
+          <a href="https://reurl.cc/lNWKrA" target="_blank">
+            <div class="parking-marker" style="left: 25%; top: 40%;">P3</div>
+          </a>
+          <a href="https://reurl.cc/geAXrp" target="_blank">
+            <div class="parking-marker" style="left: 15%; top: 70%;">P4</div>
+          </a>
+          <a href="https://reurl.cc/zpanl6" target="_blank">
+            <div class="parking-marker" style="left: 65%; top: 75%">P5</div>
+          </a>
         </div>
       </div>
     </section>
@@ -248,6 +259,12 @@
         );
         
         if (foundPerson) {
+          // 重置所有停車場標記的樣式
+          $('.parking-marker').removeClass('highlight');
+          
+          // 高亮顯示對應的停車場標記
+          $(`.parking-marker:contains('P${foundPerson.park}')`).addClass('highlight');
+          
           // 顯示標記
           marker.css({
             'left': `${foundPerson.x}px`,
@@ -288,6 +305,8 @@
           alert('查無此編號的桌位。');
           marker.hide();
           searchResult.empty();
+          // 清除所有高亮顯示
+          $('.parking-marker').removeClass('highlight');
         }
         
         // 清空輸入框
