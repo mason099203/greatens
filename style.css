@@ -627,6 +627,11 @@ h4{
   height: 47px;
 }
 
+.sign-text{
+  position: relative;
+  top: -20px;
+}
+
 
 /* RWD 設定 */
 @media screen and (max-width: 768px) {
@@ -655,6 +660,7 @@ h4{
     display: none;
   }
   
+
   .mobile-text{
     display:block;
   }
@@ -663,6 +669,7 @@ h4{
     margin: 0 auto;
     font-size: 1.5rem;
   }
+
 
   .nav-buttons {
     gap: 0;
@@ -781,7 +788,9 @@ h4{
   }
 
   .intro-content{
-    padding: 30px 20px;
+    padding: 40px 0 40px 0;
+    width: 100%;
+    border-radius: 0;
   }
 
   .intro-content .desktop-text,
