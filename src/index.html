@@ -17,7 +17,9 @@
   <div class="background-container"></div>
   <header>
     <div class="header-images">
-      <img src="./images/logo_footer.png" alt="Logo 1" class="footer-logo">
+      <a href="https://www.greaten.com.tw/" target="_blank">
+        <img src="./images/logo_footer.png" alt="Logo 1" class="footer-logo">
+      </a>
     </div>
     <div class="nav-buttons">
       <button onclick="scrollToSection('intro-section')">簡介</button>
@@ -64,8 +66,8 @@
             期待與您共度惠風和暢的溫馨家宴。<br>
           </p>
           <h4 class="desktop-text" style="line-height: 1.5;">日期：114 年 3 月 21 日 (五) | 16:00-21:00<br>
-          地點:桂田大樹 The Greatens(臺南市新市區大社里大社875之1號)<br>
-          謹註:來賓請攜邀請函入場(因場地空間限制，設有人数上限。)</h4>
+          地點:桂田大樹 The Greatens (臺南市新市區大社里大社875之1號)<br>
+          謹註:來賓請攜邀請函入場 (因場地空間限制，設有人数上限。)</h4>
           <h4 class="mobile-text" style="line-height: 1.5;">日期：114 年 3 月 21 日 (五) | 16:00-21:00<br>
             地點:桂田大樹 The Greatens<br>
             謹註:來賓請攜邀請函入場<br></h4>
@@ -140,17 +142,29 @@
       
       <!-- 聯絡資訊區 -->
       <div class="footer-contact">
-        <div class="contact-item">
+        <div class="contact-item desktop-text">
           <i class="bi bi-telephone-fill"></i>
           <span><b>電話：</b>(06) 2793725</span>
         </div>
-        <div class="contact-item">
-          <i class="bi bi-geo-alt-fill"></i>
+        <div class="contact-item mobile-text">
+          <i class="bi bi-telephone-fill"></i>
+          <span style="font-size: 12px;"><b>電話：</b><br>(06) 2793725</span>
+        </div>
+        <div class="contact-item desktop-text">
+          <i class="bi bi-geo-alt-fill "></i>
           <span><b>地址：</b>台南市東區東門路三段253號10樓之1</span>
         </div>
-        <div class="contact-item">
+        <div class="contact-item mobile-text">
+          <i class="bi bi-geo-alt-fill "></i>
+          <span style="font-size: 12px;"><b>地址：</b><br>台南市東區東門路三段253號10樓之1</span>
+        </div>
+        <div class="contact-item desktop-text" >
           <i class="bi bi-envelope-fill"></i>
           <span><b>信箱：</b>mvd.sales@metavision.tw</span>
+        </div>
+        <div class="contact-item mobile-text">
+          <i class="bi bi-envelope-fill"></i>
+          <span style="font-size: 12px;"><b>信箱：</b><br>mvd.sales@metavision.tw</span>
         </div>
         
         
@@ -242,7 +256,7 @@
                 <td>${foundPerson.ID}</td>
                 <td>${foundPerson.name}</td>
                 <td>${foundPerson.table}桌</td>
-                <td>P${foundPerson.park}</td>
+                <td onclick="scrollToSection('parking-info-section')">P${foundPerson.park}</td>
               </tr>
             </table>
             <div class="table-members">
