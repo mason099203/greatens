@@ -124,11 +124,19 @@ label {
   width: 80%;
 }
 
-
-#parking-image{
-  width: 700px; 
-  height: 494px;
+#parking-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 470px;  /* 根據圖片實際寬度調整 */
+  margin: 0 auto;
 }
+
+#parking-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 .search-section img{
   border-radius: 5px;
@@ -376,41 +384,54 @@ header {
   font-weight: bold;
   color: black;
   cursor: pointer;
+  transform: translate(-50%, -50%); 
+}
+
+.home-marker {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #ff0000;
+  left: 49%; 
+  top: 35%;
+  animation: homeBlink 2s infinite ease-in-out;
+  transform: translate(-50%, -50%); 
 }
 
 .p1{
-  left: 73%;
-  top: 52%;
+  left: 80%;
+  top: 50%;
 }
 
 .p2{
-  left: 57%;
-  top: 32%; 
+  left: 62%;
+  top: 21%; 
 }
 
 .p3{
-  left: 32%;
-  top: 40%;
+  left: 37%;
+  top: 31%;
 } 
 
 .p4{
-  left: 25%;
+  left: 29%;
   top: 68%;
 } 
 
 .p5{
-  left: 68%;
-  top: 73%;
+  left: 74%;
+  top: 74%;
 }
 
 .p6{
-  left: 12%;
-  top: 73%;
+  left: 15%;
+  top: 75%;
 }
 
 .p7{
-  left: 30%;
-  top: 48%;
+  left: 35%;
+  top: 41%;
 }
 
 
@@ -431,16 +452,7 @@ header {
   }
 }
 
-.home-marker {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 2px solid #ff0000;
-  left: 52%; 
-  top: 47%;
-  animation: homeBlink 2s infinite ease-in-out;
-}
+
 
 footer {
   background-color: #ffffff;
@@ -723,47 +735,47 @@ h4{
   }
 
   .p1{
-    left: 71%;
-    top: 62%;
+    left: 79%;
+    top: 49%;
   }
 
   .p2{
-    left: 56%;
-    top: 45%; 
+    left: 63%;
+    top: 20%; 
   }
 
   .p3{
     font-size: 0.6rem;
-    left: 34%;
-    top: 53%;
+    left: 37%;
+    top: 33%;
   } 
 
   .p4{
-    left: 25%;
-    top: 73.5%;
+    left: 28%;
+    top: 69%;
   } 
 
   .p5{
-    left: 67%;
-    top: 76%;
+    left: 74%;
+    top: 74%;
   }
 
   .p6{
-    left: 12%;
-    top: 77%;
+    left: 14%;
+    top: 76%;
   } 
 
   .p7{
     font-size: 0.6rem;
-    left: 33%;
-    top: 58.5%;
+    left: 35%;
+    top: 42%;
   }
 
   .home-marker {
     width: 40px;
     height: 40px;
-    left: 53%; 
-    top: 60%;
+    left: 54%; 
+    top: 40%;
   }
 
 }
