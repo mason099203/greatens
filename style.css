@@ -45,11 +45,12 @@ table th,
 table td {
   border: 1px solid #000000;
   padding: 8px;
-  text-align: left;
+  text-align: center;
   color: rgb(255, 255, 255);  
 }
 
 .table-members p {
+  text-align: center;
   color: rgb(255, 255, 255);  
   opacity: 1;  /* 確保完全不透明 */
 }
@@ -70,6 +71,7 @@ button, input {
   color: white;
 }
 .search-result{
+  background-color: rgba(0, 0, 0);
   z-index: 100;
 }
 
@@ -109,12 +111,16 @@ label {
     position: relative;
     z-index: 2;
 }
+.search-container h2{
+  background-color: rgba(235, 228, 210, 0.918);
+}
 
 .parking-info-container img{
   border-radius: 5px;
 }
 
 .parking-info-container h2{
+  background-color: rgba(235, 228, 210, 0.918);
   width: 80%;
 }
 
@@ -223,7 +229,6 @@ label {
 }
 
 h2{
-  background-color: rgba(235, 228, 210, 0.918);
   align-self: center;
   width: 40%;
   font-size: 1.2rem;
@@ -274,7 +279,13 @@ h2{
 }
 
 header {
-  background-color: #ffffff;
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 30%,
+
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
   text-align: center;
   position: sticky;
   top: 0;
@@ -297,12 +308,12 @@ header {
 }
 
 .nav-buttons button {
-  background-color: #ffffff;
+  background-color: #ffffff00;
   font-size: 1.2rem;
   font-weight: bold;
   border: none;
   /* background: linear-gradient(to top, #969cafa6, #ffffff); 由下往上漸層 */
-  color: rgb(32, 32, 32);
+  color: rgb(255, 255, 255);
   cursor: pointer;
   transition: all 0.3s ease;
   height: 50%;
@@ -314,11 +325,11 @@ header {
 
 
 .nav-buttons :hover {
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
   /* background: linear-gradient(to top, #959bada6, #ffffff); hover時的漸層顏色 */
-  color: rgb(0, 0, 0);
+  /* color: rgb(0, 0, 0); */
   transform: translateY(-2px);
-  border: 1px solid #000000;
+  /* border: 1px solid #ffffff; */
 }
 
 .nav-buttons button:active {
@@ -352,6 +363,7 @@ header {
   display: flex;
   justify-content: center;
 }
+
 
 .parking-marker {
   position: absolute;
@@ -505,7 +517,8 @@ footer p{
 }
 
 .header-images img {
-  width: 120px;
+  width: 260px;
+  margin:auto;
   height: auto;
   object-fit: contain; /* 保持圖片比例 */
 }
@@ -627,6 +640,13 @@ h4{
     width: 100%;
   }
 
+  .header-images img {
+    width: 120px;
+    padding-left: 20%;
+    height: auto;
+    object-fit: contain; /* 保持圖片比例 */
+  }
+
   .intro-content{
     height: 100%;
     width: 98%;
@@ -639,7 +659,7 @@ h4{
   .mobile-text{
     display:block;
   }
-
+  .search-container h2,
   .intro-content h2{
     margin: 0 auto;
     font-size: 1.5rem;
@@ -713,8 +733,8 @@ h4{
   }
 
   .p3{
-    font-size: 0.8rem;
-    left: 32%;
+    font-size: 0.6rem;
+    left: 34%;
     top: 53%;
   } 
 
@@ -724,8 +744,8 @@ h4{
   } 
 
   .p5{
-    left: 65%;
-    top: 75%;
+    left: 67%;
+    top: 76%;
   }
 
   .p6{
@@ -734,9 +754,9 @@ h4{
   } 
 
   .p7{
-    font-size: 0.8rem;
-    left: 30%;
-    top: 59%;
+    font-size: 0.6rem;
+    left: 33%;
+    top: 58.5%;
   }
 
   .home-marker {
@@ -759,6 +779,10 @@ h4{
   }
   .intro-title-center h2{
     font-size: 1.2rem;
+  }
+
+  .intro-content{
+    padding: 30px 20px;
   }
 
   .intro-content .desktop-text,
