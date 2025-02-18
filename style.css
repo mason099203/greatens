@@ -52,21 +52,15 @@ table td {
 .table-members p {
   text-align: center;
   color: rgb(255, 255, 255);  
-  opacity: 1;  /* 確保完全不透明 */
+  opacity: 1;  
 }
 
-/* 修改按鈕樣式 */
 button, input {
   background-color: #000000;
   color: white;
   border: 1px solid #444;
 }
 
-/* button:hover {
-  background-color: #444;
-} */
-
-/* 修改搜尋結果文字顏色 */
 #search-result {
   color: white;
 }
@@ -75,12 +69,10 @@ button, input {
   z-index: 100;
 }
 
-/* 修改標籤文字顏色 */
 label {
   color: white;
 }
 
-/* 移除各 section 原本的背景圖片設定 */
 .intro-section,
 .search-section,
 .parking-info-section {
@@ -90,7 +82,6 @@ label {
     z-index: 1;
 }
 
-/* 為各 section 添加半透明遮罩 */
 .intro-section::before,
 .search-section::before,
 .parking-info-section::before {
@@ -100,11 +91,10 @@ label {
     left: 0;
     right: 0;
     bottom: 0;
-    /* background: rgba(247, 235, 235, 0.651);  */
     z-index: -1;
 }
 
-/* 確保內容在遮罩上層 */
+
 .intro-container,
 .search-container,
 .parking-info-container {
@@ -127,7 +117,7 @@ label {
 #parking-image-container {
   position: relative;
   width: 100%;
-  max-width: 470px;  /* 根據圖片實際寬度調整 */
+  max-width: 470px;  
   margin: 0 auto;
 }
 
@@ -145,7 +135,7 @@ label {
 .intro-section {
   background-position: center;
   background-repeat: no-repeat;
-  height: 92vh;
+  /* height: 90vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -167,6 +157,7 @@ label {
   color:#643601;
   font-weight: bold;
   padding: 40px 20px;
+  margin: 0 auto;
   background-color: rgba(235, 228, 210, 0.918);
 }
 
@@ -221,7 +212,7 @@ label {
 /* 修改搜尋區塊的樣式 */
 .search-section {
   /* background-color: #f9f9f9; */
-  height: 92vh;
+  /* height: 92vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -279,7 +270,7 @@ h2{
 }
 
 .parking-info-section{
-  height: 92vh;
+  /* height: 92vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -609,7 +600,7 @@ body::-webkit-scrollbar-thumb:hover {
   margin: auto;
   display: block;
   max-width: 90%;
-  max-height: 90vh;
+  /* max-height: 90vh; */
   position: relative;
   top: 50%;
   transform: translateY(-50%);
