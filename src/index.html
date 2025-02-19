@@ -194,7 +194,7 @@
 
     // 從 GitHub 讀取座標資料
     $.ajax({
-      url: 'https://raw.githubusercontent.com/mason099203/0331/main/src/123.json',
+      url: 'https://raw.githubusercontent.com/mason099203/0331/main/src/20250219.json',
       method: 'GET',
       success: function(response) {
         try {
@@ -230,7 +230,9 @@
           
           // 高亮顯示對應的停車場標記
           $(`.parking-marker:contains('P${foundPerson.park}')`).addClass('highlight');
-          
+          console.log(foundPerson.park);
+          console.log(foundPerson.x);
+          console.log(foundPerson.y);
           // 顯示標記
           marker.css({
             'left': `${foundPerson.x}px`,
