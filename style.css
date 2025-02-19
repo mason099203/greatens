@@ -38,11 +38,12 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 10px 0;
-  background-color: rgb(0, 0, 0);  /* 改為完全不透明的黑色 */
+  background-color: rgb(0, 0, 0,0.5);  /* 改為完全不透明的黑色 */
 }
 
 table th,
 table td {
+  font-size: 1.2rem;
   border: 1px solid #000000;
   padding: 8px;
   text-align: center;
@@ -65,7 +66,6 @@ button, input {
   color: white;
 }
 .search-result{
-  background-color: rgba(0, 0, 0);
   z-index: 100;
 }
 
@@ -76,7 +76,6 @@ label {
 .intro-section,
 .search-section,
 .parking-info-section {
-  height: 100vh;
   background-image: none;
   position: relative;
   overflow: hidden;
@@ -165,6 +164,17 @@ label {
 .intro-content p{
   font-size: 1.2rem;
   line-height: 1.5;
+}
+
+.markers {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px solid yellow;
+  background-color: transparent;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: blink 1s infinite;
 }
 
 .intro-title{
@@ -358,14 +368,23 @@ header {
   display: flex;
   justify-content: center;
 }
-
+.park-info{
+  position: absolute; 
+  top: 150px; 
+  width: 50%; 
+  text-align: center; 
+  z-index: 100; 
+  margin: 0 ; 
+  padding: 0; 
+  background-color:white; 
+}
 
 .parking-marker {
   position: absolute;
   border: 2px solid #000000;
   font-size: 2rem; 
   opacity: 0;
-  /* parking place */
+
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: bold;
@@ -386,37 +405,37 @@ header {
   transform: translate(-50%, -50%); 
 }
 
-.p1{
+.P1{
   left: 80%;
   top: 50%;
 }
 
-.p2{
+.P2{
   left: 62%;
   top: 21%; 
 }
 
-.p3{
+.P3{
   left: 37%;
   top: 31%;
 } 
 
-.p4{
+.P4{
   left: 29%;
   top: 68%;
 } 
 
-.p5{
+.P5{
   left: 74%;
   top: 74%;
 }
 
-.p6{
+.P6{
   left: 15%;
   top: 75%;
 }
 
-.p7{
+.P7{
   left: 35%;
   top: 41%;
 }
@@ -633,6 +652,15 @@ h4{
   top: -8px;
 }
 
+.parking-info-text a{
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.parking-info-text a:hover{
+  color: #ffcb78;
+}
 
 /* RWD 設定 */
 @media screen and (max-width: 768px) {
@@ -640,7 +668,9 @@ h4{
   header {
     flex-direction: row;
   }
-  
+  .parking-info-container .park-info{
+    font-size: 0.8rem;
+  }
   .parking-info-container h2{
     width: 100%;
   }
@@ -652,6 +682,9 @@ h4{
     object-fit: contain; /* 保持圖片比例 */
   }
 
+  .parking-place{
+    display: none;
+  }
   .intro-content{
     height: 100%;
     width: 98%;
@@ -660,7 +693,6 @@ h4{
   .desktop-text {
     display: none;
   }
-  
 
   .mobile-text{
     display:block;
@@ -775,11 +807,18 @@ h4{
 
 }
 
+.parking-place-text{
+  display: none;
+}
+
 @media screen and (max-width: 480px) {
   /* 更小螢幕的額外設定 */
   .intro-container h2,
   .parking-info-container h2 {
     font-size: 1.5em;
+  }
+  .parking-info-container .park-info{
+    top: 190px;
   }
   .intro-title{
     width: 95%;
@@ -788,6 +827,11 @@ h4{
     font-size: 1.2rem;
   }
 
+  table th,
+table td {  
+  font-size: 1rem;
+
+}
   .intro-content{
     padding: 40px 0 40px 0;
     width: 100%;
