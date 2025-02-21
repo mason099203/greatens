@@ -1,871 +1,871 @@
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    background-image: url('./images/section_park_2.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;  /* 固定背景 */
-    background-repeat: no-repeat;
-    color: rgb(199, 197, 197);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-image: url('./images/section_park_2.webp');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;  /* 固定背景 */
+  background-repeat: no-repeat;
+  color: rgb(199, 197, 197);
 }
 
 @keyframes backgroundZoom {
-  0% {
-    background-size: 100%;
-  }
-  100% {
-    background-size: 120%;
-  }
+0% {
+  background-size: 100%;
+}
+100% {
+  background-size: 120%;
+}
 }
 
 /* 為了確保內容可讀性，可以添加半透明背景 */
 .intro-container,
 .search-container,
 .parking-info-container {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  border-radius: 10px;
-  /* margin: 0 auto; */
-  max-width: 800px;
-  text-align: center;
+display: flex;
+flex-direction: column;
+padding: 20px;
+border-radius: 10px;
+/* margin: 0 auto; */
+max-width: 800px;
+text-align: center;
 }
 
 /* 修改表格樣式 */
 table {
-  z-index: 100;
-  width: 100%;
-  border-collapse: collapse;
-  margin: 10px 0;
-  background-color: rgb(0, 0, 0,0.8);  /* 改為完全不透明的黑色 */
+z-index: 100;
+width: 100%;
+border-collapse: collapse;
+margin: 10px 0;
+background-color: rgb(0, 0, 0,0.8);  /* 改為完全不透明的黑色 */
 }
 
 table th,
 table td {
-  font-size: 1.2rem;
-  border: 1px solid #000000;
-  padding: 8px;
-  text-align: center;
-  color: rgb(255, 255, 255);  
+font-size: 1.2rem;
+border: 1px solid #000000;
+padding: 8px;
+text-align: center;
+color: rgb(255, 255, 255);  
 }
 
 .table-members p {
-  text-align: center;
-  color: rgb(255, 255, 255);  
-  opacity: 1;  
+text-align: center;
+color: rgb(255, 255, 255);  
+opacity: 1;  
 }
 
 button, input {
-  background-color: #000000;
-  color: white;
-  border: 1px solid #444;
+background-color: #000000;
+color: white;
+border: 1px solid #444;
 }
 
 #search-result {
-  color: white;
+color: white;
 }
 .search-result{
-  z-index: 100;
+z-index: 100;
 }
 
 label {
-  color: white;
+color: white;
 }
 
 .intro-section,
 .search-section,
 .parking-info-section {
-  background-image: none;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
+background-image: none;
+position: relative;
+overflow: hidden;
+z-index: 1;
 }
 
 .intro-section::before,
 .search-section::before,
 .parking-info-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
 }
 
 
 .intro-container,
 .search-container,
 .parking-info-container {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 }
 .search-container h2{
-  background-color: rgba(235, 228, 210, 0.918);
+background-color: rgba(235, 228, 210, 0.918);
 }
 
 .parking-info-container img{
-  border-radius: 5px;
+border-radius: 5px;
 }
 
 .parking-info-container h2{
-  background-color: rgba(235, 228, 210, 0.918);
-  width: 80%;
+background-color: rgba(235, 228, 210, 0.918);
+width: 80%;
 }
 
 #parking-image-container {
-  position: relative;
-  width: 100%;
-  max-width: 470px;  
-  margin: 0 auto;
+position: relative;
+width: 100%;
+max-width: 470px;  
+margin: 0 auto;
 }
 
 #parking-image {
-  width: 100%;
-  height: auto;
-  display: block;
+width: 100%;
+height: auto;
+display: block;
 }
 
 
 .search-section img{
-  border-radius: 5px;
+border-radius: 5px;
 }
 
 .intro-section {
-  background-position: center;
-  background-repeat: no-repeat;
-  /* height: 90vh; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+background-position: center;
+background-repeat: no-repeat;
+/* height: 90vh; */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
 
 .intro-container {
-  margin: 0 auto;
-  text-align: center;
-  color: white;
-  width: 100%;
-  padding: 20px;
+margin: 0 auto;
+text-align: center;
+color: white;
+width: 100%;
+padding: 20px;
 }
 
 .intro-content{
-  text-align: center;
-  font-family: cursive;
-  border-radius: 8px;
-  color:#643601;
-  font-weight: bold;
-  padding: 40px 20px;
-  margin: 0 auto;
-  background-color: rgba(235, 228, 210, 0.918);
+text-align: center;
+font-family: cursive;
+border-radius: 8px;
+color:#643601;
+font-weight: bold;
+padding: 40px 20px;
+margin: 0 auto;
+background-color: rgba(235, 228, 210, 0.918);
 }
 
 .intro-content p{
-  font-size: 1.2rem;
-  line-height: 1.5;
+font-size: 1.2rem;
+line-height: 1.5;
 }
 
 .markers {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border: 2px solid yellow;
-  background-color: transparent;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: blink 1s infinite;
+position: absolute;
+width: 40px;
+height: 40px;
+border: 2px solid yellow;
+background-color: transparent;
+border-radius: 50%;
+transform: translate(-50%, -50%);
+animation: blink 1s infinite;
 }
 
 .intro-title{
-  display: flex;
-  flex-direction: row;
-  width: 40%;
-  height: 48px;
-  line-height: 1.2;
-  margin: 0 auto;
-  justify-content: center;
+display: flex;
+flex-direction: row;
+width: 40%;
+height: 48px;
+line-height: 1.2;
+margin: 0 auto;
+justify-content: center;
 }
 
 .intro-title-left,
 .intro-title-right{
-  width: 6%;
-  border-top: 2px solid #7e490ebe;
+width: 6%;
+border-top: 2px solid #7e490ebe;
 }
 
 .intro-title-right{
-  border-right: 2px solid #7e490ebe;
+border-right: 2px solid #7e490ebe;
 }
 
 .intro-title-left{
-  border-left: 2px solid #7e490ebe;
+border-left: 2px solid #7e490ebe;
 }
 
 .intro-title-left,
 .intro-title-right,
 .intro-title-center{
-  border-bottom: 2px solid #7e490ebe;
+border-bottom: 2px solid #7e490ebe;
 }
 
 
 
 .intro-title h2{
-  font-family: cursive;
-  position: relative;
-  color: #643601;
-  top: -15px;
-  padding: 0;
-  margin: 0 auto;
-  width: 100%;
-  font-size: 1.4rem;
+font-family: cursive;
+position: relative;
+color: #643601;
+top: -15px;
+padding: 0;
+margin: 0 auto;
+width: 100%;
+font-size: 1.4rem;
 }
 
 /* 修改搜尋區塊的樣式 */
 .search-section {
-  /* background-color: #f9f9f9; */
-  /* height: 92vh; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* background-color: #f9f9f9; */
+/* height: 92vh; */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
 
 .example-text{
-  color: #ffffff; 
-  width: 40%; 
-  font-size: 0.8rem; 
-  font-weight: bold; 
-  text-align: left; 
-  background-color: #00000083; 
-  padding: 2px 5px;
+color: #ffffff; 
+width: 40%; 
+font-size: 0.8rem; 
+font-weight: bold; 
+text-align: left; 
+background-color: #00000083; 
+padding: 2px 5px;
 }
 
 #nameInput{
-  padding: 10px; 
-  width: 200px; 
-  font-size: 1rem; 
-  background-color: rgba(235, 228, 210, 0.918);
-  color: #000000;
+padding: 10px; 
+width: 200px; 
+font-size: 1rem; 
+background-color: rgba(235, 228, 210, 0.918);
+color: #000000;
 }
 
 h2{
-  align-self: center;
-  width: 40%;
-  font-size: 1.2rem;
-  color: #40321B;
-  font-weight: bold;
-  border-radius: 10px;
-  padding: 10px;
+align-self: center;
+width: 40%;
+font-size: 1.2rem;
+color: #40321B;
+font-weight: bold;
+border-radius: 10px;
+padding: 10px;
 }
 
 
 .search-container {
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
+margin: 0 auto;
+text-align: center;
+width: 100%;
 }
 
 .search-container label {
-  color: white;
-  font-weight: bold;
+color: white;
+font-weight: bold;
 }
 
 .search-container input {
-  padding: 8px;
-  border-radius: 4px;
-  border: none;
+padding: 8px;
+border-radius: 4px;
+border: none;
 }
 
 .search-container button {
-  padding: 8px 16px;
-  border-radius: 4px;
-  border: none;
-  background-color: #e7a4a4b6;
-  color: rgb(0, 0, 0);
-  cursor: pointer;
+padding: 8px 16px;
+border-radius: 4px;
+border: none;
+background-color: #e7a4a4b6;
+color: rgb(0, 0, 0);
+cursor: pointer;
 }
 
 .search-container button:hover {
-  background-color: #dfd771b6;
-  transform: translateY(-2px);
+background-color: #dfd771b6;
+transform: translateY(-2px);
 }
 
 .parking-info-section{
-  /* height: 92vh; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* height: 92vh; */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
 
 header {
-  background: linear-gradient(to bottom, 
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.7) 30%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  height: 8vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+background: linear-gradient(to bottom, 
+  rgba(0, 0, 0, 0.9) 0%,
+  rgba(0, 0, 0, 0.7) 30%,
+  rgba(0, 0, 0, 0.5) 50%,
+  rgba(0, 0, 0, 0) 100%
+);
+text-align: center;
+position: sticky;
+top: 0;
+z-index: 100;
+height: 8vh;
+display: flex;
+flex-direction: row;
+justify-content: center;
 }
 
 .nav-buttons {
-  margin: 0.5rem 0.5rem 0 0.5rem;
-  width: 70%;
-  display: flex;
-  justify-content: flex-end;
-  gap: 20px;
-  align-items: flex-end;
+margin: 0.5rem 0.5rem 0 0.5rem;
+width: 70%;
+display: flex;
+justify-content: flex-end;
+gap: 20px;
+align-items: flex-end;
 }
 
 .nav-buttons button {
-  background-color: #ffffff00;
-  font-size: 1.2rem;
-  font-weight: bold;
-  font-family:  'Noto Serif TC', serif;
-  border: none;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  height: 50%;
-  width: 20%; /* 設定按鈕寬度 */
-  display: flex;
-  align-items: flex-end; /* 文字靠底 */
-  justify-content: center; /* 文字水平置中 */
+background-color: #ffffff00;
+font-size: 1.2rem;
+font-weight: bold;
+font-family:  'Noto Serif TC', serif;
+border: none;
+color: rgb(255, 255, 255);
+cursor: pointer;
+transition: all 0.3s ease;
+height: 50%;
+width: 20%; /* 設定按鈕寬度 */
+display: flex;
+align-items: flex-end; /* 文字靠底 */
+justify-content: center; /* 文字水平置中 */
 }
 
 
 .nav-buttons :hover {
-  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
-  color: #ffcb78;;
+box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+transform: translateY(-2px);
+color: #ffcb78;;
 }
 
 .nav-buttons button:active {
-  transform: translateY(0);
+transform: translateY(0);
 }
 
 /* 調整圖片容器大小 */
 #image-container {
-  max-height: 60vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+max-height: 60vh;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 #image-container img {
-  max-height: 100%;
-  width: auto;
-  object-fit: contain;
+max-height: 100%;
+width: auto;
+object-fit: contain;
 }
 
 
 
 .search-container {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
+display: flex;
+gap: 1rem;
+justify-content: center;
+align-items: center;
 }
 
 .map-section {
-  display: flex;
-  justify-content: center;
+display: flex;
+justify-content: center;
 }
 .park-info{
-  position: absolute; 
-  top: 150px; 
-  width: 50%; 
-  text-align: center; 
-  z-index: 100; 
-  margin: 0 ; 
-  padding: 0; 
-  background-color:white; 
+position: absolute; 
+top: 150px; 
+width: 50%; 
+text-align: center; 
+z-index: 100; 
+margin: 0 ; 
+padding: 0; 
+background-color:white; 
 }
 
 .parking-marker {
-  position: absolute;
-  border: 2px solid #000000;
-  font-size: 2rem; 
-  opacity: 0;
+position: absolute;
+border: 2px solid #000000;
+font-size: 2rem; 
+opacity: 0;
 
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  color: black;
-  cursor: pointer;
-  transform: translate(-50%, -50%); 
+padding: 5px 10px;
+border-radius: 5px;
+font-weight: bold;
+color: black;
+cursor: pointer;
+transform: translate(-50%, -50%); 
 }
 
 .home-marker {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 2px solid #ff0000;
-  left: 49%; 
-  top: 35%;
-  animation: homeBlink 2s infinite ease-in-out;
-  transform: translate(-50%, -50%); 
+position: absolute;
+width: 100px;
+height: 100px;
+border-radius: 50%;
+border: 2px solid #ff0000;
+left: 49%; 
+top: 35%;
+animation: homeBlink 2s infinite ease-in-out;
+transform: translate(-50%, -50%); 
 }
 
 .P1{
-  left: 80%;
-  top: 50%;
+left: 80%;
+top: 50%;
 }
 
 .P2{
-  left: 62%;
-  top: 21%; 
+left: 62%;
+top: 21%; 
 }
 
 .P3{
-  left: 37%;
-  top: 31%;
+left: 37%;
+top: 31%;
 } 
 
 .P4{
-  left: 29%;
-  top: 68%;
+left: 29%;
+top: 68%;
 } 
 
 .P5{
-  left: 74%;
-  top: 74%;
+left: 74%;
+top: 74%;
 }
 
 .P6{
-  left: 15%;
-  top: 75%;
+left: 15%;
+top: 75%;
 }
 
 .P7{
-  left: 35%;
-  top: 41%;
+left: 35%;
+top: 41%;
 }
 
 
 
 @keyframes homeBlink {
-  0% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-  50% {
-    opacity: 0.2;
-    border: 2px solid #990000;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
+0% {
+  opacity: 1;
+  transform: scale(1.1);
+}
+50% {
+  opacity: 0.2;
+  border: 2px solid #990000;
+  transform: scale(1);
+}
+100% {
+  opacity: 1;
+  transform: scale(1.1);
+}
 }
 
 
 
 footer {
-  background-color: #ffffff;
-  text-align: center;
-  color: rgb(199, 197, 197);
-  bottom: 0;
-  width: 100%;
-  position: relative;
-  z-index: 100;
+background-color: #ffffff;
+text-align: center;
+color: rgb(199, 197, 197);
+bottom: 0;
+width: 100%;
+position: relative;
+z-index: 100;
 }
 footer p{
-  font-size: 0.5rem;
+font-size: 0.5rem;
 }
 
 .footer-container {
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-  padding: 20px;
+display: flex;
+align-items: center;
+margin: 0 auto;
+padding: 20px;
 }
 
 .footer-images {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  width: 30%;
-  height: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 20px;
+width: 30%;
+height: 100%;
 }
 
 .footer-logo {
-  width: 150px;
-  height: auto;
+width: 150px;
+height: auto;
 }
 
 .footer-contact {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 70%; /* 右側佔70% */
-  text-align: center; /* 文字置中 */
+display: flex;
+flex-direction: column;
+gap: 15px;
+width: 70%; /* 右側佔70% */
+text-align: center; /* 文字置中 */
 }
 
 .contact-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: black;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+color: black;
 }
 .contact-item b{
-  font-size: 0.8rem;
+font-size: 0.8rem;
 }
 
 .contact-item i {
-  font-size: 1.2rem;
-  color: black;
+font-size: 1.2rem;
+color: black;
 }
 
 .footer-copyright {
-  text-align: center;
-  margin-top: 15px;
-  color: black;
+text-align: center;
+margin-top: 15px;
+color: black;
 }
 
 .header-images {
-  display: flex;
-  align-items: center; /* 垂直置中 */
-  justify-content: center; /* 水平置中 */
-  height: 100%; /* 確保有足夠高度進行垂直置中 */
-  width: 30%;
-  z-index: 900;
+display: flex;
+align-items: center; /* 垂直置中 */
+justify-content: center; /* 水平置中 */
+height: 100%; /* 確保有足夠高度進行垂直置中 */
+width: 30%;
+z-index: 900;
 }
 
 .header-images img {
-  position: relative;
-  left: 10%;
-  width: 260px;
-  height: auto;
-  object-fit: contain; /* 保持圖片比例 */
+position: relative;
+left: 10%;
+width: 260px;
+height: auto;
+object-fit: contain; /* 保持圖片比例 */
 }
 
 /* 自定義滾輪樣式 */
 body::-webkit-scrollbar {
-  width: 8px;  /* 滾輪寬度 */
+width: 8px;  /* 滾輪寬度 */
 }
 
 body::-webkit-scrollbar-track {
-  background: #1a1a1a;  /* 深灰色軌道 */
-  border-radius: 4px;
+background: #1a1a1a;  /* 深灰色軌道 */
+border-radius: 4px;
 }
 
 body::-webkit-scrollbar-thumb {
-  background: #666666;  /* 中灰色滾動條 */
-  border-radius: 4px;
+background: #666666;  /* 中灰色滾動條 */
+border-radius: 4px;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background: #888888;  /* 淺灰色懸停效果 */
+background: #888888;  /* 淺灰色懸停效果 */
 }
 
 /* 其他容器的滾輪樣式 */
 .intro-content::-webkit-scrollbar,
 .search-container::-webkit-scrollbar,
 .parking-info-container::-webkit-scrollbar {
-  width: 8px;
+width: 8px;
 }
 
 .intro-content::-webkit-scrollbar-track,
 .search-container::-webkit-scrollbar-track,
 .parking-info-container::-webkit-scrollbar-track {
-  background: #1a1a1a;
-  border-radius: 4px;
+background: #1a1a1a;
+border-radius: 4px;
 }
 
 .intro-content::-webkit-scrollbar-thumb,
 .search-container::-webkit-scrollbar-thumb,
 .parking-info-container::-webkit-scrollbar-thumb {
-  background: #666666;
-  border-radius: 4px;
+background: #666666;
+border-radius: 4px;
 }
 
 .intro-content::-webkit-scrollbar-thumb:hover,
 .search-container::-webkit-scrollbar-thumb:hover,
 .parking-info-container::-webkit-scrollbar-thumb:hover {
-  background: #888888;
+background: #888888;
 }
-  
+
 @keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0.3; }
-  100% { opacity: 1; }
+0% { opacity: 1; }
+50% { opacity: 0.3; }
+100% { opacity: 1; }
 }
 
 
 
 
 .parking-marker.highlight {
-  animation: blink 1s infinite;
-  color:transparent;
-  font-weight: bold;
+animation: blink 1s infinite;
+color:transparent;
+font-weight: bold;
 }
 
 /* 彈出圖片的樣式 */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.9);
-  cursor: pointer;
+display: none;
+position: fixed;
+z-index: 1000;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.9);
+cursor: pointer;
 }
 
 .modal-content {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  /* max-height: 90vh; */
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+margin: auto;
+display: block;
+max-width: 90%;
+/* max-height: 90vh; */
+position: relative;
+top: 50%;
+transform: translateY(-50%);
 }
 
 .desktop-text{
-  display: block;
+display: block;
 }
 
 .mobile-text{
-  display: none;
+display: none;
 }
 
 h4{
-  margin: 0;
+margin: 0;
 }
 
 .mobile-sign img{
-  position: relative;
-  top: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  width: 109px; 
-  height: 47px;
+position: relative;
+top: 20px;
+padding-left: 10px;
+padding-right: 10px;
+width: 109px; 
+height: 47px;
 }
 
 .sign-text{
-  position: relative;
-  top: -8px;
+position: relative;
+top: -8px;
 }
 
 .parking-info-text a{
-  color: white;
-  font-size: 1.2rem;
-  text-decoration: none;
+color: white;
+font-size: 1.2rem;
+text-decoration: none;
 }
 
 .parking-info-text a:hover{
-  color: #ffcb78;
+color: #ffcb78;
 }
 
 /* RWD 設定 */
 @media screen and (max-width: 768px) {
-  /* 頁首設定 */
-  header {
-    flex-direction: row;
-  }
-  .parking-info-container .park-info{
-    font-size: 0.8rem;
-  }
-  .parking-info-container h2{
-    width: 100%;
-  }
+/* 頁首設定 */
+header {
+  flex-direction: row;
+}
+.parking-info-container .park-info{
+  font-size: 0.8rem;
+}
+.parking-info-container h2{
+  width: 100%;
+}
 
-  .header-images img {
-    width: 120px;
-    padding-left: 20%;
-    height: auto;
-    object-fit: contain; /* 保持圖片比例 */
-  }
+.header-images img {
+  width: 120px;
+  padding-left: 20%;
+  height: auto;
+  object-fit: contain; /* 保持圖片比例 */
+}
 
-  .parking-place{
-    display: none;
-  }
-  .intro-content{
-    height: 100%;
-    width: 98%;
-  }
+.parking-place{
+  display: none;
+}
+.intro-content{
+  height: 100%;
+  width: 98%;
+}
 
-  .desktop-text {
-    display: none;
-  }
+.desktop-text {
+  display: none;
+}
 
-  .mobile-text{
-    display:block;
-  }
-  .search-container h2,
-  .intro-content h2{
-    margin: 0 auto;
-    font-size: 1.5rem;
-  }
+.mobile-text{
+  display:block;
+}
+.search-container h2,
+.intro-content h2{
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
 
 
-  .nav-buttons {
-    gap: 0;
-    align-items: center;
-    /* height: 10%; */
-    margin: 0;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-  }
+.nav-buttons {
+  gap: 0;
+  align-items: center;
+  /* height: 10%; */
+  margin: 0;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-buttons button {
+  font-size: 1rem;
   
-  .nav-buttons button {
-    font-size: 1rem;
-    
-    width: 30%;  /* 設定每個按鈕佔 30% 寬度 */
-  }
+  width: 30%;  /* 設定每個按鈕佔 30% 寬度 */
+}
 
 
-  
-  /* 內容區塊設定 */
-  .intro-container {
-    padding: 10px;
-    margin: 10px;
-    width: 90%;
-  }
 
-  #parking-image{
-    width: 390px;
-    height: 275px;
-  }
-  
-  
-  /* 頁尾設定 */
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .footer-images {
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .footer-contact {
-    width: 100%;
-    padding: 0 10px;
-  }
-  
-  .contact-item {
-    justify-content: center;
-  }
+/* 內容區塊設定 */
+.intro-container {
+  padding: 10px;
+  margin: 10px;
+  width: 90%;
+}
 
-  .parking-marker {
-    font-size: 1rem;
-  }
+#parking-image{
+  width: 390px;
+  height: 275px;
+}
 
-  .p1{
-    left: 79%;
-    top: 49%;
-  }
 
-  .p2{
-    left: 63%;
-    top: 20%; 
-  }
+/* 頁尾設定 */
+.footer-container {
+  flex-direction: column;
+  text-align: center;
+}
 
-  .p3{
-    font-size: 0.6rem;
-    left: 37%;
-    top: 33%;
-  } 
+.footer-images {
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
-  .p4{
-    left: 28%;
-    top: 69%;
-  } 
+.footer-contact {
+  width: 100%;
+  padding: 0 10px;
+}
 
-  .p5{
-    left: 74%;
-    top: 74%;
-  }
+.contact-item {
+  justify-content: center;
+}
 
-  .p6{
-    left: 14%;
-    top: 76%;
-  } 
+.parking-marker {
+  font-size: 1rem;
+}
 
-  .p7{
-    font-size: 0.6rem;
-    left: 35%;
-    top: 42%;
-  }
+.p1{
+  left: 79%;
+  top: 49%;
+}
 
-  .home-marker {
-    width: 40px;
-    height: 40px;
-    left: 54%; 
-    top: 40%;
-  }
+.p2{
+  left: 63%;
+  top: 20%; 
+}
+
+.p3{
+  font-size: 0.6rem;
+  left: 37%;
+  top: 33%;
+} 
+
+.p4{
+  left: 28%;
+  top: 69%;
+} 
+
+.p5{
+  left: 74%;
+  top: 74%;
+}
+
+.p6{
+  left: 14%;
+  top: 76%;
+} 
+
+.p7{
+  font-size: 0.6rem;
+  left: 35%;
+  top: 42%;
+}
+
+.home-marker {
+  width: 40px;
+  height: 40px;
+  left: 54%; 
+  top: 40%;
+}
 
 }
 
 .parking-place-text{
-  display: none;
+display: none;
 }
 
 @media screen and (max-width: 480px) {
-  /* 更小螢幕的額外設定 */
-  .intro-container h2,
-  .parking-info-container h2 {
-    font-size: 1.5em;
-  }
-  .parking-info-container .park-info{
-    top: 190px;
-  }
-  .intro-title{
-    width: 95%;
-  }
-  .intro-title-center h2{
-    font-size: 1.2rem;
-  }
+/* 更小螢幕的額外設定 */
+.intro-container h2,
+.parking-info-container h2 {
+  font-size: 1.5em;
+}
+.parking-info-container .park-info{
+  top: 190px;
+}
+.intro-title{
+  width: 95%;
+}
+.intro-title-center h2{
+  font-size: 1.2rem;
+}
 
-  table th,
+table th,
 table td {  
-  font-size: 1rem;
+font-size: 1rem;
 
 }
-  .intro-content{
-    padding: 40px 0 40px 0;
-    width: 100%;
-    border-radius: 0;
-  }
+.intro-content{
+  padding: 40px 0 40px 0;
+  width: 100%;
+  border-radius: 0;
+}
 
-  .intro-content .desktop-text,
-  .intro-content .mobile-text{
-    font-size: 0.9rem;
-  }
+.intro-content .desktop-text,
+.intro-content .mobile-text{
+  font-size: 0.9rem;
+}
 
-  .nav-buttons button {
-    font-size: 1rem;
-    width: 30%;  /* 設定每個按鈕佔 30% 寬度 */
-  }
+.nav-buttons button {
+  font-size: 1rem;
+  width: 30%;  /* 設定每個按鈕佔 30% 寬度 */
+}
 
-  .header-images{
-    display: none;
-  }
-  
-  .footer-logo {
-    width: 80px;
-    height: auto;
-  }
-  
+.header-images{
+  display: none;
+}
+
+.footer-logo {
+  width: 80px;
+  height: auto;
+}
+
 
 }
