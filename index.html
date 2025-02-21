@@ -18,7 +18,7 @@
   <header>
     <div class="header-images">
       <a href="https://www.greaten.com.tw/" target="_blank">
-        <img src="./images/logo_footer.webp" alt="Logo 1" class="footer-logo">
+        <img id="footer-logo" alt="Logo 1" class="footer-logo">
       </a>
     </div>
     <div class="nav-buttons">
@@ -92,7 +92,7 @@
         </p>
       </div>
       <div id="image-container" style="position: relative; width: 439px; height: 332px;">
-        <img src="./images/result_with_circles.webp" alt="空白圖片" style="width: 439px; height: 332px;">
+        <img id="result_with_circles"  alt="空白圖片" style="width: 439px; height: 332px;">
         <div id="marker" style="position: absolute; display: none; width: 40px; height: 40px; border: 2px solid yellow; background-color: transparent; border-radius: 50%; transform: translate(-50%, -50%); animation: blink 1s infinite;"></div>
       </div>
       <br>
@@ -109,7 +109,7 @@
         <h2 class = "park-info" style="width: 80%; background-color: white;">點擊座標，即可連結導航</h2>
 
         <div id="parking-image-container">
-          <img id="parking-image" src="./images/park_v1.webp" alt="空白圖片" style="cursor: pointer;">
+          <img id="parking-image" alt="空白圖片" style="cursor: pointer;">
           <a href="https://reurl.cc/zpanl6" target="_blank">
             <!-- 470 332 -->
             <div class="parking-marker P1">P1</div>
@@ -180,8 +180,8 @@
     <div class="footer-container">
       <!-- 左側圖片區 -->
       <div class="footer-images">
-        <img src="./images/mvdlogo.webp" alt="Logo 1" class="footer-logo">
-        <img src="./images/mvdlogo_P.webp" alt="Logo 2" class="footer-logo">
+        <img id="mvdlogo-1" alt="Logo 1" class="footer-logo">
+        <img id="mvdlogoe" alt="Logo 2" class="footer-logo">
       </div>
       
       <!-- 聯絡資訊區 -->
@@ -215,16 +215,6 @@
       <!-- 版權資訊 -->
         <p>&copy; Copyright © 2025 桂田集團 All Rights Reserved.Design by Metavision </p>
       </div>
-      <!-- <div class="footer-images">
-        
-        <div class="line-item">
-          <img src="./images/lineQRcode.png" alt="Logo 2" class="footer-logo" style="width: 100px; height: 100px;">
-        </div>
-        <div class="contact-item">
-          <i class="bi bi-line"></i>
-          <span><b>LINE：</b> @997mujfs </span>
-        </div>
-      </div> -->
   </footer>
 
   <!-- 彈出視窗 -->
@@ -402,6 +392,29 @@
     modal.onclick = function() {
       modal.style.display = "none";
     }
+
+    // 檢查快取中是否有圖片
+    function loadCachedImage(imgElement, src) {
+      const img = new Image();
+      img.onload = function() {
+        imgElement.src = src;
+      };
+      img.src = src;
+    }
+
+    // 設置圖片 src
+    const footerLogo = document.getElementById('footer-logo');
+    loadCachedImage(footerLogo, './images/logo_footer.webp');
+    const resultwithcircles = document.getElementById('result_with_circles');
+    loadCachedImage(resultwithcircles, './images/result_with_circles.webp');
+    const parkingimage = document.getElementById('parking-image');
+    loadCachedImage(parkingimage, './images/park_v1.webp');
+    const mvdlogo1 = document.getElementById('mvdlogo-1');
+    loadCachedImage(mvdlogo1, './images/mvdlogo.webp');
+    const mvdlogoe = document.getElementById('mvdlogoe');
+    loadCachedImage(mvdlogoe, './images/mvdlogo_P.webp');
+
+
   </script>
 </body>
 </html>
