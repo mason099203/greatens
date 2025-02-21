@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request, send_from_directory,
 from flask_cors import CORS
 import os
 
-app = Flask(__name__, static_url_path='', static_folder='static')
+app = Flask(__name__)
 CORS(app)
 
 # 設定圖片上傳資料夾
