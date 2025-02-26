@@ -23,5 +23,9 @@ def serve_image(filename):
 def serve_css():
     return send_file('style.css')
 
+@app.route('/json/<path:filename>')
+def serve_src(filename):
+    return send_from_directory("json", filename)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=7860, debug=True)
