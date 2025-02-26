@@ -28,6 +28,10 @@ body {
   max-width: 100%; /* 確保圖片不超過父容器 */
   height: auto; /* 保持圖片比例 */
 }
+#footer-logo {
+  width: 263px;
+  height: auto;
+  }
 
 .footer-logo {
   width: 150px;
