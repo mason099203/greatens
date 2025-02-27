@@ -260,8 +260,8 @@ align-items: center;
   animation: fadeIn 0.5s forwards;
 }
 .parkintable{
-  width: 15px; 
-  height: 15px;
+  width: 30px; 
+  height: 30px;
 }
 
 .big-icon{
@@ -526,7 +526,7 @@ justify-content: center;
 .parking-img-P5,
 .parking-img-P6,
 .parking-img-P7{
-  display: block;
+  display: none;
 }
 
 #parking-p1,
@@ -925,10 +925,14 @@ header {
   display: none;
   height: 70%;
 }
-
+.parkintable{
+  width: 23px; 
+  height: 23px;
+}
 .footer-logo-top {
   padding-top: 1rem;
 }
+
 
 .nav-buttons {
   width: 100%;
@@ -1006,8 +1010,8 @@ header {
 .home-marker {
   width: 45px;
   height: 45px;
-  left: 47%; 
-  top: 30%;
+  left: 49%; 
+  top: 35%;
 }
 
 }
@@ -1022,20 +1026,28 @@ display: none;
 .parking-info-container h2 {
   font-size: 1.5em;
 }
-
+.parkintable{
+  width: 18px; 
+  height: 18px;
+}
 .intro-title{
   width: 95%;
 }
 .intro-title-center h2{
   font-size: 1.2rem;
 }
-
+.company-name{
+  max-width: 120px;
+}
 .intro-container{
   padding: 40px 0 40px 0;
   width: 100%;
   border-radius: 0;
 }
-
+.home-marker {
+  left: 47%; 
+  top: 30%;
+}
 .intro-container p{
   font-size: 0.9rem;
 }
