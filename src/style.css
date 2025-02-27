@@ -5,10 +5,24 @@ body {
   background-image: url('./images/section_park_2.webp');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;  /* 固定背景 */
+  background-attachment: fixed;
   background-repeat: no-repeat;
   color: rgb(199, 197, 197);
+  position: relative; /* 让子元素相对于 body 定位 */
 }
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(92, 87, 87, 0.5); /* 半透明黑色遮罩 */
+  z-index: -1; /* 让遮罩保持在背景上，不影响文字 */
+}
+
+
 .header-container{
   width: 100%;
   display: flex;
@@ -21,6 +35,7 @@ body {
   justify-content: center; /* 水平置中 */
   align-items: center; /* 垂直置中 */
 }
+
 
 .footer-logo-top {
   padding-top: 1rem;
@@ -38,6 +53,7 @@ body {
   height: auto;
   }
 .nav-buttons {
+  padding-right: 4rem;
   margin: 0.5rem 0.5rem 0 0.5rem;
   width: 400px;
   display: flex;
@@ -74,6 +90,7 @@ transform: translateY(0);
   width: 100%;
   border-collapse: collapse;
   margin: 10px 0;
+  border-radius: 2px;
   background-color: rgb(0, 0, 0,0.8);  /* 改為完全不透明的黑色 */
 }
 
@@ -82,6 +99,7 @@ transform: translateY(0);
   font-size: 1.2rem;
   border: 1px solid #000000;
   padding: 8px;
+  font-weight: unset;
   text-align: center;
   color: rgb(255, 255, 255);  
 }
@@ -163,26 +181,12 @@ transform: translateY(0);
 }
 }
 
-/* 為了確保內容可讀性，可以添加半透明背景 */
-.intro-container,
-.search-container,
-.parking-info-container {
-display: flex;
-flex-direction: column;
-padding: 20px;
-border-radius: 10px;
-/* margin: 0 auto; */
-max-width: 800px;
-text-align: center;
-}
 
 /* 修改表格樣式 */
 table {
 z-index: 100;
 width: 100%;
-/* border-collapse: collapse; */
 margin: 10px 0;
-/* background-color: rgb(0, 0, 0,0.8);  改為完全不透明的黑色 */
 }
 
 
@@ -216,7 +220,13 @@ background-image: none;
 position: relative;
 overflow: hidden;
 z-index: 1;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
+
+
 
 .intro-section::before,
 .search-section::before,
@@ -237,75 +247,49 @@ z-index: 1;
   position: relative;
   z-index: 2;
 }
-.search-container h2{
-background-color: rgba(235, 228, 210, 0.918);
+
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.parking-info-container img{
-border-radius: 5px;
+.animated-row {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+.parkintable{
+  width: 15px; 
+  height: 15px;
 }
 
-.parking-info-container h2{
-background-color: rgba(235, 228, 210, 0.918);
+.big-icon{
+  font-size: 8px;
+}
+
+.intro-container,
+.search-container,
+.parking-info-container {
 width: 80%;
-}
-
-#parking-image-container {
-position: relative;
-width: 100%;
-max-width: 470px;  
-margin: 0 auto;
-}
-
-#parking-image {
-width: 100%;
-height: auto;
-display: block;
-}
-
-#result_with_circles{
-width: 100%;
-height: auto;
-display: block;
-}
-
-.search-section img{
-border-radius: 5px;
-}
-
-.intro-section {
-background-position: center;
-background-repeat: no-repeat;
-/* height: 90vh; */
+max-width: 800px;
 display: flex;
 flex-direction: column;
-justify-content: center;
-align-items: center;
-}
-
-.intro-container {
-margin: 0 auto;
-text-align: center;
-color: white;
-width: 100%;
-padding: 20px;
-}
-
-.intro-content{
+border-radius: 10px;
 text-align: center;
 font-family: cursive;
 border-radius: 8px;
 color:#643601;
-font-weight: bold;
-margin: 0 auto;
-padding-top: 2rem;
-padding-bottom: 2rem;
-background-color: rgba(235, 228, 210, 0.918);
+padding: 4rem 15px;
+margin-top: 1rem;
+margin-bottom: 1rem;
+background-color: rgba(235, 228, 210, 0.788);
 }
 
-.intro-content p{
+.intro-container p{
 font-size: 1.2rem;
 line-height: 1.5;
+font-weight: bold;
 }
 
 .markers {
@@ -362,50 +346,47 @@ width: 100%;
 font-size: 1.4rem;
 }
 
-/* 修改搜尋區塊的樣式 */
-.search-section {
-/* background-color: #f9f9f9; */
-/* height: 92vh; */
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+
+.input-container {
+  position: relative;
+  display: inline-block;
 }
 
-.example-text{
-color: #ffffff; 
-width: 40%; 
-font-size: 0.8rem; 
-font-weight: bold; 
-text-align: left; 
-background-color: #00000083; 
-padding: 2px 5px;
+#nameInput {
+  padding: 20px;
+  padding-right: 50px; /* Make room for the icon */
+  margin: 10px;
+  height: auto;
+  width: 300px;
+  font-size: x-large;
+  background-color: rgb(0, 0, 0);
+  color: #ffffff;
 }
 
-#nameInput{
-padding: 10px; 
-width: 200px; 
-font-size: 1rem; 
-background-color: rgba(235, 228, 210, 0.918);
-color: #000000;
+input::placeholder {
+  font-weight: bold;
+  color: rgb(255, 255, 255);
 }
 
-h2{
-align-self: center;
-width: 40%;
-font-size: 1.2rem;
-color: #40321B;
-font-weight: bold;
-border-radius: 10px;
-padding: 10px;
+.search-icon {
+  position: absolute;
+  right: 25px; /* Position from right edge of container */
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: x-large;
+  cursor: pointer; /* Make the icon appear clickable */
 }
 
 
-.search-container {
-margin: 0 auto;
-text-align: center;
-width: 100%;
+#submitBtn{
+  background-color: #000000;
 }
+
+h1{
+  font-size: x-large;
+}
+
 
 .search-container label {
 color: white;
@@ -418,7 +399,7 @@ border-radius: 4px;
 border: none;
 }
 
-.search-container button {
+/* .search-container button {
 padding: 8px 16px;
 border-radius: 4px;
 border: none;
@@ -428,7 +409,7 @@ margin-left: 1rem;
 background-color: #0000008f;
 color: rgb(255, 255, 255);
 cursor: pointer;
-}
+} */
 
 .search-container button:hover {
   color: #ffcb78;
@@ -436,13 +417,6 @@ cursor: pointer;
 transform: translateY(-2px);
 }
 
-.parking-info-section{
-/* height: 92vh; */
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-}
 
 header {
 background: linear-gradient(to bottom, 
@@ -465,26 +439,28 @@ justify-content: center;
 
 
 /* 調整圖片容器大小 */
-#image-container {
+#image-container,
+#parking-image-container {
   position: relative; /* 設置相對定位，讓內部元素可以絕對定位 */
   display: flex;
   justify-content: center; /* 水平置中 */
   align-items: center; /* 垂直置中 */
+  width: fit-content;
+  margin: 0 auto;
   /* height: 500px; 設定容器高度，可根據需求調整 */
 }
 
+#parking-image,
 #result_with_circles {
-  max-width: 450px; /* 讓圖片適應容器 */
-  /* max-height: auto; 讓圖片適應容器 */
+  width: 450px; /* 讓圖片適應容器 */
+  height: 318px; 
+display: block;
+border-radius: 5px;
+
 }
 
 #image-container div {
   position: absolute; /* 讓內部 div 絕對定位 */
-}
-
-#image-container div img {
-  width: 50px; /* 設定標示圖片大小，可根據需求調整 */
-  height: auto;
 }
 
 #image-container div svg {
@@ -549,10 +525,21 @@ justify-content: center;
 .parking-img-P4,
 .parking-img-P5,
 .parking-img-P6,
-.parking-img-P7 {
-  display: none;
+.parking-img-P7{
+  display: block;
 }
 
+#parking-p1,
+#parking-p2,
+#parking-p3,
+#parking-p4,  
+#parking-p5,
+#parking-p6,
+#parking-p7,
+#parking-h{
+  border: #000000 1px solid;
+  border-radius:5px ;
+}
 
 
 
@@ -564,20 +551,46 @@ position: absolute;
 }
 
 .home-marker {
-position: absolute;
-width: 100px;
-height: 100px;
-border-radius: 50%;
-border: 2px solid #ff0000;
-left: 49%; 
-top: 35%;
-animation: homeBlink 2s infinite ease-in-out;
-transform: translate(-50%, -50%); 
+  position: absolute;
+  padding: 10px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 1px solid #ff0000;
+  left: 48%;
+  top: 32%;
+  transform: translate(-50%, -50%);
+  animation: homeBlink 3s infinite ease-in-out;
+  /* background-image: url('./images/phome.png');
+  background-size: cover;
+  background-position: center; */
 }
 
+.home-marker img{
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes homeBlink {
+  0% {
+    /* opacity: 1; */
+    transform: scale(1.1);
+  }
+  50% {
+    /* opacity: 0.2; */
+    border: 2px solid #990000;
+    transform: scale(1);
+  }
+  100% {
+    /* opacity: 1; */
+    transform: scale(1.1);
+  }
+  }
+
+
 .P1{
-left: 75%;
-top: 41%;
+left: 85%;
+top: 47%;
 }
 
 .P2{
@@ -626,21 +639,7 @@ top: 40%;
   }
 
 
-@keyframes homeBlink {
-0% {
-  opacity: 1;
-  transform: scale(1.1);
-}
-50% {
-  opacity: 0.2;
-  border: 2px solid #990000;
-  transform: scale(1);
-}
-100% {
-  opacity: 1;
-  transform: scale(1.1);
-}
-}
+
 
 
 
@@ -743,27 +742,27 @@ background: #888888;  /* 淺灰色懸停效果 */
 }
 
 /* 其他容器的滾輪樣式 */
-.intro-content::-webkit-scrollbar,
+.intro-container::-webkit-scrollbar,
 .search-container::-webkit-scrollbar,
 .parking-info-container::-webkit-scrollbar {
 width: 8px;
 }
 
-.intro-content::-webkit-scrollbar-track,
+.intro-container::-webkit-scrollbar-track,
 .search-container::-webkit-scrollbar-track,
 .parking-info-container::-webkit-scrollbar-track {
 background: #1a1a1a;
 border-radius: 4px;
 }
 
-.intro-content::-webkit-scrollbar-thumb,
+.intro-container::-webkit-scrollbar-thumb,
 .search-container::-webkit-scrollbar-thumb,
 .parking-info-container::-webkit-scrollbar-thumb {
 background: #666666;
 border-radius: 4px;
 }
 
-.intro-content::-webkit-scrollbar-thumb:hover,
+.intro-container::-webkit-scrollbar-thumb:hover,
 .search-container::-webkit-scrollbar-thumb:hover,
 .parking-info-container::-webkit-scrollbar-thumb:hover {
 background: #888888;
@@ -803,7 +802,6 @@ cursor: pointer;
 margin: auto;
 display: block;
 max-width: 90%;
-/* max-height: 90vh; */
 position: relative;
 top: 50%;
 transform: translateY(-50%);
@@ -863,6 +861,7 @@ header {
 }
 
 .nav-buttons {
+  padding: 0;
   display: flex;
   justify-content: center; /* 水平置中 */
   align-items: center; /* 垂直置中 */
@@ -882,6 +881,7 @@ header {
   width: 20px;
   height: 20px;
 }
+
 #search-result table th,
 #search-result table td {
   font-size: 0.7rem;
@@ -901,7 +901,10 @@ header {
 .parking-place{
   display: none;
 }
-.intro-content{
+
+.intro-container,
+.search-container,
+.parking-info-container {
   height: 100%;
   width: 98%;
 }
@@ -914,7 +917,7 @@ header {
   display:block;
 }
 .search-container h2,
-.intro-content h2{
+.intro-container h2{
   margin: 0 auto;
   font-size: 1.5rem;
 }
@@ -936,20 +939,10 @@ header {
   width: 33%;  /* 設定每個按鈕佔 30% 寬度 */
 }
 
-
-
-/* 內容區塊設定 */
-.intro-container {
-  padding: 10px;
-  margin: 10px;
-  width: 90%;
-}
-
-#parking-image{
-  width: 390px;
-  height: 275px;
-}
-
+/* #parking-image,#result_with_circles {
+  max-width: 390px;
+  height: auto;
+} */
 
 /* 頁尾設定 */
 .footer-container {
@@ -971,13 +964,13 @@ header {
   justify-content: center;
 }
 
-.parking-marker {
+/* .parking-marker {
   font-size: 1rem;
-}
+} */
 
 .P1{
-  left: 77%;
-  top: 42%;
+  left: 90%;
+  top: 50%;
 }
 
 .P2{
@@ -991,12 +984,12 @@ header {
 } 
 
 .P4{
-  left: 26%;
+  left: 25%;
   top: 61%;
 } 
 
 .P5{
-  left: 72%;
+  left: 71%;
   top: 71%;
 }
 
@@ -1006,15 +999,15 @@ header {
 } 
 
 .P7{
-  left: 29%;
-  top: 40%;
+  left: 31%;
+  top: 38%;
 }
 
 .home-marker {
-  width: 40px;
-  height: 40px;
-  left: 54%; 
-  top: 40%;
+  width: 45px;
+  height: 45px;
+  left: 47%; 
+  top: 30%;
 }
 
 }
@@ -1037,15 +1030,20 @@ display: none;
   font-size: 1.2rem;
 }
 
-.intro-content{
+.intro-container{
   padding: 40px 0 40px 0;
   width: 100%;
   border-radius: 0;
 }
 
-.intro-content .desktop-text,
-.intro-content .mobile-text{
+.intro-container p{
   font-size: 0.9rem;
+}
+
+#parking-image,
+#result_with_circles {
+  width: 350px; /* 讓圖片適應容器 */
+  height: auto; 
 }
 
 .footer-logo {

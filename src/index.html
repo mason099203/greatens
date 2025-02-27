@@ -39,8 +39,7 @@
 
   <main >
     <section class="intro-section">
-      <!-- <div class="intro-container"> -->
-        <div class="intro-content">
+        <div class="intro-container">
           <div class="intro-title"><div class="intro-title-left"></div><div class="intro-title-center"><h2>天地心，起厝情<br>傳承愛，慶功宴</h2></div><div class="intro-title-right"></div></div>
           <p class="desktop-text">家，是一切的起點。<br>
             在這個充滿祝福與喜悦的時刻，我們誠挚地邀請您参加「桂田大樹」的家宴。<br>
@@ -87,38 +86,37 @@
 
     <section class="search-section" >
       <div class="search-container">
-        <h2 class="desktop-text">座位查詢</h2>
-        <h2 class="mobile-text">座位查詢</h2>
-        <div>
+        <h1 class="desktop-text">座位查詢</h1>
+        <h1 class="mobile-text">座位查詢</h1>
+        <div class="input-container">
           <input type="text" id="nameInput" placeholder="請輸入姓名或是公司名稱">
-          <button id="submitBtn">查詢</button>
-
+          <i class="bi bi-search search-icon"></i>
+        </div>
+        <div class="search-result">
+          <p id="search-result">
+          </p>
+        </div>
+        <div id="image-container" >
+          <img id="result_with_circles"  alt="空白圖片" >
+          <!-- <div class="area-A" style="border: 3px solid #ff0000; width: 140px; height: 89px; animation: homeBlink2 2s infinite ease-in-out;"></div>
+          <div class="area-B" style="border: 3px solid #000000; width: 24px; height: 92px; animation: homeBlink2 2s infinite ease-in-out;"></div>
+          <div class="area-C" style="border: 3px solid #000000; width: 24px; height: 99px; animation: homeBlink2 2s infinite ease-in-out;"></div>
+          <div class="area-D" style="border: 3px solid #000000; width: 24px; height: 98px; animation: homeBlink2 2s infinite ease-in-out;"></div>
+          <div class="area-E" style="border: 3px solid #000000; width: 24px; height: 94px; animation: homeBlink2 2s infinite ease-in-out;"></div> -->
         </div>
       </div>
-      <div class="search-result">
-        <p id="search-result">
-        </p>
-      </div>
-      <div id="image-container" >
-        <img id="result_with_circles"  alt="空白圖片" >
-        <!-- <div class="area-A" style="border: 3px solid #ff0000; width: 140px; height: 89px; animation: homeBlink2 2s infinite ease-in-out;"></div>
-        <div class="area-B" style="border: 3px solid #000000; width: 24px; height: 92px; animation: homeBlink2 2s infinite ease-in-out;"></div>
-        <div class="area-C" style="border: 3px solid #000000; width: 24px; height: 99px; animation: homeBlink2 2s infinite ease-in-out;"></div>
-        <div class="area-D" style="border: 3px solid #000000; width: 24px; height: 98px; animation: homeBlink2 2s infinite ease-in-out;"></div>
-        <div class="area-E" style="border: 3px solid #000000; width: 24px; height: 94px; animation: homeBlink2 2s infinite ease-in-out;"></div> -->
-      </div>
+      
 
       
     </section>
     <section class="parking-info-section">
       <div class="parking-info-container">
-        <h2 class="desktop-text">貴賓您好，<br>我們有為您規劃停車場停車位置，<br>麻煩請先至座位查詢確認。</h2>
-        <h2 class="mobile-text">貴賓您好，<br>我們有為您規劃停車場停車位置，<br>麻煩請先至座位查詢確認。</h2>
+        <h1 class="desktop-text">貴賓您好，<br>我們有為您規劃停車場停車位置，<br>麻煩請先至座位查詢確認。</h1>
+        <h1 class="mobile-text">貴賓您好，<br>我們有為您規劃停車場停車位置，<br>麻煩請先至座位查詢確認。</h1>
 
         <div id="parking-image-container">
           <img id="parking-image" alt="空白圖片" style="cursor: pointer;">
           <a href="https://reurl.cc/zpanl6" target="_blank">
-            <!-- 470 332 -->
             <div class="parking-img-P1 parking-marker P1"><img id="parking-home" src="./images/P1_0.png" alt="空白圖片" ></div>
           </a>
           <a href="https://reurl.cc/748zkD" target="_blank">
@@ -140,14 +138,14 @@
             <div class="parking-img-P7 parking-marker P7"><img id="mini" src="./images/P7_0.png" alt="空白圖片"  ></div>
           </a>
           <a href="https://reurl.cc/kMeKlL" target="_blank">
-            <div class="home-marker" ></div>
+            <div class="home-marker" ><img src="./images/phome.png" alt="空白圖片"  ></div>
           </a>
         </div>
         <h2 class = "park-info" >點擊以下圖示，即可連結導航</h2>
 
         <div class="parking-info-text" >
-          <div>
-            <a href="https://reurl.cc/kMeKlL" target="_blank"><img  src="./images/h.jpg" alt="空白圖片" style="width: 300px; height: 37px;" ></a>
+          <div class="parking-img-home">
+            <a href="https://reurl.cc/kMeKlL" target="_blank"><img id="parking-h" src="./images/h.jpg" alt="空白圖片" style="width: 300px; height: 37px;" ></a>
           </div>
           <div class="parking-img-P1">
             <a href="https://reurl.cc/zpanl6" target="_blank"><img id="parking-p1" src="./images/p1.jpg" alt="空白圖片" style="width: 300px; height: 37px;" ></a>
@@ -226,7 +224,7 @@
   <script>
     window.addEventListener('load', function () {
       const loadingElement = document.getElementById('loading');
-      const minLoadingTime = 2000; // 最小加載時間（毫秒）
+      const minLoadingTime = 0; // 最小加載時間（毫秒）
       const startTime = performance.now();
 
       function hideLoading() {
@@ -246,31 +244,31 @@
 
     let nameCoordinates = {};
     // 從 GitHub 讀取座標資料
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/mason099203/0331/main/src/json/0224.json',
-      method: 'GET',
-      success: function(response) {
-        try {
-          nameCoordinates = JSON.parse(response);
-          // console.log('成功載入座標數據:', nameCoordinates);
-        } catch (e) {
-          console.error('解析數據失敗:', e);
-        }
-      },
-      error: function(xhr, status, error) {
-        console.error('讀取座標資料失敗:', error);
-      }
-    });
-
-    // $.getJSON('./json/0224.json', function(response) {
-    //   nameCoordinates = response;
-    //   // console.log('成功載入座標數據:', response);
-    // }).fail(function(jqxhr, textStatus, error) {
-    //   // console.error('讀取座標資料失敗:', error);
+    // $.ajax({
+    //   url: 'https://raw.githubusercontent.com/mason099203/0331/main/src/json/0224.json',
+    //   method: 'GET',
+    //   success: function(response) {
+    //     try {
+    //       nameCoordinates = JSON.parse(response);
+    //       // console.log('成功載入座標數據:', nameCoordinates);
+    //     } catch (e) {
+    //       console.error('解析數據失敗:', e);
+    //     }
+    //   },
+    //   error: function(xhr, status, error) {
+    //     console.error('讀取座標資料失敗:', error);
+    //   }
     // });
 
+    $.getJSON('./json/0224.json', function(response) {
+      nameCoordinates = response;
+      // console.log('成功載入座標數據:', response);
+    }).fail(function(jqxhr, textStatus, error) {
+      // console.error('讀取座標資料失敗:', error);
+    });
+
     $(document).ready(function() {
-      $('#submitBtn').click(function() {
+      function searchAction() {
         for (let i = 1; i <= 7; i++) {
           $(`.parking-img-P${i}`).css('display', 'none');
         }
@@ -281,9 +279,10 @@
         const inputValue = $('#nameInput').val().trim();
         console.log('inputValue:', inputValue);
         const searchResult = $('#search-result');
+
         // 先清空之前的結果
         searchResult.empty();
-        
+        let park_link = {'P1':"https://reurl.cc/zpanl6", 'P2':"https://reurl.cc/748zkD", 'P3':"https://reurl.cc/lNWKrA", 'P4':"https://reurl.cc/04qM9b", 'P5':"https://reurl.cc/geAXrp", 'P6':"https://reurl.cc/46zVj2", 'P7':"https://reurl.cc/46VbyR"};
         let groupedData_name = {};
 
         Object.values(nameCoordinates).forEach(item => {
@@ -330,18 +329,20 @@
           $('.parking-marker').removeClass('highlight');
           // 遍歷 groupedData 並建立表格內容
           Object.values(groupedData_name).forEach(companyList => {
-            companyList.forEach(foundperson => {
+            companyList.forEach((foundperson,index) => {
               $(`.parking-img-${foundperson.park}`).css('display', 'block');
               $(`.area-${foundperson.area}`).css('display', 'block');
               resultHtml += `
-                <tr>
-                  <td>${foundperson.name}</td>
+                <tr class="animated-row" style="animation-delay: ${index * 0.1}s">
+                  <td><p id="companyName">${foundperson.name.charAt(0)}<i class="bi bi-circle big-icon" ></i>${foundperson.name.charAt(foundperson.name.length - 1)}</p></td>
                   <td class="company-name">${foundperson.company}</td>
                   <td>${foundperson.number}</td>
                   <td>${foundperson.area}</td>
                   <td>${foundperson.table}</td>
-                  <td onclick="scrollToSection('parking-info-section')">${foundperson.park}</td>
+                  <td onclick="scrollToSection('parking-info-section')"><img class="parkintable" src="./images/${foundperson.park}_0.png" alt="空白圖片"  ></i>
+</td>
                 </tr>`;
+                // &nbsp;<i class="bi bi-geo-alt-fill" style="color:red">
             });
           });
 
@@ -362,21 +363,21 @@
           // $('.parking-marker').removeClass('highlight');
           // 遍歷 groupedData 並建立表格內容
           Object.values(groupedData).forEach(companyList => {
-            companyList.forEach(foundcompany => {
+            companyList.forEach((foundcompany,index) => {
               $(`.parking-img-${foundcompany.park}`).css('display', 'block'); //連結
               $(`.area-${foundcompany.area}`).css('display', 'block');
+              
               resultHtml += `
-                <tr>
-                  <td>${foundcompany.name}</td>
+                <tr class="animated-row" style="animation-delay: ${index * 0.1}s">
+                  <td style="min-width:40px"><p id="companyName">${foundcompany.name.charAt(0)}<i class="bi bi-circle big-icon"></i>${foundcompany.name.charAt(foundcompany.name.length - 1)}</p></td>
                   <td class="company-name">${foundcompany.company}</td>
                   <td>${foundcompany.number}</td>
                   <td>${foundcompany.area}</td>
                   <td>${foundcompany.table}</td>
-                  <td onclick="scrollToSection('parking-info-section')">${foundcompany.park}</td>
+                  <td onclick="scrollToSection('parking-info-section')"><img class="parkintable" src="./images/${foundcompany.park}_0.png" alt="空白圖片"></i></td>
                 </tr>`;
             });
           });
-
           resultHtml += `</table>`;
           searchResult.html(resultHtml);
         }else{
@@ -385,10 +386,17 @@
           // 清除所有高亮顯示
           $('.parking-marker').removeClass('highlight');
         }
-        
         // 清空輸入框
         $('#nameInput').val('');
-      });
+      }
+      $('.search-icon').click(searchAction);
+
+      $('#nameInput').keydown(function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault(); // 防止表單自動提交
+        searchAction(); // 呼叫相同的搜尋函數
+      }
+    });
     });
 
     // 新增滾動功能
@@ -409,8 +417,10 @@
     const modalImg = document.getElementById('modalImage');
 
     parkingImage.onclick = function() {
+      
       modal.style.display = "block";
-      modalImg.src = this.src;
+      modalImg.src = "./images/park_v1.webp";
+      // this.src = "./images/park_v1.webp";
     }
 
     
@@ -436,7 +446,7 @@
     const resultwithcircles = document.getElementById('result_with_circles');
     loadCachedImage(resultwithcircles, './images/20250226table.jpg');
     const parkingimage = document.getElementById('parking-image');
-    loadCachedImage(parkingimage, './images/park_v1.webp');
+    loadCachedImage(parkingimage, './images/park_v1.png');
     const mvdlogo1 = document.getElementById('mvdlogo-1');
     loadCachedImage(mvdlogo1, './images/mvdlogo.webp');
     const mvdlogoe = document.getElementById('mvdlogoe');
