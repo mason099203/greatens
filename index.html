@@ -244,28 +244,28 @@
 
     let nameCoordinates = {};
     // 從 GitHub 讀取座標資料
-    // $.ajax({
-    //   url: 'https://raw.githubusercontent.com/mason099203/0331/main/src/json/0224.json',
-    //   method: 'GET',
-    //   success: function(response) {
-    //     try {
-    //       nameCoordinates = JSON.parse(response);
-    //       // console.log('成功載入座標數據:', nameCoordinates);
-    //     } catch (e) {
-    //       console.error('解析數據失敗:', e);
-    //     }
-    //   },
-    //   error: function(xhr, status, error) {
-    //     console.error('讀取座標資料失敗:', error);
-    //   }
-    // });
-
-    $.getJSON('./json/0224.json', function(response) {
-      nameCoordinates = response;
-      // console.log('成功載入座標數據:', response);
-    }).fail(function(jqxhr, textStatus, error) {
-      // console.error('讀取座標資料失敗:', error);
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/mason099203/0331/main/src/json/0224.json',
+      method: 'GET',
+      success: function(response) {
+        try {
+          nameCoordinates = JSON.parse(response);
+          // console.log('成功載入座標數據:', nameCoordinates);
+        } catch (e) {
+          console.error('解析數據失敗:', e);
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error('讀取座標資料失敗:', error);
+      }
     });
+
+    // $.getJSON('./json/0224.json', function(response) {
+    //   nameCoordinates = response;
+    //   // console.log('成功載入座標數據:', response);
+    // }).fail(function(jqxhr, textStatus, error) {
+    //   // console.error('讀取座標資料失敗:', error);
+    // });
 
     $(document).ready(function() {
       function searchAction() {
@@ -277,7 +277,6 @@
           $(`.area-${area_c[i]}`).css('display', 'none');
         }
         const inputValue = $('#nameInput').val().trim();
-        console.log('inputValue:', inputValue);
         const searchResult = $('#search-result');
 
         // 先清空之前的結果
