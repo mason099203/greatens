@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>桂田酒店家宴賓客名單管理系統</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-calendar-alt"></i>
+            <span><center>桂田酒店-家宴<br>
+                賓客名單管理系統</center></span>
+        </div>
+        <div class="user-profile">
+            <div class="avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user-info">
+                <span class="user-name">{{ session.get('full_name', '使用者') }}</span>
+                <span class="user-role">管理員</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}" class="active"><i class="fas fa-home"></i> 主控台</a>
+            <a href="{{ url_for('reports') }}"><i class="fas fa-chart-bar"></i> 統計報表</a>
+            <a href="{{ url_for('logout') }}" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> 登出系統
+            </a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="top-bar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="搜尋訂位資料...">
+            </div>
+            <div class="top-actions">
+                <button class="btn btn-success" onclick="showAddModal()">
+                    <i class="fas fa-plus"></i> 新增資料
+                </button>
+                <button id="batchDeleteBtn" class="btn btn-danger" style="display: none;">
+                    <i class="fas fa-trash"></i> 批量刪除
+                </button>
+                <a href="{{ url_for('download_template') }}" class="btn btn-primary">
+                    <i class="fas fa-download"></i> 下載範本
+                </a>
+                <button class="btn btn-success" onclick="document.getElementById('uploadForm').click()">
+                    <i class="fas fa-upload"></i> 上傳 Excel
+                </button>
+                <a href="{{ url_for('export_data') }}" class="btn btn-info">
+                    <i class="fas fa-file-export"></i> 匯出資料
+                </a>
+            </div>
+        </div>
+
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <div class="stat-info">
+                    <h3>總訂位數</h3>
+                    <p>{{ data|length }}</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-chair"></i>
+                <div class="stat-info">
+                    <h3>總人數</h3>
+                    <p>{{ data|sum(attribute='people_count') }}</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-car"></i>
+                <div class="stat-info">
+                    <h3>停車需求</h3>
+                    <p>{{ data|selectattr('parking')|list|length }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-container">
+            <form id="uploadFormContainer" style="display: none;">
+                <input type="file" id="uploadForm" name="file" accept=".xlsx,.xls" 
+                       onchange="uploadFile(this.files[0])">
+            </form>
+
+            <div class="data-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="selectAll">
+                            </th>
+                            <th>姓名</th>
+                            <th>公司名稱</th>                            
+                            <th>人數</th>
+                            <th>區域</th>
+                            <th>桌位圖</th>
+                            <th>停車場</th>
+                            <th>建立時間</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data %}
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="row-checkbox" data-id="{{ item.id }}">
+                            </td>
+                            <td>{{ item.contact_name }}</td>
+                            <td>{{ item.company_name }}</td>                            
+                            <td>{{ item.people_count }}</td>
+                            <td>{{ item.table_layout }}</td>
+                            <td>{{ item.table_layout_detail }}</td>
+                            <td>{{ item.parking }}</td>
+                            <td>{{ item.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                            <td class="actions">
+                                <button class="btn-icon" data-id="{{ item.id }}" onclick="handleEdit(this)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon delete" data-id="{{ item.id }}" onclick="handleDelete(this)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>編輯訂位資料</h2>
+            <form id="editForm" novalidate>
+                <input type="hidden" id="editId">
+                <div class="form-group">
+                    <label for="editContactName">姓名</label>
+                    <input type="text" id="editContactName" name="contact_name" required
+                           minlength="2" maxlength="50">
+                    <div class="error-message">請輸入有效的姓名（2-50字）</div>
+                </div>
+                <div class="form-group">
+                    <label for="editCompanyName">公司名稱</label>
+                    <input type="text" id="editCompanyName" name="company_name" required 
+                           minlength="2" maxlength="100">
+                    <div class="error-message">請輸入有效的公司名稱（2-100字）</div>
+                </div>                
+                <div class="form-group">
+                    <label for="editPeopleCount">人數</label>
+                    <input type="number" id="editPeopleCount" name="people_count" required
+                           min="1" max="999">
+                    <div class="error-message">請輸入有效的人數（1-999人）</div>
+                </div>
+                <div class="form-group">
+                    <label for="editTableLayout">區域</label>
+                    <input type="text" id="editTableLayout" name="table_layout" required
+                           minlength="1" maxlength="5">
+                    <div class="error-message">請輸入有效的區域安排（1-5字）</div>
+                </div>
+                <div class="form-group">
+                    <label for="editTableLayoutDetail">桌位圖</label>
+                    <input type="text" id="editTableLayoutDetail" name="table_layout_detail" required
+                           minlength="1" maxlength="100">
+                    <div class="error-message">請輸入有效的桌位安排（1-100字）</div>
+                </div>
+                <div class="form-group">
+                    <label for="editParking">停車場</label>
+                    <input type="text" id="editParking" name="parking"
+                           maxlength="100">
+                    <div class="error-message">停車場不可超過10字</div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">儲存</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="addModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-plus-circle"></i> 新增訂位資料</h2>
+                <span class="close" onclick="closeAddModal()">&times;</span>
+            </div>
+            <form id="addForm" novalidate>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="addContactName">
+                            <i class="fas fa-user"></i> 姓名
+                        </label>
+                        <input type="text" id="addContactName" name="contact_name" required
+                               minlength="2" maxlength="50"
+                               placeholder="請輸入姓名">
+                        <div class="error-message">請輸入有效的姓名（2-50字）</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="addCompanyName">
+                            <i class="fas fa-building"></i> 公司名稱
+                        </label>
+                        <input type="text" id="addCompanyName" name="company_name" required 
+                               minlength="2" maxlength="100"
+                               placeholder="請輸入公司名稱">
+                        <div class="error-message">請輸入有效的公司名稱（2-100字）</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="addPeopleCount">
+                            <i class="fas fa-users"></i> 人數
+                        </label>
+                        <input type="number" id="addPeopleCount" name="people_count" required
+                               min="1" max="999"
+                               placeholder="請輸入用餐人數">
+                        <div class="error-message">請輸入有效的人數（1-999人）</div>
+                    </div>                    
+                    <div class="form-group">
+                        <label for="addTableLayout">
+                            <i class="fas fa-th"></i> 區域
+                        </label>
+                        <input type="text" id="addTableLayout" name="table_layout" required
+                               minlength="1" maxlength="5"
+                               placeholder="請輸入區域">
+                        <div class="error-message">請輸入有效的區域（1-5字）</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="addTableLayout">
+                            <i class="fas fa-th"></i> 桌位圖
+                        </label>
+                        <input type="text" id="addTableLayoutDetail" name="table_layout_detail" required
+                               minlength="1" maxlength="100"
+                               placeholder="請輸入桌位安排">
+                        <div class="error-message">請輸入有效的桌位圖（1-100字）</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="addParking">
+                            <i class="fas fa-car"></i> 停車場
+                        </label>
+                        <input type="text" id="addParking" name="parking"
+                               maxlength="100"
+                               placeholder="請輸入停車需求">
+                        <div class="error-message">停車位不可超過10字</div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> 儲存
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closeAddModal()">
+                        <i class="fas fa-times"></i> 取消
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    function uploadFile(file) {
+        if (!file) return;
+        
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(result => {
+            if (result === '檔案上傳成功') {
+                showMessage('檔案上傳成功！');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            } else {
+                showMessage(result, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showMessage('上傳失敗：' + error, 'error');
+        });
+    }
+
+    const modal = document.getElementById('editModal');
+    const closeBtn = document.querySelector('.close');
+
+    function handleEdit(button) {
+        const id = button.dataset.id;
+        const row = button.closest('tr');
+        const cells = row.cells;
+        
+        document.getElementById('editId').value = id;
+        document.getElementById('editContactName').value = cells[1].textContent;
+        document.getElementById('editCompanyName').value = cells[2].textContent;        
+        document.getElementById('editPeopleCount').value = cells[3].textContent;
+        document.getElementById('editTableLayout').value = cells[4].textContent;
+        document.getElementById('editTableLayoutDetail').value = cells[5].textContent;
+        document.getElementById('editParking').value = cells[6].textContent;
+        
+        modal.style.display = 'block';
+        document.body.classList.add('modal-open');
+    }
+
+    function handleDelete(button) {
+        const id = button.dataset.id;
+        if (confirm('確定要刪除這筆資料嗎？')) {
+            fetch(`/delete/${id}`, {
+                method: 'DELETE',
+            }).then(response => {
+                if (response.ok) {
+                    button.closest('tr').remove();
+                }
+            });
+        }
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+        if (event.target == document.getElementById('addModal')) {
+            closeAddModal();
+        }
+    }
+
+    closeBtn.onclick = closeModal;
+
+    document.getElementById('editForm').onsubmit = function(e) {
+        e.preventDefault();
+        const id = document.getElementById('editId').value;
+        const formData = {
+            company_name: document.getElementById('editCompanyName').value,  
+            contact_name: document.getElementById('editContactName').value,                      
+            people_count: document.getElementById('editPeopleCount').value,
+            table_layout: document.getElementById('editTableLayout').value,
+            table_layout_detail: document.getElementById('editTableLayoutDetail').value,
+            parking: document.getElementById('editParking').value
+        };
+
+        fetch(`/edit/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showMessage('更新成功！');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            } else {
+                showMessage(data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showMessage('更新時發生錯誤', 'error');
+        });
+    };
+
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        const searchText = this.value.toLowerCase();
+        const rows = document.querySelectorAll('tbody tr');
+        
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.includes(searchText) ? '' : 'none';
+        });
+    });
+
+    // 全選/取消全選功能
+    document.getElementById('selectAll').addEventListener('change', function() {
+        const checkboxes = document.getElementsByClassName('row-checkbox');
+        for (let checkbox of checkboxes) {
+            checkbox.checked = this.checked;
+        }
+        updateBatchDeleteButton();
+    });
+
+    // 更新批量刪除按鈕顯示狀態
+    function updateBatchDeleteButton() {
+        const checkedBoxes = document.querySelectorAll('.row-checkbox:checked');
+        const batchDeleteBtn = document.getElementById('batchDeleteBtn');
+        batchDeleteBtn.style.display = checkedBoxes.length > 0 ? 'inline-flex' : 'none';
+    }
+
+    // 單個checkbox變更時更新批量刪除按鈕
+    document.addEventListener('change', function(e) {
+        if (e.target.classList.contains('row-checkbox')) {
+            updateBatchDeleteButton();
+            
+            // 更新全選checkbox狀態
+            const allCheckboxes = document.getElementsByClassName('row-checkbox');
+            const checkedBoxes = document.querySelectorAll('.row-checkbox:checked');
+            document.getElementById('selectAll').checked = 
+                allCheckboxes.length === checkedBoxes.length;
+        }
+    });
+
+    // 批量刪除功能
+    document.getElementById('batchDeleteBtn').addEventListener('click', function() {
+        const checkedBoxes = document.querySelectorAll('.row-checkbox:checked');
+        if (!checkedBoxes.length) return;
+        
+        if (confirm(`確定要刪除選中的 ${checkedBoxes.length} 筆資料嗎？`)) {
+            const ids = Array.from(checkedBoxes).map(cb => cb.dataset.id);
+            
+            fetch('/batch_delete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ ids: ids })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    checkedBoxes.forEach(cb => cb.closest('tr').remove());
+                    updateBatchDeleteButton();
+                    showMessage('批量刪除成功');
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('批量刪除時發生錯誤', 'error');
+            });
+        }
+    });
+
+    // 新增相關函數
+    function showAddModal() {
+        document.getElementById('addModal').style.display = 'block';
+        // 清空表單
+        document.getElementById('addForm').reset();
+    }
+
+    function closeAddModal() {
+        document.getElementById('addModal').style.display = 'none';
+    }
+
+    // 處理新增表單提交
+    document.getElementById('addForm').onsubmit = function(e) {
+        e.preventDefault();
+        
+        const formData = {
+            company_name: document.getElementById('addCompanyName').value, 
+            contact_name: document.getElementById('addContactName').value,                       
+            people_count: document.getElementById('addPeopleCount').value,
+            table_layout: document.getElementById('addTableLayout').value,
+            table_layout_detail: document.getElementById('addTableLayoutDetail').value,
+            parking: document.getElementById('addParking').value
+        };
+
+        fetch('/add_booking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showMessage('新增成功！');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            } else {
+                showMessage(data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showMessage('新增時發生錯誤', 'error');
+        });
+    };
+
+    // 防止點擊 modal 內容時關閉
+    document.querySelector('.modal-content').onclick = function(event) {
+        event.stopPropagation();
+    };
+
+    function showMessage(message, type = 'success') {
+        // 如果已經有提示訊息，先移除
+        const existingMessage = document.querySelector('.message-popup');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+
+        // 建立提示訊息元素
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message-popup ${type}`;
+        messageDiv.textContent = message;
+
+        // 加入到頁面
+        document.body.appendChild(messageDiv);
+
+        // 3秒後自動移除
+        setTimeout(() => {
+            messageDiv.classList.add('fade-out');
+            setTimeout(() => messageDiv.remove(), 500);
+        }, 3000);
+    }
+    </script>
+</body>
+</html> 

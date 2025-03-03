@@ -349,7 +349,22 @@ font-size: 1.4rem;
 
 .input-container {
   position: relative;
-  display: inline-block;
+  display: flex;
+  flex: row;
+}
+.search-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: #000;
+  font-size: xx-large;
+  font: bold;
+}
+
+.search-box:hover{
+  color: #ffffff;
 }
 
 #nameInput {
@@ -368,15 +383,15 @@ input::placeholder {
   color: rgb(255, 255, 255);
 }
 
-.search-icon {
+/* .search-icon {
   position: absolute;
-  right: 25px; /* Position from right edge of container */
+  right: 25px; 
   top: 50%;
   transform: translateY(-50%);
   color: white;
   font-size: x-large;
-  cursor: pointer; /* Make the icon appear clickable */
-}
+  cursor: pointer; 
+  } */
 
 
 #submitBtn{

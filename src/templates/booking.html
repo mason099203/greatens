@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>桂田酒店家宴賓客名單管理系統</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-calendar-alt"></i>
+            <span>訂位管理系統</span>
+        </div>
+        <div class="user-profile">
+            <div class="avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user-info">
+                <span class="user-name">{{ session.get('full_name', '使用者') }}</span>
+                <span class="user-role">管理員</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i> 主控台</a>
+            <a href="{{ url_for('booking') }}" class="active"><i class="fas fa-table"></i> 訂位資料</a>
+            <a href="#"><i class="fas fa-chart-bar"></i> 統計報表</a>
+            <a href="{{ url_for('logout') }}" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> 登出系統
+            </a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="booking-container">
+            <h2>新增訂位資料</h2>
+            <form id="bookingForm" class="booking-form" novalidate>
+                <div class="form-group">
+                    <label for="companyName">公司名稱</label>
+                    <input type="text" id="companyName" name="company_name" required 
+                           minlength="2" maxlength="100">
+                    <div class="error-message">請輸入有效的公司名稱（2-100字）</div>
+                </div>
+                <div class="form-group">
+                    <label for="contactName">聯絡人</label>
+                    <input type="text" id="contactName" name="contact_name" required
+                           minlength="2" maxlength="50">
+                    <div class="error-message">請輸入有效的聯絡人姓名（2-50字）</div>
+                </div>
+                <div class="form-group">
+                    <label for="peopleCount">人數</label>
+                    <input type="number" id="peopleCount" name="people_count" required
+                           min="1" max="999">
+                    <div class="error-message">請輸入有效的人數（1-999人）</div>
+                </div>
+                <div class="form-group">
+                    <label for="tableLayout">桌位圖</label>
+                    <select id="tableLayout" name="table_layout" required>
+                        <option value="">請選擇桌位區域</option>
+                        <option value="A區">A區</option>
+                        <option value="B區">B區</option>
+                        <option value="C區">C區</option>
+                    </select>
+                    <div class="error-message">請選擇桌位區域</div>
+                </div>
+                <div class="form-group">
+                    <label for="parking">停車需求</label>
+                    <input type="text" id="parking" name="parking"
+                           maxlength="100" placeholder="例：需要 3 個車位">
+                    <div class="error-message">停車需求不可超過100字</div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> 儲存訂位
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ url_for('dashboard') }}'">
+                        <i class="fas fa-times"></i> 取消
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    document.getElementById('bookingForm').onsubmit = function(e) {
+        e.preventDefault();
+        
+        const formData = {
+            company_name: document.getElementById('companyName').value,
+            contact_name: document.getElementById('contactName').value,
+            people_count: document.getElementById('peopleCount').value,
+            table_layout: document.getElementById('tableLayout').value,
+            parking: document.getElementById('parking').value
+        };
+
+        fetch('/add_booking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('訂位資料新增成功！');
+                window.location.href = '{{ url_for('dashboard') }}';
+            } else {
+                alert('新增失敗：' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('新增時發生錯誤');
+        });
+    };
+    </script>
+</body>
+</html> 
