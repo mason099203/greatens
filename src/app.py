@@ -53,6 +53,50 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+# def get_db_connection():
+#     return mysql.connector.connect(
+#         host="10.214.57.11",
+#         user="root",
+#         password="root1231",
+#         database="greatenDB"
+#     )
+
+def get_db_connection(max_retries=5, retry_delay=5):
+    """獲取資料庫連線，包含重試機制"""
+    for attempt in range(max_retries):
+        try:
+            app.logger.info(f'嘗試連接資料庫 (第 {attempt + 1} 次)')
+            app.logger.info(f'連線設定: HOST={MYSQL_HOST}, PORT={MYSQL_PORT}, DB={MYSQL_DB}')
+            
+            connection = mysql.connector.connect(
+                host=MYSQL_HOST,
+                user=MYSQL_USER,
+                password=MYSQL_PASSWORD,
+                database=MYSQL_DB,
+                port=MYSQL_PORT
+            )
+
+            # 測試連線
+            cursor = connection.cursor()
+            cursor.execute('SELECT 1')
+            cursor.fetchall()  # 讀取測試查詢的結果
+            cursor.close()     # 關閉測試用的游標
+            
+            app.logger.info('資料庫連線成功')
+            return connection
+            
+        except Exception as e:
+            app.logger.error(f'資料庫連線嘗試 {attempt + 1}/{max_retries} 失敗')
+            app.logger.error(f'錯誤類型: {type(e).__name__}')
+            app.logger.error(f'錯誤訊息: {str(e)}')
+            app.logger.error(f'錯誤詳情: {repr(e)}')
+            
+            if attempt < max_retries - 1:
+                app.logger.info(f'等待 {retry_delay} 秒後重試...')
+                time.sleep(retry_delay)
+            else:
+                app.logger.error('已達最大重試次數，放棄連線')
+                raise
 
 # 設定圖片上傳資料夾
 app.config['UPLOAD_FOLDER'] = 'images'
@@ -166,37 +210,7 @@ def serve_css():
 def serve_src(filename):
     return send_from_directory("json", filename)
 
-def get_db_connection(max_retries=5, retry_delay=5):
-    """獲取資料庫連線，包含重試機制"""
-    for attempt in range(max_retries):
-        try:
-            app.logger.info(f'嘗試連接資料庫 (第 {attempt + 1} 次)')
-            app.logger.info(f'連線設定: HOST={MYSQL_HOST}, PORT={MYSQL_PORT}, DB={MYSQL_DB}')
-            
-            connection = mysql.connector.connect(
-            host="10.214.57.11",       # 数据库主机，例如 "localhost"
-            user="root",   # 数据库用户名
-            password="root1231",  # 数据库密码
-            database="greatenDB"  # 要连接的数据库名称
-        )
 
-        # 创建游标对象
-            cursor = connection.cursor()
-            cursor.execute('SELECT 1')
-            app.logger.info('資料庫連線成功')
-            return cursor
-        except Exception as e:
-            app.logger.error(f'資料庫連線嘗試 {attempt + 1}/{max_retries} 失敗')
-            app.logger.error(f'錯誤類型: {type(e).__name__}')
-            app.logger.error(f'錯誤訊息: {str(e)}')
-            app.logger.error(f'錯誤詳情: {repr(e)}')
-            
-            if attempt < max_retries - 1:
-                app.logger.info(f'等待 {retry_delay} 秒後重試...')
-                time.sleep(retry_delay)
-            else:
-                app.logger.error('已達最大重試次數，放棄連線')
-                raise
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -727,13 +741,13 @@ def dashboard():
     """
     try:
 # print("mysql",input)
-        connection = mysql.connector.connect(
-            host="10.214.57.11",       # 数据库主机，例如 "localhost"
-            user="root",   # 数据库用户名
-            password="root1231",  # 数据库密码
-            database="greatenDB"  # 要连接的数据库名称
-        )
-
+        # connection = mysql.connector.connect(
+        #     host="10.214.57.11",       # 数据库主机，例如 "localhost"
+        #     user="root",   # 数据库用户名
+        #     password="root1231",  # 数据库密码
+        #     database="greatenDB"  # 要连接的数据库名称
+        # )
+        connection = get_db_connection()
         # 创建游标对象
         cursor = connection.cursor(dictionary=True)
 
@@ -771,12 +785,7 @@ def reports():
     統計報表頁面
     """
     try:
-        connection = mysql.connector.connect(
-            host="10.214.57.11",       # 数据库主机，例如 "localhost"
-            user="root",   # 数据库用户名
-            password="root1231",  # 数据库密码
-            database="greatenDB"  # 要连接的数据库名称
-        )
+        connection = get_db_connection()
         cursor = connection.cursor(dictionary=True)
         
         # 獲取基本統計資料
@@ -799,13 +808,7 @@ def reports():
         app.logger.error(f'獲取統計資料時發生錯誤: {str(e)}')
         return '獲取統計資料時發生錯誤，請稍後再試', 500
 
-def get_db_connection():
-    return mysql.connector.connect(
-        host="10.214.57.11",
-        user="root",
-        password="root1231",
-        database="greatenDB"
-    )
+
 
 @app.route("/search", methods=["GET"])
 def search():

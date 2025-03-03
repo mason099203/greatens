@@ -31,9 +31,9 @@
         </a>
       </div>
       <div class="nav-buttons">
-        <button onclick="scrollToSection('intro-section')">起厝</button>
-        <button onclick="scrollToSection('search-section')">座位查詢</button>
-        <button onclick="scrollToSection('parking-info-section')">停車場</button>
+        <div class="nav-button"><a onclick="scrollToSection('intro-section')">起厝</a></div>
+        <div class="nav-button"><a onclick="scrollToSection('search-section')">座位查詢</a></div>
+        <div class="nav-button"><a onclick="scrollToSection('parking-info-section')">停車場</a></div>
       </div>
     </div>
 
@@ -42,6 +42,10 @@
   <main>
     <section class="intro-section">
       <div class="intro-container">
+        <div class="intro-title-container">
+          <p>桂田大樹</p>
+          <p>The Greatens</p>
+        </div>
         <div class="intro-title">
           <div class="intro-title-left"></div>
           <div class="intro-title-center">
@@ -243,30 +247,24 @@
 
       <!-- 聯絡資訊區 -->
       <div class="footer-contact">
-        <div class="contact-item-mvd desktop-text">
-          <i class="bi bi-telephone-fill"></i>
-          <span><b>電話：</b>(06) 2793725</span>
+        <div style="margin: auto;">
+          <div class="contact-item-mvd ">
+            <i class="bi bi-telephone-fill"></i>
+            <span><b>電話：</b>(06) 2793725</span>
+          </div>
+
+          <div class="contact-item-mvd ">
+            <i class="bi bi-geo-alt-fill "></i>
+            <span><b>地址：</b>台南市東區東門路三段253號10樓之1</span>
+          </div>
+
+          <div class="contact-item-mvd">
+            <i class="bi bi-envelope-fill"></i>
+            <span><b>信箱：</b>mvd.sales@metavision.tw</span>
+          </div>
+
         </div>
-        <div class="contact-item-mvd mobile-text">
-          <i class="bi bi-telephone-fill"></i>
-          <span style="font-size: 12px;"><b>電話：</b><br>(06) 2793725</span>
-        </div>
-        <div class="contact-item-mvd desktop-text">
-          <i class="bi bi-geo-alt-fill "></i>
-          <span><b>地址：</b>台南市東區東門路三段253號10樓之1</span>
-        </div>
-        <div class="contact-item-mvd mobile-text">
-          <i class="bi bi-geo-alt-fill "></i>
-          <span style="font-size: 12px;"><b>地址：</b><br>台南市東區東門路三段253號10樓之1</span>
-        </div>
-        <div class="contact-item-mvd desktop-text">
-          <i class="bi bi-envelope-fill"></i>
-          <span><b>信箱：</b>mvd.sales@metavision.tw</span>
-        </div>
-        <div class="contact-item-mvd mobile-text">
-          <i class="bi bi-envelope-fill"></i>
-          <span style="font-size: 12px;"><b>信箱：</b><br>mvd.sales@metavision.tw</span>
-        </div>
+
 
       </div>
     </div>
