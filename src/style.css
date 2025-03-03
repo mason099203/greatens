@@ -716,7 +716,7 @@ header {
 footer {
   background-color: #ffffff;
   text-align: center;
-  color: rgb(199, 197, 197);
+  color: rgb(255, 255, 255);
   bottom: 0;
   width: 100%;
   position: relative;
@@ -768,7 +768,7 @@ footer p {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 .contact-item b {
@@ -777,7 +777,7 @@ footer p {
 
 .contact-item i {
   font-size: 1.2rem;
-  color: black;
+  color: #e4dac6;
 }
 
 .footer-copyright {
