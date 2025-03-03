@@ -97,9 +97,8 @@
         <h1 class="desktop-text">座位查詢</h1>
         <h1 class="mobile-text">座位查詢</h1>
         <div class="input-container">
-          <div><input type="text" id="nameInput" placeholder="請輸入姓名或是公司名稱"></div>
-          <div class="search-box search-icon">搜尋</div>
-          <!-- <i class="bi bi-search search-icon"></i> -->
+          <input type="text" id="nameInput" placeholder="請輸入姓名或是公司名稱">
+          <i class="bi bi-search search-icon"></i>
         </div>
         <div class="search-result">
           <p id="search-result">
@@ -295,6 +294,7 @@
         });
       }
     });
+
     window.addEventListener('load', function () {
       const loadingElement = document.getElementById('loading');
       const minLoadingTime = 0; // 最小加載時間（毫秒）
@@ -333,85 +333,143 @@
       }
     });
 
+    // $.getJSON('./json/0224.json', function(response) {
+    //   nameCoordinates = response;
+    //   // console.log('成功載入座標數據:', response);
+    // }).fail(function(jqxhr, textStatus, error) {
+    //   // console.error('讀取座標資料失敗:', error);
+    // });
 
-    function formatContactName(contactName) {
-      if (contactName.length <= 2) {
-        return contactName; // If the name is very short, just return it as is
-      }
-      let firstChar = contactName[0];
-      let lastChar = contactName[contactName.length - 1];
-      let middle = '';
-
-      // Add the circle icon for each middle character
-      for (let i = 0; i < contactName.length - 2; i++) {
-        middle += '<i class="bi bi-circle" style="font-size:10px"></i>';
-      }
-
-      return firstChar + middle + lastChar;
-    }
     $(document).ready(function () {
       function searchAction() {
+        for (let i = 1; i <= 7; i++) {
+          $(`.parking-img-P${i}`).css('display', 'none');
+        }
+        let area_c = ['A', 'B', 'C', 'D', 'E'];
+        for (let i = 0; i < area_c.length; i++) {
+          $(`.area-${area_c[i]}`).css('display', 'none');
+        }
         const inputValue = $('#nameInput').val().trim();
         const searchResult = $('#search-result');
 
         // 先清空之前的結果
         searchResult.empty();
+        let park_link = { 'P1': "https://reurl.cc/zpanl6", 'P2': "https://reurl.cc/748zkD", 'P3': "https://reurl.cc/lNWKrA", 'P4': "https://reurl.cc/04qM9b", 'P5': "https://reurl.cc/geAXrp", 'P6': "https://reurl.cc/46zVj2", 'P7': "https://reurl.cc/46VbyR" };
+        let groupedData_name = {};
 
-        if (!inputValue) {
-          alert("請輸入查詢名稱！");
-          return;
-        }
-        // 發送 AJAX 請求到 Flask API
-        $.ajax({
-          url: `/search?contact_name=${encodeURIComponent(inputValue)}`,
-          method: "GET",
-          dataType: "json",
-          success: function (data) {
-            if (data.length === 0) {
-              alert("查無資料！");
-              return;
+        Object.values(nameCoordinates).forEach(item => {
+          let prefix_name = item.name;
+          if (prefix_name === inputValue && inputValue !== '') {
+            if (!groupedData_name[prefix_name]) {
+              groupedData_name[prefix_name] = []; // 初始化為陣列
             }
-
-            let resultHtml = `
-                        <table border="1">
-                            <tr>
-                                <th>姓名</th>
-                                <th>公司名稱</th>
-                                <th>人數</th>
-                                <th>桌位圖</th>
-                                <th>停車場</th>
-                            </tr>`;
-
-            data.forEach((item, index) => {
-              resultHtml += `
-                            <tr class="animated-row" style="animation-delay: ${index * 0.1}s">
-                                <td>${formatContactName(item.contact_name)}</td>
-                                <td>${item.company_name}</td>
-                                <td>${item.people_count}</td>
-                                <td>${item.table_layout_detail}</td>
-                                <td><img class="parkintable" src="./images/${item.parking}_0.png" alt="停車場圖片"></td>
-                            </tr>`;
-            });
-
-            resultHtml += `</table>`;
-            searchResult.html(resultHtml);
-          },
-          error: function () {
-            alert("發生錯誤，請稍後再試！");
+            groupedData_name[prefix_name].push(item); // 正確推入資料
           }
         });
-      }
 
-      // 綁定點擊事件
+        const foundperson = Object.values(groupedData_name).find(group =>
+          group.some(item => item.name.toString().slice(0, inputValue.length) === inputValue)
+        );
+
+        let groupedData = {};
+        Object.values(nameCoordinates).forEach(item => {
+          if (item.company.includes(inputValue) && inputValue !== '') { // 檢查是否包含關鍵字
+            if (!groupedData[inputValue]) {
+              groupedData[inputValue] = []; // 初始化為陣列
+            }
+            groupedData[inputValue].push(item); // 推入符合條件的項目
+          }
+        });
+
+        // 找到包含 inputValue 的公司資料
+        const foundcompany = Object.values(groupedData).find(group =>
+          group.some(item => item.company.includes(inputValue))
+        );
+
+        if (Object.keys(groupedData_name).length > 0) {
+          let resultHtml = `
+            <table border="1">
+              <tr>
+                <th>姓名</th>
+                <th>公司名稱</th>
+                <th>人數</th>
+                <th>區域</th>
+                <th>桌位圖</th>
+                <th>停車場</th>
+              </tr>`;
+
+          $('.parking-marker').removeClass('highlight');
+          // 遍歷 groupedData 並建立表格內容
+          Object.values(groupedData_name).forEach(companyList => {
+            companyList.forEach((foundperson, index) => {
+              $(`.parking-img-${foundperson.park}`).css('display', 'block');
+              $(`.area-${foundperson.area}`).css('display', 'block');
+              resultHtml += `
+                <tr class="animated-row" style="animation-delay: ${index * 0.1}s">
+                  <td><p id="companyName">${foundperson.name.charAt(0)}<i class="bi bi-circle big-icon" ></i>${foundperson.name.charAt(foundperson.name.length - 1)}</p></td>
+                  <td class="company-name">${foundperson.company}</td>
+                  <td>${foundperson.number}</td>
+                  <td>${foundperson.area}</td>
+                  <td>${foundperson.table}</td>
+                  <td onclick="scrollToSection('parking-info-section')"><img class="parkintable" src="./images/${foundperson.park}_0.png" alt="空白圖片"  ></i>
+</td>
+                </tr>`;
+              // &nbsp;<i class="bi bi-geo-alt-fill" style="color:red">
+            });
+          });
+
+          resultHtml += `</table>`;
+          searchResult.html(resultHtml);
+        } else if (Object.keys(groupedData).length > 0) { // 確保 groupedData 有內容
+          let resultHtml = `
+            <table border="1">
+              <tr>
+                <th>姓名</th>
+                <th>公司名稱</th>
+                <th>人數</th>
+                <th>區域</th>
+                <th>桌位圖</th>
+                <th>停車場</th>
+              </tr>`;
+
+          // $('.parking-marker').removeClass('highlight');
+          // 遍歷 groupedData 並建立表格內容
+          Object.values(groupedData).forEach(companyList => {
+            companyList.forEach((foundcompany, index) => {
+              $(`.parking-img-${foundcompany.park}`).css('display', 'block'); //連結
+              $(`.area-${foundcompany.area}`).css('display', 'block');
+
+              resultHtml += `
+                <tr class="animated-row" style="animation-delay: ${index * 0.1}s">
+                  <td style="min-width:40px"><p id="companyName">${foundcompany.name.charAt(0)}<i class="bi bi-circle big-icon"></i>${foundcompany.name.charAt(foundcompany.name.length - 1)}</p></td>
+                  <td class="company-name">${foundcompany.company}</td>
+                  <td>${foundcompany.number}</td>
+                  <td>${foundcompany.area}</td>
+                  <td>${foundcompany.table}</td>
+                  <td onclick="scrollToSection('parking-info-section')"><img class="parkintable" src="./images/${foundcompany.park}_0.png" alt="空白圖片"></i></td>
+                </tr>`;
+            });
+          });
+          resultHtml += `</table>`;
+          searchResult.html(resultHtml);
+        } else {
+          alert('查無此編號的桌位。');
+          searchResult.empty();
+          // 清除所有高亮顯示
+          $('.parking-marker').removeClass('highlight');
+        }
+        // 清空輸入框
+        $('#nameInput').val('');
+      }
+      $('.search-icon').click(searchAction);
+
       $('#nameInput').keydown(function (event) {
         if (event.key === 'Enter') {
           event.preventDefault(); // 防止表單自動提交
           searchAction(); // 呼叫相同的搜尋函數
         }
       });
-      $('.search-icon').click(searchAction);
     });
-
 
     // 新增滾動功能
     function scrollToSection(sectionClass) {
