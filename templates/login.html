@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>桂田酒店家宴賓客名單管理系統</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-content">
+            <div class="login-header">
+                <i class="fas fa-calendar-alt"></i>
+                <h1>桂田酒店家宴</h1>
+                <h2>賓客名單管理系統</h2>
+            </div>
+            
+            <form id="loginForm" method="POST" action="/login" class="login-form">
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i>
+                        <span>帳號</span>
+                    </label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                        <span>密碼</span>
+                    </label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">
+                    <i class="fas fa-sign-in-alt"></i>
+                    登入系統
+                </button>
+            </form>
+
+            {% if error %}
+            <div class="error-message">
+                <i class="fas fa-exclamation-circle"></i>
+                {{ error }}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="login-footer">
+            <div class="company-info">
+                <div class="info-item">
+                    <i class="fas fa-building"></i>
+                    <span>元視數位有限公司</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>(06) 2793725</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>台南市東區東門路三段253號10樓之1</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>mvd.sales@metavision.tw</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

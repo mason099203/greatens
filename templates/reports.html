@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>桂田酒店家宴賓客名單管理系統</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-calendar-alt"></i>
+            <span>桂田酒店家宴賓客名單管理系統</span>
+        </div>
+        <div class="user-profile">
+            <div class="avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user-info">
+                <span class="user-name">{{ session.get('full_name', '使用者') }}</span>
+                <span class="user-role">管理員</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i> 主控台</a>
+            <a href="{{ url_for('reports') }}" class="active"><i class="fas fa-chart-bar"></i> 統計報表</a>
+            <a href="{{ url_for('logout') }}" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> 登出系統
+            </a>
+        </nav>
+    </div>
+
+    <div class="main-content reports-page">
+        <div class="reports-container">
+            <div class="report-filters">
+                <div class="date-range">
+                    <div class="filter-group">
+                        <label for="startDate">
+                            <i class="fas fa-calendar-alt"></i> 開始日期
+                        </label>
+                        <input type="date" id="startDate" class="date-input">
+                    </div>
+                    <div class="filter-group">
+                        <label for="endDate">
+                            <i class="fas fa-calendar-alt"></i> 結束日期
+                        </label>
+                        <input type="date" id="endDate" class="date-input">
+                    
+                        <button class="btn btn-primary refresh-btn" onclick="updateReports()">
+                            <i class="fas fa-sync"></i> 更新報表
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-section">
+                <h3><i class="fas fa-chart-line"></i> 統計摘要</h3>
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <i class="fas fa-users"></i>
+                        <div class="summary-info">
+                            <h4>總訂位人數</h4>
+                            <p id="totalPeople">0</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <i class="fas fa-clipboard-list"></i>
+                        <div class="summary-info">
+                            <h4>總訂位數</h4>
+                            <p id="totalBookings">0</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <i class="fas fa-car"></i>
+                        <div class="summary-info">
+                            <h4>停車需求比例</h4>
+                            <p id="parkingRate">0%</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <i class="fas fa-calculator"></i>
+                        <div class="summary-info">
+                            <h4>平均每日人數</h4>
+                            <p id="avgPeoplePerTable">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-pie"></i> 區域分布</h3>
+                    </div>
+                    <canvas id="areaChart"></canvas>
+                    <div class="chart-table">
+                        <table id="areaTable">
+                            <thead>
+                                <tr>
+                                    <th>區域</th>
+                                    <th class="number-header">訂位數</th>
+                                    <th class="number-header">總人數</th>
+                                    <th class="percentage-header">比例</th>
+                                </tr>
+                            </thead>
+                            <tbody id="areaTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-car"></i> 停車場分析</h3>
+                    </div>
+                    <canvas id="parkingChart"></canvas>
+                    <div class="chart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>停車場</th>
+                                    <th class="number-header">訂位數</th>
+                                    <th class="percentage-header">比例</th>
+                                </tr>
+                            </thead>
+                            <tbody id="parkingTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-building"></i> 公司訂位統計</h3>
+                    </div>
+                    <canvas id="companyChart"></canvas>
+                    <div class="chart-table">
+                        <table id="companyTable">
+                            <thead>
+                                <tr>
+                                    <th>公司名稱</th>
+                                    <th class="number-header">訂位數</th>
+                                    <th class="number-header">總人數</th>
+                                    <th class="percentage-header">比例</th>
+                                </tr>
+                            </thead>
+                            <tbody id="companyTableBody"></tbody>
+                        </table>
+                    </div>
+                    
+                    
+                </div>
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-line"></i> 每日訂位趨勢</h3>
+                    </div>
+                    <canvas id="bookingTrendChart"></canvas>
+                    <div class="chart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>日期</th>
+                                    <th>訂位數</th>
+                                </tr>
+                            </thead>
+                            <tbody id="trendTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-bar"></i> 人數分布</h3>
+                    </div>
+                    <canvas id="peopleDistChart"></canvas>
+                    <div class="chart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>人數範圍</th>
+                                    <th>訂位數</th>
+                                    <th>比例</th>
+                                </tr>
+                            </thead>
+                            <tbody id="peopleTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // 添加全局圖表配置
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    padding: 20,
+                    font: {
+                        size: 12
+                    }
+                }
+            }
+        }
+    };
+
+    // 初始化圖表物件
+    let charts = {
+        areaChart: null,
+        bookingTrendChart: null,
+        peopleDistChart: null,
+        parkingChart: null,
+        companyChart: null
+    };
+
+    function initializeCharts(data) {
+        try {
+            console.log('開始初始化圖表');
+            console.log('收到的數據:', data);
+
+            // 清除舊的圖表
+            Object.keys(charts).forEach(key => {
+                if (charts[key]) {
+                    charts[key].destroy();
+                    charts[key] = null;
+                }
+            });
+
+            // 區域分布圖
+            if (document.getElementById('areaChart') && data.area_stats && data.area_stats.length > 0) {
+                const areaCtx = document.getElementById('areaChart').getContext('2d');
+                charts.areaChart = new Chart(areaCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: data.area_stats.map(item => item.area || '未指定'),
+                        datasets: [{
+                            data: data.area_stats.map(item => item.count),
+                            backgroundColor: [
+                                '#4e73df', '#1cc88a', '#36b9cc', '#f6c23e',
+                                '#e74a3b', '#858796', '#5a5c69', '#476072'
+                            ]
+                        }]
+                    },
+                    options: chartOptions
+                });
+            }
+           
+
+            // 停車場分析圖
+            if (document.getElementById('parkingChart') && data.parking_analysis && data.parking_analysis.lots) {
+                const parkingCtx = document.getElementById('parkingChart').getContext('2d');
+                charts.parkingChart = new Chart(parkingCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.parking_analysis.lots,
+                        datasets: [{
+                            label: '使用次數',
+                            data: data.parking_analysis.counts,
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.8)',  // P1
+                                'rgba(75, 192, 192, 0.8)',  // P2
+                                'rgba(255, 206, 86, 0.8)',  // P3
+                                'rgba(153, 102, 255, 0.8)', // P4
+                                'rgba(255, 159, 64, 0.8)'   // 其他
+                            ],
+                            borderColor: [
+                                'rgb(54, 162, 235)',
+                                'rgb(75, 192, 192)',
+                                'rgb(255, 206, 86)',
+                                'rgb(153, 102, 255)',
+                                'rgb(255, 159, 64)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...chartOptions,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: '使用次數'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: '停車場'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false  // 隱藏圖例，因為只有一種數據
+                            },
+                            title: {
+                                display: true,
+                                text: '停車場使用統計'
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 公司訂位統計圖
+            if (document.getElementById('companyChart') && data.company_analysis && data.company_analysis.names) {
+                const companyCtx = document.getElementById('companyChart').getContext('2d');
+                charts.companyChart = new Chart(companyCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.company_analysis.names,
+                        datasets: [{
+                            label: '訂位人數',
+                            data: data.company_analysis.people,
+                            backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                            borderColor: 'rgb(75, 192, 192)',
+                            borderWidth: 1,
+                            yAxisID: 'y'
+                        }, {
+                            label: '訂位次數',
+                            data: data.company_analysis.bookings,
+                            backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                            borderColor: 'rgb(54, 162, 235)',
+                            borderWidth: 1,
+                            yAxisID: 'y1'
+                        }]
+                    },
+                    options: {
+                        ...chartOptions,
+                        indexAxis: 'y',  // 使用水平長條圖
+                        scales: {
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: '公司名稱'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: '人數'
+                                }
+                            },
+                            y1: {
+                                position: 'right',
+                                grid: {
+                                    drawOnChartArea: false
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top'
+                            },
+                            title: {
+                                display: true,
+                                text: '公司訂位統計 (前10名)'
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 每日訂位趨勢圖
+            if (document.getElementById('bookingTrendChart') && data.daily_stats) {
+                const trendCtx = document.getElementById('bookingTrendChart').getContext('2d');
+                charts.bookingTrendChart = new Chart(trendCtx, {
+                    type: 'line',
+                    data: {
+                        labels: data.daily_stats.dates,
+                        datasets: [{
+                            label: '訂位數',
+                            data: data.daily_stats.counts,
+                            borderColor: '#36A2EB',
+                            backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        ...chartOptions,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 人數分布圖
+            if (document.getElementById('peopleDistChart') && data.people_distribution) {
+                const distCtx = document.getElementById('peopleDistChart').getContext('2d');
+                charts.peopleDistChart = new Chart(distCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.people_distribution.ranges,
+                        datasets: [{
+                            label: '訂位數',
+                            data: data.people_distribution.counts,
+                            backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                            borderColor: '#4BC0C0',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...chartOptions,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 更新表格數據
+            updateTables(data);
+            
+            // 更新摘要數據
+            updateSummary(data.summary);
+
+        } catch (error) {
+            console.error('圖表初始化錯誤:', error);
+            showMessage('圖表初始化失敗: ' + error.message, 'error');
+        }
+    }
+
+    function updateTables(data) {
+        try {
+            console.log('開始更新表格數據');
+            
+            // 更新區域分布表格 (限制前10筆)
+            const areaTableBody = document.getElementById('areaTableBody');
+            if (areaTableBody && data.area_stats) {
+                const areaHtml = data.area_stats
+                    .slice(0, 10)  // 只取前10筆
+                    .map(item => `
+                        <tr>
+                            <td>${item.area || '未指定'}</td>
+                            <td class="number-cell">${item.count}</td>
+                            <td class="number-cell">${item.total_people}</td>
+                            <td class="percentage-cell">${((item.count / data.summary.total_bookings) * 100).toFixed(1)}%</td>
+                        </tr>
+                    `).join('');
+                areaTableBody.innerHTML = areaHtml;
+            }
+
+            // 更新趨勢表格 (限制前10筆)
+            const trendTableBody = document.getElementById('trendTableBody');
+            if (trendTableBody && data.daily_stats) {
+                const trendHtml = data.daily_stats.dates
+                    .slice(-10)  // 取最後10筆（最近的日期）
+                    .map((date, i) => `
+                        <tr>
+                            <td>${date}</td>
+                            <td class="number-cell">${data.daily_stats.counts[data.daily_stats.counts.length - 10 + i]}</td>
+                        </tr>
+                    `).join('');
+                trendTableBody.innerHTML = trendHtml;
+            }
+
+            // 更新人數分布表格 (通常不需要限制，因為只有固定的幾個範圍)
+            const peopleTableBody = document.getElementById('peopleTableBody');
+            if (peopleTableBody && data.people_distribution) {
+                const peopleHtml = data.people_distribution.ranges.map((range, i) => `
+                    <tr>
+                        <td>${range}</td>
+                        <td class="number-cell">${data.people_distribution.counts[i]}</td>
+                        <td class="percentage-cell">${((data.people_distribution.counts[i] / data.summary.total_bookings) * 100).toFixed(1)}%</td>
+                    </tr>
+                `).join('');
+                peopleTableBody.innerHTML = peopleHtml;
+            }
+
+            // 更新停車場分析表格
+            const parkingTableBody = document.getElementById('parkingTableBody');
+            if (parkingTableBody && data.parking_analysis) {
+                const parkingHtml = data.parking_analysis.lots
+                    .map((lot, i) => `
+                        <tr>
+                            <td>${lot}</td>
+                            <td class="number-cell">${data.parking_analysis.counts[i]}</td>
+                            <td class="percentage-cell">${((data.parking_analysis.counts[i] / data.summary.total_bookings) * 100).toFixed(1)}%</td>
+                        </tr>
+                    `).join('');
+                parkingTableBody.innerHTML = parkingHtml;
+            }
+
+            // 更新公司統計表格
+            const companyTableBody = document.getElementById('companyTableBody');
+            if (companyTableBody && data.company_analysis) {
+                const companyHtml = data.company_analysis.names
+                    .map((name, i) => `
+                        <tr>
+                            <td class="can-wrap">${name}</td>
+                            <td class="number-cell">${data.company_analysis.bookings[i]}</td>
+                            <td class="number-cell">${data.company_analysis.people[i]}</td>
+                            <td class="percentage-cell">${((data.company_analysis.people[i] / data.summary.total_people) * 100).toFixed(1)}%</td>
+                        </tr>
+                    `).join('');
+                companyTableBody.innerHTML = companyHtml;
+            }
+
+        } catch (error) {
+            console.error('更新表格時發生錯誤:', error);
+            showMessage('更新表格失敗: ' + error.message, 'error');
+        }
+    }
+
+    function updateSummary(summary) {
+    if (summary) {
+        document.getElementById('totalPeople').textContent = summary.total_people || 0;
+        document.getElementById('totalBookings').textContent = summary.total_bookings || 0;
+        
+        // 確保 parking_rate 為數字類型
+        const parkingRate = parseFloat(summary.parking_rate) || 0;
+        document.getElementById('parkingRate').textContent = `${parkingRate.toFixed(1)}%`;
+        
+        const avgDailyBookings = parseFloat(summary.avg_daily_bookings) || 0;
+        document.getElementById('avgPeoplePerTable').textContent = avgDailyBookings.toFixed(1);
+    }
+}
+
+    // 更新報表數據
+    function updateReports() {
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+
+        console.log('查詢日期範圍:', { startDate, endDate });
+
+        if (!startDate || !endDate) {
+            showMessage('請選擇開始和結束日期', 'error');
+            return;
+        }
+
+        showLoadingState();
+
+        fetch(`/api/reports?start_date=${startDate}&end_date=${endDate}`)
+            .then(response => {
+                console.log('API 回應狀態:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('API 回傳數據:', data);
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                // 檢查數據完整性
+                if (!data.summary || !data.area_stats || !data.daily_stats) {
+                    throw new Error('回傳的數據格式不完整');
+                }
+
+                // 檢查各項數據
+                console.log('摘要數據:', data.summary);
+                console.log('區域統計:', data.area_stats);
+                console.log('每日統計:', data.daily_stats);
+                console.log('人數分布:', data.people_distribution);
+                console.log('停車分析:', data.parking_analysis);
+                
+                initializeCharts(data);
+                hideLoadingState();
+            })
+            .catch(error => {
+                console.error('錯誤詳情:', error);
+                showMessage('獲取報表資料時發生錯誤: ' + error.message, 'error');
+                hideLoadingState();
+            });
+    }
+
+    // 頁面載入時設定預設日期範圍並執行查詢
+    document.addEventListener('DOMContentLoaded', setDefaultDateRange);
+
+    // 設定預設日期範圍（前三個月到今天）
+    function setDefaultDateRange() {
+        const today = new Date();
+        const threeMonthsAgo = new Date(today);
+        threeMonthsAgo.setMonth(today.getMonth() - 3);  // 設定為三個月前
+
+        // 格式化日期為 YYYY-MM-DD
+        const formatDate = (date) => {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        };
+
+        // 設定日期輸入框的值
+        document.getElementById('startDate').value = formatDate(threeMonthsAgo);
+        document.getElementById('endDate').value = formatDate(today);
+
+        // 立即執行查詢
+        updateReports();
+    }
+
+    // 顯示載入中的狀態
+    function showLoadingState() {
+        const loadingOverlay = document.createElement('div');
+        loadingOverlay.className = 'loading-overlay';
+        loadingOverlay.innerHTML = `
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>載入中...</span>
+            </div>
+        `;
+        document.querySelector('.reports-container').appendChild(loadingOverlay);
+    }
+
+    // 隱藏載入中的狀態
+    function hideLoadingState() {
+        const loadingOverlay = document.querySelector('.loading-overlay');
+        if (loadingOverlay) {
+            loadingOverlay.remove();
+        }
+    }
+
+    function showMessage(message, type = 'success') {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message-popup ${type}`;
+        messageDiv.textContent = message;
+        document.body.appendChild(messageDiv);
+
+        setTimeout(() => {
+            messageDiv.classList.add('fade-out');
+            setTimeout(() => messageDiv.remove(), 500);
+        }, 3000);
+    }
+    </script>
+</body>
+</html> 
