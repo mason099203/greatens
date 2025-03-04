@@ -61,21 +61,21 @@
                 <i class="fas fa-users"></i>
                 <div class="stat-info">
                     <h3>總訂位數</h3>
-                    <p>{{ data|length }}</p>
+                    <p><span id="totalBookings">{{ data|length }}</span> / <span id="originalTotalBookings">{{ data|length }}</span></p>
                 </div>
             </div>
             <div class="stat-card">
                 <i class="fas fa-chair"></i>
                 <div class="stat-info">
                     <h3>總人數</h3>
-                    <p>{{ data|sum(attribute='people_count') }}</p>
+                    <p><span id="totalPeople">{{ data|sum(attribute='people_count') }}</span> / <span id="originalTotalPeople">{{ data|sum(attribute='people_count') }}</span></p>
                 </div>
             </div>
             <div class="stat-card">
                 <i class="fas fa-car"></i>
                 <div class="stat-info">
                     <h3>停車需求</h3>
-                    <p>{{ data|selectattr('parking')|list|length }}</p>
+                    <p><span id="totalParking">{{ data|selectattr('parking')|list|length }}</span> / <span id="originalTotalParking">{{ data|selectattr('parking')|list|length }}</span></p>
                 </div>
             </div>
         </div>
@@ -375,10 +375,28 @@
         const searchText = this.value.toLowerCase();
         const rows = document.querySelectorAll('tbody tr');
         
+        let visibleRows = 0;
+        let totalPeople = 0;
+        let totalParking = 0;
+        
         rows.forEach(row => {
             const text = row.textContent.toLowerCase();
-            row.style.display = text.includes(searchText) ? '' : 'none';
+            const isVisible = text.includes(searchText);
+            row.style.display = isVisible ? '' : 'none';
+            
+            if (isVisible) {
+                visibleRows++;
+                totalPeople += parseInt(row.cells[3].textContent) || 0;
+                if (row.cells[6].textContent.trim()) {
+                    totalParking++;
+                }
+            }
         });
+        
+        // 更新搜尋結果的統計數據
+        document.getElementById('totalBookings').textContent = visibleRows;
+        document.getElementById('totalPeople').textContent = totalPeople;
+        document.getElementById('totalParking').textContent = totalParking;
     });
 
     // 全選/取消全選功能
