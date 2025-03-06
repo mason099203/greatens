@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  botfarms:
+    build: .
+    container_name: greatenV1.0
+    env_file:
+      - .env
+    ports:
+      - "${FLASK_PORT}:9001"
+    volumes:
+      # 將宿主機的 logs 資料夾對應到容器內的 /app/logs
+      - "./logs:/app/logs"
+    # 如果要讓容器能連到外部 DB，請確保網路/防火牆設定正常
+    networks:
+      - botfarms_net
+
+networks:
+  botfarms_net:
+    driver: bridge
