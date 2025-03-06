@@ -47,7 +47,7 @@
           <p>The Greatens</p>
         </div>
         <div class="intro-title">
-            <h2>天地心，起厝情<br>傳承愛，慶功宴</h2>
+          <h2>天地心，起厝情<br>傳承愛，慶功宴</h2>
 
         </div>
         <p class="desktop-text">家，是一切的起點。<br>
@@ -98,12 +98,12 @@
         <h1 class="desktop-text">座位查詢</h1>
         <h1 class="mobile-text">座位查詢</h1>
         <div class="input-container">
-          
+
           <div><input type="text" class="nameInput" placeholder="請輸入姓名或是公司名稱"></div>
           <div class="search-box search-icon">查詢</div>
           <!-- <i class="bi bi-search search-icon"></i> -->
         </div>
-        
+
         <div class="search-result">
           <p id="search-result">
           </p>
@@ -123,8 +123,8 @@
     </section>
     <section class="parking-info-section">
       <div class="parking-info-container">
-        <h1 class="desktop-text">貴賓您好，<br>我們有為您規劃停車場停車位置，麻煩請先至座位查詢確認。</h1>
-        <h1 class="mobile-text">貴賓您好，<br>我們有為您規劃停車場停車位置，<br>麻煩請先至座位查詢確認。</h1>
+        <h1 class="desktop-text">貴賓您好，<br>我們有為您規劃專屬停車場，<br>麻煩請先至座位查詢確認。</h1>
+        <h1 class="mobile-text">貴賓您好，<br>我們有為您規劃專屬停車場，<br>麻煩請先至座位查詢確認。</h1>
 
         <div id="parking-image-container">
           <img id="parking-image" alt="空白圖片" style="cursor: pointer;">
@@ -163,32 +163,26 @@
 
         <div class="parking-info-text">
           <div class="parking-img-home">
-            <a href="https://reurl.cc/kMeKlL" target="_blank"><img id="parking-h" src="./images/h.jpg" alt="桂田大樹"
-                ></a>
+            <a href="https://reurl.cc/kMeKlL" target="_blank"><img id="parking-h" src="./images/h.jpg" alt="桂田大樹"></a>
           </div>
           <div class="parking-img-P1">
-            <a href="https://reurl.cc/zpanl6" target="_blank"><img id="parking-p1" src="./images/p1.jpg" alt="富臨科技"
-                ></a>
+            <a href="https://reurl.cc/zpanl6" target="_blank"><img id="parking-p1" src="./images/p1.jpg" alt="富臨科技"></a>
           </div>
           <div class="parking-img-P2">
-            <a href="https://reurl.cc/748zkD" target="_blank"><img id="parking-p2" src="./images/p2.jpg" alt="西興北極殿"
-                ></a>
+            <a href="https://reurl.cc/748zkD" target="_blank"><img id="parking-p2" src="./images/p2.jpg"
+                alt="西興北極殿"></a>
           </div>
           <div class="parking-img-P3">
-            <a href="https://reurl.cc/lNWKrA" target="_blank"><img id="parking-p3" src="./images/p3.jpg" alt="道路兩旁"
-                ></a>
+            <a href="https://reurl.cc/lNWKrA" target="_blank"><img id="parking-p3" src="./images/p3.jpg" alt="道路兩旁"></a>
           </div>
           <div class="parking-img-P4">
-            <a href="https://reurl.cc/04qM9b" target="_blank"><img id="parking-p4" src="./images/p4.jpg" alt="尚聚企業"
-                ></a>
+            <a href="https://reurl.cc/04qM9b" target="_blank"><img id="parking-p4" src="./images/p4.jpg" alt="尚聚企業"></a>
           </div>
           <div class="parking-img-P5">
-            <a href="https://reurl.cc/geAXrp" target="_blank"><img id="parking-p5" src="./images/p5.jpg" alt="月星起重"
-                ></a>
+            <a href="https://reurl.cc/geAXrp" target="_blank"><img id="parking-p5" src="./images/p5.jpg" alt="月星起重"></a>
           </div>
           <div class="parking-img-P6">
-            <a href="https://reurl.cc/46zVj2" target="_blank"><img id="parking-p6" src="./images/p6.jpg" alt="好帝一"
-                ></a>
+            <a href="https://reurl.cc/46zVj2" target="_blank"><img id="parking-p6" src="./images/p6.jpg" alt="好帝一"></a>
           </div>
           <!-- <div class="parking-img-P7">
             <a href="https://reurl.cc/46VbyR" target="_blank"><img id="parking-p7" src="./images/p7.jpg" alt="空白圖片"
@@ -237,9 +231,25 @@
     </div>
     <div class="copyright">
       <!-- 版權資訊 -->
-      <div>
-        Copyright &copy; 2025 桂田集團 All Rights Reserved. &nbsp;<a href="javascript:void(0);" id="metavision-link">Design by
-        Metavision</a> 
+      <div class="desktop-text">
+        Copyright &copy; 2025
+        <a href="https://www.greaten.com.tw/" target="_blank" style="color: white; text-decoration: none;">
+          桂田集團
+        </a>
+        All Rights Reserved. &nbsp;
+        <a href="javascript:void(0);" class="metavision-link">Design by
+          Metavision
+        </a>
+      </div>
+      <div class="mobile-text">
+        Copyright &copy; 2025
+        <a href="https://www.greaten.com.tw/" target="_blank" style="color: white; text-decoration: none;">
+          桂田集團
+        </a>
+        All Rights Reserved. &nbsp;
+        <a href="javascript:void(0);" class="metavision-link">Design by
+          Metavision
+        </a>
       </div>
 
     </div>
@@ -281,22 +291,24 @@
   </div>
 
   <script>
-    document.getElementById("metavision-link").addEventListener("click", function () {
-      const footerSection = document.querySelector(".footer-container-mvd");
+    document.querySelectorAll(".metavision-link").forEach(function (element) {
+      element.addEventListener("click", function () {
+        const footerSection = document.querySelector(".footer-container-mvd");
 
-      if (footerSection) {
-        // 顯示 .footer-container-mvd
-        footerSection.style.display = "flex";
+        if (footerSection) {
+          // 顯示 .footer-container-mvd
+          footerSection.style.display = "flex";
 
-        // 滾動至 .footer-container-mvd
-        const headerHeight = document.querySelector("header")?.offsetHeight || 0; // 取得 header 高度，若不存在則為 0
-        const elementPosition = footerSection.getBoundingClientRect().top + window.pageYOffset;
+          // 滾動至 .footer-container-mvd
+          const headerHeight = document.querySelector("header")?.offsetHeight || 0; // 取得 header 高度，若不存在則為 0
+          const elementPosition = footerSection.getBoundingClientRect().top + window.pageYOffset;
 
-        window.scrollTo({
-          top: elementPosition - headerHeight,
-          behavior: "smooth"
-        });
-      }
+          window.scrollTo({
+            top: elementPosition - headerHeight,
+            behavior: "smooth"
+          });
+        }
+      });
     });
     window.addEventListener('load', function () {
       const loadingElement = document.getElementById('loading');
@@ -380,7 +392,7 @@
               document.querySelectorAll(parkingClass).forEach(element => {
                 element.style.display = 'block';
               });
-              
+
               resultHtml += `
                             <tr class="animated-row" style="animation-delay: ${index * 0.1}s">
                                 <td>${formatContactName(item.contact_name)}</td>

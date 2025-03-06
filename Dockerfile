@@ -34,7 +34,7 @@ RUN pip install --upgrade pip && \
 COPY src/ /app/
 
 # 8) 對外曝光 Flask 預設埠號 (如有需要)
-EXPOSE 8088
+EXPOSE 9001
 
 # 9) 容器啟動後的預設執行指令
 CMD ["python", "app.py"]

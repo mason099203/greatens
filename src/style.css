@@ -757,7 +757,6 @@ footer p {
   color: black;
 }
 
-
 .copyright {
   background-color: #000000;
   color: white;
@@ -765,6 +764,15 @@ footer p {
   text-align: center;
   font-size: 12px;
   padding: 1rem 0;
+}
+
+.metavision-link{
+  color: white;
+  text-decoration: none;
+}
+
+.metavision-link:hover{
+  color: #ffcb78;
 }
 
 .header-images {
