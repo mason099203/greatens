@@ -28,8 +28,6 @@ WORKDIR /app
 # 6) 複製 requirements.txt 並安裝 Python 套件
 COPY requirements.txt /app/
 RUN pip install --upgrade pip && \
-    pip install numpy==1.23.5 && \
-    pip install openpyxl && \
     pip install --no-cache-dir -r requirements.txt
 
 # 7) 複製專案程式碼到容器 (請調整路徑對應您的檔案結構)

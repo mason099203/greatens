@@ -10,18 +10,16 @@ import pandas as pd
 from io import BytesIO
 from datetime import datetime
 from werkzeug.utils import secure_filename
-
-#line
-from linebot import LineBotApi, WebhookHandler
-from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, FlexSendMessage, TextSendMessage, ImageSendMessage, TemplateSendMessage, PostbackAction, URIAction, MessageAction, ButtonsTemplate, CarouselTemplate,  CarouselColumn, ConfirmTemplate
-
+from line_routes import init_line_routes
 
 # 載入 .env 變數
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 app = Flask(__name__)
 CORS(app)
+
+# 初始化 LINE 路由
+init_line_routes(app)
 
 FLASK_HOST = os.getenv("FLASK_HOST", "0.0.0.0")
 FLASK_PORT = os.getenv("FLASK_PORT", "")
