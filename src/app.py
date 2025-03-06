@@ -11,6 +11,11 @@ from io import BytesIO
 from datetime import datetime
 from werkzeug.utils import secure_filename
 
+#line
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
+from linebot.models import MessageEvent, FlexSendMessage, TextSendMessage, ImageSendMessage, TemplateSendMessage, PostbackAction, URIAction, MessageAction, ButtonsTemplate, CarouselTemplate,  CarouselColumn, ConfirmTemplate
+
 
 # 載入 .env 變數
 load_dotenv()
