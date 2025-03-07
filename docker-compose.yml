@@ -7,7 +7,7 @@ services:
     env_file:
       - ./src/.env
     ports:
-      - "${FLASK_PORT}:9004"
+      - "9001:9001"
     volumes:
       # 將宿主機的 logs 資料夾對應到容器內的 /app/logs
       - "./logs:/app/logs"

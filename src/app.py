@@ -883,9 +883,9 @@ def search():
     return jsonify(data)
 
 if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host=FLASK_HOST, port=FLASK_PORT)
+    # from waitress import serve
+    # serve(app, host=FLASK_HOST, port=FLASK_PORT)
 
-    # app.run(host=FLASK_HOST, port=FLASK_PORT, debug=True)
+    app.run(host=FLASK_HOST, port=80, debug=True)
     # http://10.214.57.66:7860/dashboard
     # ngrok http 127.0.0.1:7860
