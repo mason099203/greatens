@@ -3,11 +3,11 @@ version: "3.8"
 services:
   botfarms:
     build: .
-    container_name: greatenV1.0
+    container_name: greatenV2.0
     env_file:
       - ./src/.env
     ports:
-      - "${FLASK_PORT}:9001"
+      - "${FLASK_PORT}:9004"
     volumes:
       # 將宿主機的 logs 資料夾對應到容器內的 /app/logs
       - "./logs:/app/logs"
