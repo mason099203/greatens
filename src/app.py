@@ -18,6 +18,39 @@ load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 app = Flask(__name__)
 CORS(app)
 
+def init_database():
+    """初始化資料庫表格"""
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor()
+        
+        # 創建日誌表格
+        create_log_table_sql = """
+        CREATE TABLE IF NOT EXISTS `GREATEN_LINEBOT_V1_LOG` (
+            `id` INT AUTO_INCREMENT PRIMARY KEY,
+            `LOG_DATE` DATETIME,
+            `LOG_ID` VARCHAR(255),
+            `LOG_MODEL_ID` VARCHAR(255),
+            `LOG_USER` VARCHAR(255),
+            `LOG_CONTENT` TEXT,
+            `LOG_RESPONSE` TEXT,
+            `LOG_OBJECT` VARCHAR(255)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+        """
+        cursor.execute(create_log_table_sql)
+        connection.commit()
+        app.logger.info('資料庫表格初始化完成')
+    except Exception as e:
+        app.logger.error(f'初始化資料庫表格時發生錯誤: {str(e)}')
+    finally:
+        if 'cursor' in locals():
+            cursor.close()
+        if 'connection' in locals():
+            connection.close()
+
+# 初始化資料庫表格
+init_database()
+
 # 初始化 LINE 路由
 init_line_routes(app)
 
@@ -849,9 +882,9 @@ def search():
     return jsonify(data)
 
 if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host=FLASK_HOST, port=FLASK_PORT)
+    # from waitress import serve
+    # serve(app, host=FLASK_HOST, port=FLASK_PORT)
 
-    # app.run(host=FLASK_HOST, port=FLASK_PORT, debug=True)
+    app.run(host=FLASK_HOST, port=FLASK_PORT, debug=True)
     # http://10.214.57.66:7860/dashboard
     # ngrok http 127.0.0.1:7860
