@@ -2,34 +2,306 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>桂田酒店家宴賓客名單管理系統</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 主內容區域樣式 */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            min-height: 100vh;
+            box-sizing: border-box;
+            width: calc(100% - 250px);
+        }
+
+        .main-content.expanded {
+            margin-left: 60px;
+        }
+
+        /* 確保內容區域在側邊欄收合時平滑過渡 */
+        .data-container {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        /* 排序表頭樣式 */
+        .sortable {
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .sortable:hover {
+            background-color: #1976d2;
+        }
+
+        .sortable i {
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.2s ease;
+        }
+
+        .sort-asc i, .sort-desc i {
+            color: #ffffff;
+        }
+
+        .number-header {
+            text-align: right;
+            color: #ffffff;
+        }
+
+        /* 表格容器樣式 */
+        .data-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            overflow: hidden;
+        }
+
+        .data-table {
+            overflow-x: auto;
+            margin: -1px;
+            -webkit-overflow-scrolling: touch; /* 改善移動設備的滾動體驗 */
+        }
+
+        .data-table table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            table-layout: fixed; /* 使用固定表格布局 */
+        }
+
+        /* 設置各欄位的寬度比例 */
+        .data-table th:nth-child(1) { width: 5%; }  /* 勾選框 */
+        .data-table th:nth-child(2) { width: 10%; } /* 姓名 */
+        .data-table th:nth-child(3) { width: 20%; } /* 公司名稱 */
+        .data-table th:nth-child(4) { width: 8%; }  /* 人數 */
+        .data-table th:nth-child(5) { width: 12%; } /* 區域 */
+        .data-table th:nth-child(6) { width: 15%; } /* 桌位圖 */
+        .data-table th:nth-child(7) { width: 10%; } /* 停車場 */
+        .data-table th:nth-child(8) { width: 12%; } /* 建立時間 */
+        .data-table th:nth-child(9) { width: 8%; }  /* 操作 */
+
+        .data-table th {
+            background: #1e88e5;
+            padding: 1rem;
+            font-weight: 500;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            white-space: nowrap;
+            transition: background-color 0.3s ease;
+        }
+
+        .data-table th:first-child {
+            border-top-left-radius: 8px;
+        }
+
+        .data-table th:last-child {
+            border-top-right-radius: 8px;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            color: #595959;
+            line-height: 1.5;
+            white-space: nowrap; /* 防止文字換行 */
+            overflow: hidden;
+            text-overflow: ellipsis; /* 超出部分顯示省略號 */
+        }
+
+        /* 特定欄位允許換行 */
+        .data-table td:nth-child(3) { /* 公司名稱 */
+            white-space: normal;
+            word-break: break-word;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .number-header,
+        .number-cell {
+            text-align: right;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 500;
+            color: #1e88e5;
+        }
+
+        /* 響應式表格調整 */
+        @media (max-width: 1400px) {
+            .data-table table {
+                min-width: 1200px;
+            }
+
+            /* 調整欄位寬度比例 */
+            .data-table th:nth-child(1) { width: 5%; }
+            .data-table th:nth-child(2) { width: 12%; }
+            .data-table th:nth-child(3) { width: 18%; }
+            .data-table th:nth-child(4) { width: 8%; }
+            .data-table th:nth-child(5) { width: 12%; }
+            .data-table th:nth-child(6) { width: 15%; }
+            .data-table th:nth-child(7) { width: 10%; }
+            .data-table th:nth-child(8) { width: 12%; }
+            .data-table th:nth-child(9) { width: 8%; }
+        }
+
+        @media (max-width: 1200px) {
+            .data-table table {
+                min-width: 1000px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.8rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .data-table table {
+                min-width: 900px;
+            }
+
+            /* 調整欄位寬度比例 */
+            .data-table th:nth-child(1) { width: 5%; }
+            .data-table th:nth-child(2) { width: 12%; }
+            .data-table th:nth-child(3) { width: 15%; }
+            .data-table th:nth-child(4) { width: 8%; }
+            .data-table th:nth-child(5) { width: 12%; }
+            .data-table th:nth-child(6) { width: 18%; }
+            .data-table th:nth-child(7) { width: 10%; }
+            .data-table th:nth-child(8) { width: 12%; }
+            .data-table th:nth-child(9) { width: 8%; }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                padding: 15px;
+            }
+            
+            .data-container {
+                width: 100%;
+                padding: 1rem;
+            }
+            
+            .sidebar.collapsed + .main-content {
+                margin-left: 250px;
+                width: calc(100% - 250px);
+            }
+            
+            .sidebar:not(.collapsed) + .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .data-table table {
+                min-width: 800px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.8rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .data-container {
+                padding: 0.8rem;
+            }
+
+            .data-table table {
+                min-width: 700px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.6rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 表格內容懸停提示 */
+        .data-table td {
+            position: relative;
+        }
+
+        .data-table td:hover::after {
+            content: attr(title);
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            z-index: 1000;
+            white-space: nowrap;
+            display: none;
+        }
+
+        .data-table td[title]:hover::after {
+            display: block;
+        }
+
+        /* 編輯彈窗樣式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            max-width: 90%;
+            width: 600px;
+            margin: 2rem auto;
+            max-height: calc(100vh - 4rem);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 1rem auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                width: 98%;
+                margin: 0.5rem auto;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <i class="fas fa-calendar-alt"></i>
-            <span><center>桂田酒店-家宴<br>
-                賓客名單管理系統</center></span>
-        </div>
-        <div class="user-profile">
-            <div class="avatar">
-                <i class="fas fa-user"></i>
-            </div>
-            <div class="user-info">
-                <span class="user-name">{{ session.get('full_name', '使用者') }}</span>
-                <span class="user-role">管理員</span>
-            </div>
-        </div>
-        <nav class="sidebar-nav">
-            <a href="{{ url_for('dashboard') }}" class="active"><i class="fas fa-home"></i> 主控台</a>
-            <a href="{{ url_for('reports') }}"><i class="fas fa-chart-bar"></i> 統計報表</a>
-            <a href="{{ url_for('logout') }}" class="logout-btn">
-                <i class="fas fa-sign-out-alt"></i> 登出系統
-            </a>
-        </nav>
-    </div>
+    {% include 'includes/sidebar.html' %}
 
     <div class="main-content">
         <div class="top-bar">
@@ -93,13 +365,13 @@
                             <th>
                                 <input type="checkbox" id="selectAll">
                             </th>
-                            <th>姓名</th>
-                            <th>公司名稱</th>                            
-                            <th>人數</th>
-                            <th>區域</th>
-                            <th>桌位圖</th>
-                            <th>停車場</th>
-                            <th>建立時間</th>
+                            <th class="sortable" data-sort="name">姓名 <i class="fas fa-sort"></i></th>
+                            <th class="sortable" data-sort="company">公司名稱 <i class="fas fa-sort"></i></th>                            
+                            <th class="sortable number-header" data-sort="people">人數 <i class="fas fa-sort"></i></th>
+                            <th class="sortable" data-sort="area">區域 <i class="fas fa-sort"></i></th>
+                            <th class="sortable" data-sort="table">桌位圖 <i class="fas fa-sort"></i></th>
+                            <th class="sortable" data-sort="parking">停車場 <i class="fas fa-sort"></i></th>
+                            <th class="sortable" data-sort="time">建立時間 <i class="fas fa-sort"></i></th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -109,18 +381,18 @@
                             <td>
                                 <input type="checkbox" class="row-checkbox" data-id="{{ item.id }}">
                             </td>
-                            <td>{{ item.contact_name }}</td>
-                            <td>{{ item.company_name }}</td>                            
-                            <td>{{ item.people_count }}</td>
-                            <td>{{ item.table_layout }}</td>
-                            <td>{{ item.table_layout_detail }}</td>
-                            <td>{{ item.parking }}</td>
-                            <td>{{ item.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                            <td title="{{ item.contact_name }}">{{ item.contact_name }}</td>
+                            <td title="{{ item.company_name }}">{{ item.company_name }}</td>                            
+                            <td class="number-cell" title="{{ item.people_count }}">{{ item.people_count }}</td>
+                            <td title="{{ item.table_layout }}">{{ item.table_layout }}</td>
+                            <td title="{{ item.table_layout_detail }}">{{ item.table_layout_detail }}</td>
+                            <td title="{{ item.parking }}">{{ item.parking }}</td>
+                            <td title="{{ item.created_at.strftime('%Y-%m-%d %H:%M') }}">{{ item.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
                             <td class="actions">
-                                <button class="btn-icon" data-id="{{ item.id }}" onclick="handleEdit(this)">
+                                <button class="btn-icon" data-id="{{ item.id }}" onclick="handleEdit(this)" title="編輯">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn-icon delete" data-id="{{ item.id }}" onclick="handleDelete(this)">
+                                <button class="btn-icon delete" data-id="{{ item.id }}" onclick="handleDelete(this)" title="刪除">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </td>
@@ -271,11 +543,14 @@
         })
         .then(response => response.text())
         .then(result => {
-            if (result === '檔案上傳成功') {
-                showMessage('檔案上傳成功！');
+            if (result.includes('成功')) {
+                showMessage(result);
+                // 更新統計數據
+                updateStatistics();
+                // 重新載入資料表
                 setTimeout(() => {
                     window.location.reload();
-                }, 1000);
+                }, 1500);
             } else {
                 showMessage(result, 'error');
             }
@@ -284,6 +559,26 @@
             console.error('Error:', error);
             showMessage('上傳失敗：' + error, 'error');
         });
+    }
+
+    // 更新統計數據的函數
+    function updateStatistics() {
+        const rows = document.querySelectorAll('tbody tr');
+        let totalBookings = rows.length;
+        let totalPeople = 0;
+        let totalParking = 0;
+        
+        rows.forEach(row => {
+            totalPeople += parseInt(row.cells[3].textContent) || 0;
+            if (row.cells[6].textContent.trim()) {
+                totalParking++;
+            }
+        });
+        
+        // 更新顯示的統計數據
+        document.getElementById('totalBookings').textContent = totalBookings;
+        document.getElementById('totalPeople').textContent = totalPeople;
+        document.getElementById('totalParking').textContent = totalParking;
     }
 
     const modal = document.getElementById('editModal');
@@ -534,6 +829,141 @@
             setTimeout(() => messageDiv.remove(), 500);
         }, 3000);
     }
+
+    let currentSort = {
+        column: '',
+        direction: ''
+    };
+
+    // 排序功能
+    function sortTable(column) {
+        const table = document.querySelector('.data-table table');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const headers = table.querySelectorAll('th.sortable');
+
+        // 重置所有表頭的排序圖標
+        headers.forEach(header => {
+            header.classList.remove('sort-asc', 'sort-desc');
+        });
+
+        // 決定排序方向
+        let direction = 'asc';
+        if (currentSort.column === column && currentSort.direction === 'asc') {
+            direction = 'desc';
+        }
+
+        // 更新當前排序狀態
+        currentSort = {
+            column: column,
+            direction: direction
+        };
+
+        // 更新被點擊的表頭樣式
+        const clickedHeader = table.querySelector(`th[data-sort="${column}"]`);
+        clickedHeader.classList.add(direction === 'asc' ? 'sort-asc' : 'sort-desc');
+
+        // 排序邏輯
+        rows.sort((a, b) => {
+            let aValue, bValue;
+            
+            switch(column) {
+                case 'name':
+                    aValue = a.cells[1].textContent;
+                    bValue = b.cells[1].textContent;
+                    break;
+                case 'company':
+                    aValue = a.cells[2].textContent;
+                    bValue = b.cells[2].textContent;
+                    break;
+                case 'people':
+                    aValue = parseInt(a.cells[3].textContent);
+                    bValue = parseInt(b.cells[3].textContent);
+                    break;
+                case 'area':
+                    aValue = a.cells[4].textContent;
+                    bValue = b.cells[4].textContent;
+                    break;
+                case 'table':
+                    aValue = a.cells[5].textContent;
+                    bValue = b.cells[5].textContent;
+                    break;
+                case 'parking':
+                    aValue = a.cells[6].textContent;
+                    bValue = b.cells[6].textContent;
+                    break;
+                case 'time':
+                    aValue = new Date(a.cells[7].textContent);
+                    bValue = new Date(b.cells[7].textContent);
+                    break;
+            }
+
+            if (typeof aValue === 'number' && typeof bValue === 'number') {
+                return direction === 'asc' ? aValue - bValue : bValue - aValue;
+            } else if (aValue instanceof Date && bValue instanceof Date) {
+                return direction === 'asc' ? aValue - bValue : bValue - aValue;
+            } else {
+                return direction === 'asc' 
+                    ? aValue.toString().localeCompare(bValue.toString(), 'zh-TW') 
+                    : bValue.toString().localeCompare(aValue.toString(), 'zh-TW');
+            }
+        });
+
+        // 重新插入排序後的行
+        rows.forEach(row => tbody.appendChild(row));
+    }
+
+    // 綁定表頭點擊事件
+    document.addEventListener('DOMContentLoaded', function() {
+        const headers = document.querySelectorAll('th.sortable');
+        headers.forEach(header => {
+            header.addEventListener('click', function() {
+                const column = this.getAttribute('data-sort');
+                sortTable(column);
+            });
+        });
+    });
+    </script>
+
+    <script>
+    // 監聽側邊欄狀態變化
+    document.addEventListener('DOMContentLoaded', function() {
+        const mainContent = document.querySelector('.main-content');
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.querySelector('.toggle-btn');
+        
+        // 初始化側邊欄狀態
+        function updateMainContentState() {
+            const isCollapsed = sidebar.classList.contains('collapsed');
+            if (isCollapsed) {
+                mainContent.classList.add('expanded');
+            } else {
+                mainContent.classList.remove('expanded');
+            }
+        }
+
+        // 初始檢查側邊欄狀態
+        updateMainContentState();
+
+        // 監聽側邊欄切換按鈕點擊事件
+        toggleBtn.addEventListener('click', function() {
+            setTimeout(updateMainContentState, 50); // 短暫延遲以確保類別已更新
+        });
+
+        // 使用 MutationObserver 監聽側邊欄類別變化
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'class') {
+                    updateMainContentState();
+                }
+            });
+        });
+        
+        observer.observe(sidebar, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    });
     </script>
 </body>
 </html> 

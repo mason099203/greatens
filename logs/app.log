@@ -1,2 +1,224 @@
 2025-03-11 16:15:13 - waitress - INFO - Serving on http://0.0.0.0:9001
 2025-03-11 16:39:08 - waitress - INFO - Serving on http://0.0.0.0:9001
+2025-03-11 16:53:44 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9001
+ * Running on http://10.214.57.66:9001
+2025-03-11 16:53:44 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-11 16:53:44 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-11 16:53:47 - werkzeug - WARNING -  * Debugger is active!
+2025-03-11 16:53:47 - werkzeug - INFO -  * Debugger PIN: 141-825-106
+2025-03-11 16:53:53 - root - INFO - 收到首頁請求
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET / HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /style.css HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/sign.png HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/P1_0.png HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/P3_0.png HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/P2_0.png HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/P4_0.png HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/P5_0.png HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/P6_0.png HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/phome.png HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/h.jpg HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/p1.jpg HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/p2.jpg HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/p3.jpg HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/p4.jpg HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/p5.jpg HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/p6.jpg HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/greatengroup.png HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/logo_footer2.png HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/logo_footer.webp HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/20250226table.jpg HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/park_v1.png HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/mvdlogo.webp HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/mvdlogo_P.webp HTTP/1.1" 200 -
+2025-03-11 16:53:54 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:53:54] "GET /images/section_park_2.webp HTTP/1.1" 200 -
+2025-03-11 16:54:01 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:01] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-03-11 16:54:06 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 16:54:06 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 16:54:07 - root - INFO - 資料庫連線成功
+2025-03-11 16:54:07 - root - INFO - index.html中查詢: 田
+2025-03-11 16:54:07 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:07] "GET /search?contact_name=田 HTTP/1.1" 200 -
+2025-03-11 16:54:07 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:07] "[36mGET /images/P4_0.png HTTP/1.1[0m" 304 -
+2025-03-11 16:54:07 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:07] "[36mGET /images/P5_0.png HTTP/1.1[0m" 304 -
+2025-03-11 16:54:07 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:07] "[36mGET /images/P2_0.png HTTP/1.1[0m" 304 -
+2025-03-11 16:54:07 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:07] "[36mGET /images/P3_0.png HTTP/1.1[0m" 304 -
+2025-03-11 16:54:14 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 16:54:14 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 16:54:15 - root - INFO - 資料庫連線成功
+2025-03-11 16:54:15 - root - INFO - index.html中查詢: 診所
+2025-03-11 16:54:15 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:15] "GET /search?contact_name=診所 HTTP/1.1" 200 -
+2025-03-11 16:54:15 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:15] "[36mGET /images/P3_0.png HTTP/1.1[0m" 304 -
+2025-03-11 16:54:15 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:15] "[36mGET /images/P2_0.png HTTP/1.1[0m" 304 -
+2025-03-11 16:54:24 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:24] "GET /login HTTP/1.1" 200 -
+2025-03-11 16:54:24 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:24] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-03-11 16:54:33 - root - INFO - 使用者嘗試登入: 1, IP: 127.0.0.1
+2025-03-11 16:54:33 - root - INFO - 開始建立資料庫連線
+2025-03-11 16:54:33 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 16:54:33 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 16:54:34 - root - INFO - 資料庫連線成功
+2025-03-11 16:54:34 - root - INFO - 執行使用者查詢
+2025-03-11 16:54:34 - root - INFO - 查詢結果: 成功
+2025-03-11 16:54:34 - root - INFO - 使用者 1 登入成功 (IP: 127.0.0.1)
+2025-03-11 16:54:34 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:34] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-03-11 16:54:34 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 16:54:34 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 16:54:34 - root - INFO - 資料庫連線成功
+2025-03-11 16:54:34 - root - INFO - 成功讀取訂位資料，共 129 筆記錄
+2025-03-11 16:54:34 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:34] "GET /dashboard HTTP/1.1" 200 -
+2025-03-11 16:54:34 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 16:54:38 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:38] "GET /table-stats HTTP/1.1" 200 -
+2025-03-11 16:54:38 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 16:54:38 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 16:54:38 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 16:54:39 - root - INFO - 資料庫連線成功
+2025-03-11 16:54:39 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:39] "GET /api/table-stats HTTP/1.1" 200 -
+2025-03-11 16:54:39 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:39] "GET /parking-stats HTTP/1.1" 200 -
+2025-03-11 16:54:39 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 16:54:39 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 16:54:39 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 16:54:39 - root - INFO - 資料庫連線成功
+2025-03-11 16:54:39 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:39] "GET /api/parking-stats HTTP/1.1" 200 -
+2025-03-11 16:54:40 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:40] "GET /parking-stats HTTP/1.1" 200 -
+2025-03-11 16:54:40 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 16:54:40 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 16:54:40 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 16:54:41 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 16:54:41 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 16:54:41 - root - INFO - 資料庫連線成功
+2025-03-11 16:54:41 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:41] "GET /api/parking-stats HTTP/1.1" 200 -
+2025-03-11 16:54:41 - root - INFO - 資料庫連線成功
+2025-03-11 16:54:41 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:41] "GET /reports HTTP/1.1" 200 -
+2025-03-11 16:54:41 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 16:54:41 - root - INFO - 報表查詢參數: start_date=2024-12-11, end_date=2025-03-11
+2025-03-11 16:54:41 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 16:54:41 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 16:54:42 - root - INFO - 資料庫連線成功
+2025-03-11 16:54:42 - root - INFO - 摘要統計結果: {'total_bookings': 129, 'total_people': 245, 'parking_rate': Decimal('100.00'), 'avg_daily_bookings': Decimal('129.00')}
+2025-03-11 16:54:42 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:54:42] "GET /api/reports?start_date=2024-12-11&end_date=2025-03-11 HTTP/1.1" 200 -
+2025-03-11 16:55:13 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:55:13] "GET /parking-stats HTTP/1.1" 200 -
+2025-03-11 16:55:13 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:55:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 16:55:13 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 16:55:13 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 16:55:13 - root - INFO - 資料庫連線成功
+2025-03-11 16:55:13 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:55:13] "GET /api/parking-stats HTTP/1.1" 200 -
+2025-03-11 16:55:14 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:55:14] "GET /table-stats HTTP/1.1" 200 -
+2025-03-11 16:55:14 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:55:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 16:55:14 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 16:55:14 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 16:55:14 - root - INFO - 資料庫連線成功
+2025-03-11 16:55:14 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:55:14] "GET /api/table-stats HTTP/1.1" 200 -
+2025-03-11 16:55:14 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 16:55:14 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 16:55:15 - root - INFO - 資料庫連線成功
+2025-03-11 16:55:15 - root - INFO - 成功讀取訂位資料，共 129 筆記錄
+2025-03-11 16:55:15 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:55:15] "GET /dashboard HTTP/1.1" 200 -
+2025-03-11 16:55:15 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:55:15] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 16:56:22 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722234415415524","quoteToken":"dwVYgvttxnw3FwhI_wtVdo1o5xgfprkR-kiNB8hR_coqD6UyDlgW9gOiCW-3X7xG8uO8JY_MikzTXpElSOb9-6jdLOmhynrigoNckWEv8cVtygeTsgpiwYbsSS6_Nj4RcJAZqszM90u_pePrrCpt4Q","text":"停車場"},"webhookEventId":"01JP26PP4WZJJR3T82K6AGVC3F","deliveryContext":{"isRedelivery":false},"timestamp":1741683382007,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"938f8e3994fb4eeab2a3a8a15db30271","mode":"active"}]}
+2025-03-11 16:56:27 - httpx - INFO - HTTP Request: POST https://eastus1.openai.azure.com/openai/deployments/gpt4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-03-11 16:56:27 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:56:27] "POST /callback HTTP/1.1" 200 -
+2025-03-11 16:56:28 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722245471600732","quoteToken":"JKSPZGNAamz92u2n_-vW_qXP6yCWFkA5QeJZLGzmaTR33bf5TuDaX3tWm_gm6A2hvH5-HVWOC0jMc2-4iTxs7zcrMuQEAWk6e9n5gae8x3e1DHgL8ka0nkNhBBctijMM8AHcKC-RkNymid8cbElOoA","text":"你好"},"webhookEventId":"01JP26PWFQ9F7Q9RGZ1YBNPEBT","deliveryContext":{"isRedelivery":false},"timestamp":1741683388637,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"a756b06f277643e6ac9876c8e90189e5","mode":"active"}]}
+2025-03-11 16:56:39 - httpx - INFO - HTTP Request: POST https://eastus1.openai.azure.com/openai/deployments/gpt4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-03-11 16:56:40 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:56:40] "POST /callback HTTP/1.1" 200 -
+2025-03-11 16:56:47 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722276694261782","quoteToken":"1DEOcPTSRsqlHEYbWClfrAn3gZoerdNQP6ON3eINldTkU0hPCwfRkEqBZqEUqYN6tRCUvLrsnq5CiPQJmXfOnXt_X4d4SIP1cr2RnLijkMQQ1AVET7Tz2vhbhx1p1hpVmySi8CYFcORbMGnU1pgCwQ","text":"幫我找我的座位"},"webhookEventId":"01JP26QEK40VQZE3BWZNSQ2SYW","deliveryContext":{"isRedelivery":false},"timestamp":1741683407246,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"0c0f09d24bbe47f7a4ce115b7e812ca1","mode":"active"}]}
+2025-03-11 16:56:53 - httpx - INFO - HTTP Request: POST https://eastus1.openai.azure.com/openai/deployments/gpt4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-03-11 16:56:53 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:56:53] "POST /callback HTTP/1.1" 200 -
+2025-03-11 16:57:18 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722328132944234","quoteToken":"sEKvbguapmKM1mnGoYXbRIVrNYEn7xs_LCxY5oW02UjWWljf6oATA0annC4YUIEi846P5QFgDZClseZF3TmONk3YsSG62RrS1HOPfOZlZ3knyAh9qIHolXKqldmV6ZCLu6z4MZylfcFW31X7FWlm7g","text":"黃春長"},"webhookEventId":"01JP26RCCKNHEQXV24HSR7MRRF","deliveryContext":{"isRedelivery":false},"timestamp":1741683437931,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"964b1d5614b4466781998cb0e497929b","mode":"active"}]}
+2025-03-11 16:57:21 - httpx - INFO - HTTP Request: POST https://eastus1.openai.azure.com/openai/deployments/gpt4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-03-11 16:57:22 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:57:22] "POST /callback HTTP/1.1" 200 -
+2025-03-11 16:57:25 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722339642638679","quoteToken":"j7IVtvQ58kGPVoFQ1P3qFq4NBCydjsSSyAsNow5cPSiw4znRBUMwhs1cWE3I9-2Boc9cIDsYPPZrUy3_hLAzom8q20lrunZhVqaF9XQtAcQNecPcO8l-5RdA-jkMcGh_ivTBWPykwok3ywn_M8rnbQ","text":"P3停車場"},"webhookEventId":"01JP26RKEZFKV67PVJHCCFSHBH","deliveryContext":{"isRedelivery":false},"timestamp":1741683444707,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"7d6620e820604ed680dd7bcfa6878974","mode":"active"}]}
+2025-03-11 16:57:26 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 16:57:26] "POST /callback HTTP/1.1" 200 -
+2025-03-11 16:59:25 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9001
+ * Running on http://172.18.0.2:9001
+2025-03-11 16:59:25 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-11 16:59:25 - werkzeug - INFO -  * Restarting with stat
+2025-03-11 16:59:26 - werkzeug - WARNING -  * Debugger is active!
+2025-03-11 16:59:26 - werkzeug - INFO -  * Debugger PIN: 943-803-474
+2025-03-11 16:59:41 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722568953102715","quoteToken":"RhNEqJCwj59KBuO3rGdKIqaU-HQXPTgwdujxUJScEgF9ZWpVP-aXL7cFv-PHdps6z1wIx_pE-0YxYTGIodOOalS-8bymbRAdRJBuEdLZ3db9j2wu7Kdl2VxNN4vgxtiuV1AelUll0dyL40GGdLz0kA","text":"停車場"},"webhookEventId":"01JP26WRTEZNYJ65J0X64J3GB2","deliveryContext":{"isRedelivery":false},"timestamp":1741683581577,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"207879efbd944bc593c55e3503420675","mode":"active"}]}
+2025-03-11 16:59:45 - httpx - INFO - HTTP Request: POST https://eastus1.openai.azure.com/openai/deployments/gpt4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-03-11 16:59:45 - werkzeug - INFO - 172.18.0.1 - - [11/Mar/2025 16:59:45] "POST /callback HTTP/1.1" 200 -
+2025-03-11 16:59:46 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722577778180542","quoteToken":"-HUNQqX1PFNjiCMNuubD71P-0nGOw5Xmcnilkql72kCCuIOvX5H6w85sZ-zZPp7pMA1JmnvCLYEHFTJOLysq8mIqXYlpHNN-1ug6P_7TLOP0LJY1BRT42OvNU1gqjxIj9I48UVkFkrwP0P2PqkPwYA","text":"座位查詢"},"webhookEventId":"01JP26WXQTYWVCBTZPGHBVVRYF","deliveryContext":{"isRedelivery":false},"timestamp":1741683586681,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"8a16d22e8e944b079e3435d0c7f3ed11","mode":"active"}]}
+2025-03-11 16:59:47 - werkzeug - INFO - 172.18.0.1 - - [11/Mar/2025 16:59:47] "POST /callback HTTP/1.1" 200 -
+2025-03-11 16:59:58 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722597071979149","quoteToken":"qF0dKL179NprtngRLyMKDLAStIJRp91BrXR9rReZOEVNfVa5vEFPW9va2uf5mp1WBmFhGVcvMsuRBnXt4KNuiOfazw03NF8nPoJRQCzxLrvBTtGLbLWIk3_-SA3Mdb-fHTAbChuYoBtxIpNe1nhTfA","text":"成功分行"},"webhookEventId":"01JP26X9BSHTEFJ726CYSYJH3X","deliveryContext":{"isRedelivery":false},"timestamp":1741683598241,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"840e573f83a2470c8d4493aac0a8140e","mode":"active"}]}
+2025-03-11 16:59:59 - werkzeug - INFO - 172.18.0.1 - - [11/Mar/2025 16:59:59] "POST /callback HTTP/1.1" 200 -
+2025-03-11 17:00:11 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722619267711233","quoteToken":"ziPiuQ-OQ7xpxPkQND17rz7yUI1tSBQyatjbJ6VvgRlnzNPvjGmEcNMhF6mLWiJGWCmOVUPZMdOsSG9f5fRlBnDWGhGeNd6LeSoRH_-Qwlm6nLsJ0_ED2Y35fyP1AE04jpw8PEdOCqZ1C_yQgjAc4Q","text":"王文旭"},"webhookEventId":"01JP26XNRHANYCD03ZE037CNEG","deliveryContext":{"isRedelivery":false},"timestamp":1741683611390,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"a258c272618844b3a4259c8a9c4f56f9","mode":"active"}]}
+2025-03-11 17:00:15 - httpx - INFO - HTTP Request: POST https://eastus1.openai.azure.com/openai/deployments/gpt4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-03-11 17:00:15 - werkzeug - INFO - 172.18.0.1 - - [11/Mar/2025 17:00:15] "POST /callback HTTP/1.1" 200 -
+2025-03-11 17:00:18 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722630391792028","quoteToken":"RacKMBreTPw7KoHUYvTVBQK8k36VG0E8I0MLUcYDDUUJgSzSaosMPW7OMKz9efYY-3LyjR7hvmlsp7ZG_yr4LIh6Y5Q5uEJvFXDLuq2TYVxapaK5odSdvlAXe_3IrPbH2HQQyziFEJFHJjfw-eyS1A","text":"有什麼吃的"},"webhookEventId":"01JP26XWTEATY0S86A82X30F3W","deliveryContext":{"isRedelivery":false},"timestamp":1741683618129,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"8e2b9eb067324ed69eec201fd0cecb76","mode":"active"}]}
+2025-03-11 17:01:02 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9001
+ * Running on http://10.214.57.66:9001
+2025-03-11 17:01:02 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-11 17:01:02 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-11 17:01:06 - werkzeug - WARNING -  * Debugger is active!
+2025-03-11 17:01:06 - werkzeug - INFO -  * Debugger PIN: 141-825-106
+2025-03-11 17:01:09 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722717163552990","quoteToken":"TFg5r98WQuTE9z1ckjloyBjjFJVwcbI_LucCeuNhPV-qR00Ico1OKgWyia1J9tcJk-wy9h6-E6xEQDmQvdrZqT4HOSwW3xKGkh-x59FjzDtIDiDANwU--_pZomO2OGPBhpw6xeiO4ss8LgZSQpQxhA","text":"有什麼吃的"},"webhookEventId":"01JP26ZEQDAWZZJQ8D78CXAXY9","deliveryContext":{"isRedelivery":false},"timestamp":1741683669721,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"9c6e4accf5214d0a87ac2b3c373e1087","mode":"active"}]}
+2025-03-11 17:01:38 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722764793282716","quoteToken":"Q50xk3MkL62knc3Duuz9LmU7C_JEvuNnuTDUcPWNQxV5oxOqXcPGeb8m2tpXBgsM5dQCcfCx5OfuNeuWPnOJzURGCanTH6vGXKTpvZ6sffHWwUyl8VBaRwq6KFWDMoNQeJA-17hRTuUkve4xElicsQ","text":"你好"},"webhookEventId":"01JP270AWV2D6P6K2FYK2KB65Q","deliveryContext":{"isRedelivery":false},"timestamp":1741683698132,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"624c099e94504f639935043fd92e5b61","mode":"active"}]}
+2025-03-11 17:01:46 - httpx - INFO - HTTP Request: POST https://eastus1.openai.azure.com/openai/deployments/gpt4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-03-11 17:01:47 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 17:01:47] "POST /callback HTTP/1.1" 200 -
+2025-03-11 17:01:48 - httpx - INFO - HTTP Request: POST https://eastus1.openai.azure.com/openai/deployments/gpt4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-03-11 17:01:48 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 17:01:48] "POST /callback HTTP/1.1" 200 -
+2025-03-11 17:02:01 - app - INFO - Request body: {"destination":"Uef53a4542b9228519e982d3eb558db4e","events":[{"type":"message","message":{"type":"text","id":"551722803616022842","quoteToken":"YeD1jjvitaEIAUUCfict-zzaCx5DcJ67B5XLS8K07hA5ryO62qLdoQddsaal-86yg5Jl0KZexfOltiwtrOKgIVddkPmJdFl893CAatMEdSnTN8XAp7SYySDJQoUxGI_h54wbGBTk6xTGkxJQKiJC6A","text":"你好慢"},"webhookEventId":"01JP2711ANZGQP97CK2HFPYRPJ","deliveryContext":{"isRedelivery":false},"timestamp":1741683721380,"source":{"type":"user","userId":"Ua29b4e44c3d3647c89f15c4b32c17aee"},"replyToken":"7df5e86c8acf4ac0a453300107af777c","mode":"active"}]}
+2025-03-11 17:02:07 - httpx - INFO - HTTP Request: POST https://eastus1.openai.azure.com/openai/deployments/gpt4o/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 200 OK"
+2025-03-11 17:02:07 - werkzeug - INFO - 127.0.0.1 - - [11/Mar/2025 17:02:07] "POST /callback HTTP/1.1" 200 -
+2025-03-11 17:02:33 - root - INFO - 收到首頁請求
+2025-03-11 17:02:33 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:33] "GET / HTTP/1.1" 200 -
+2025-03-11 17:02:33 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:33] "GET /style.css HTTP/1.1" 200 -
+2025-03-11 17:02:33 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:33] "[36mGET /images/sign.png HTTP/1.1[0m" 304 -
+2025-03-11 17:02:33 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:33] "[36mGET /images/P1_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/P2_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/P3_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/P4_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/P5_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/P6_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/section_park_2.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/greatengroup.png HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/phome.png HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/h.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/p1.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/p2.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/p3.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/p4.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/p5.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/p6.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/logo_footer.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/logo_footer2.png HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "GET /images/20250226table.jpg HTTP/1.1" 200 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/park_v1.png HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/mvdlogo.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:02:34 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:02:34] "[36mGET /images/mvdlogo_P.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:03:38 - root - INFO - 收到首頁請求
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET / HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /style.css HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/sign.png HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/P1_0.png HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/P3_0.png HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/P2_0.png HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/P4_0.png HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/P6_0.png HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/P5_0.png HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/p1.jpg HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/phome.png HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/h.jpg HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/p2.jpg HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/p4.jpg HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/p3.jpg HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/section_park_2.webp HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/greatengroup.png HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/p5.jpg HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/p6.jpg HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/logo_footer2.png HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/logo_footer.webp HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/20250226table.jpg HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/park_v1.png HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/mvdlogo.webp HTTP/1.1" 200 -
+2025-03-11 17:03:38 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:03:38] "GET /images/mvdlogo_P.webp HTTP/1.1" 200 -
+2025-03-11 17:04:03 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 17:04:03 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 17:04:04 - root - INFO - 資料庫連線成功
+2025-03-11 17:04:04 - root - INFO - index.html中查詢: 田
+2025-03-11 17:04:04 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:04:04] "GET /search?contact_name=田 HTTP/1.1" 200 -

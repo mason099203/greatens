@@ -2,34 +2,260 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>桂田酒店家宴賓客名單管理系統</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>統計報表 - 桂田酒店家宴賓客名單管理系統</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* 主內容區域樣式 */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content.expanded {
+            margin-left: 60px;
+        }
+
+        /* 報表容器樣式 */
+        .reports-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 日期過濾器樣式 */
+        .report-filters {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .date-range {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .date-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* 摘要卡片樣式 */
+        .summary-section {
+            margin-bottom: 30px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .summary-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .summary-card i {
+            font-size: 2rem;
+            color: #1e88e5;
+        }
+
+        /* 圖表網格樣式 */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .chart-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-header {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .chart-header h3 {
+            color: #333;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        /* 表格樣式 */
+        .chart-table {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .chart-table table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 300px;
+        }
+
+        .chart-table th,
+        .chart-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .chart-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .number-cell,
+        .percentage-cell {
+            text-align: right;
+        }
+
+        /* 響應式調整 */
+        @media (max-width: 1200px) {
+            .charts-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                padding: 10px;
+            }
+
+            .reports-container {
+                padding: 10px;
+            }
+
+            .date-range {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group {
+                min-width: 100%;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-container {
+                min-height: 300px;
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .summary-card {
+                padding: 15px;
+            }
+
+            .chart-container {
+                padding: 15px;
+                min-height: 250px;
+            }
+
+            .chart-table {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 載入動畫樣式 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .loading-spinner i {
+            font-size: 2rem;
+            color: #1e88e5;
+        }
+
+        /* 訊息提示樣式 */
+        .message-popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            z-index: 1001;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .message-popup.success {
+            background-color: #4caf50;
+        }
+
+        .message-popup.error {
+            background-color: #f44336;
+        }
+
+        .message-popup.fade-out {
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <i class="fas fa-calendar-alt"></i>
-            <span>桂田酒店家宴賓客名單管理系統</span>
-        </div>
-        <div class="user-profile">
-            <div class="avatar">
-                <i class="fas fa-user"></i>
-            </div>
-            <div class="user-info">
-                <span class="user-name">{{ session.get('full_name', '使用者') }}</span>
-                <span class="user-role">管理員</span>
-            </div>
-        </div>
-        <nav class="sidebar-nav">
-            <a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i> 主控台</a>
-            <a href="{{ url_for('reports') }}" class="active"><i class="fas fa-chart-bar"></i> 統計報表</a>
-            <a href="{{ url_for('logout') }}" class="logout-btn">
-                <i class="fas fa-sign-out-alt"></i> 登出系統
-            </a>
-        </nav>
-    </div>
+    {% include 'includes/sidebar.html' %}
 
     <div class="main-content reports-page">
         <div class="reports-container">

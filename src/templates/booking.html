@@ -7,29 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <i class="fas fa-calendar-alt"></i>
-            <span>訂位管理系統</span>
-        </div>
-        <div class="user-profile">
-            <div class="avatar">
-                <i class="fas fa-user"></i>
-            </div>
-            <div class="user-info">
-                <span class="user-name">{{ session.get('full_name', '使用者') }}</span>
-                <span class="user-role">管理員</span>
-            </div>
-        </div>
-        <nav class="sidebar-nav">
-            <a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i> 主控台</a>
-            <a href="{{ url_for('booking') }}" class="active"><i class="fas fa-table"></i> 訂位資料</a>
-            <a href="#"><i class="fas fa-chart-bar"></i> 統計報表</a>
-            <a href="{{ url_for('logout') }}" class="logout-btn">
-                <i class="fas fa-sign-out-alt"></i> 登出系統
-            </a>
-        </nav>
-    </div>
+    {% include 'includes/sidebar.html' %}
 
     <div class="main-content">
         <div class="booking-container">

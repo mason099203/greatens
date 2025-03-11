@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>停車場統計報表</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    {% include 'includes/sidebar.html' %}
+
+    <div class="main-content">
+        <div class="top-bar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="搜尋停車場資料...">
+            </div>
+        </div>
+
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <i class="fas fa-car"></i>
+                <div class="stat-info">
+                    <h3>總停車場數</h3>
+                    <p id="totalParkingLots">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <div class="stat-info">
+                    <h3>總資料筆數</h3>
+                    <p id="totalBookings">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-user-friends"></i>
+                <div class="stat-info">
+                    <h3>總人數</h3>
+                    <p id="totalPeople">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-calculator"></i>
+                <div class="stat-info">
+                    <h3>平均每區筆數</h3>
+                    <p id="avgPeoplePerLot">0</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-container">
+            <div class="data-table">
+                <table id="parkingStatsTable">
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-sort="parking" style="white-space: nowrap;">停車場 <i class="fas fa-sort"></i></th>
+                            <th class="sortable number-header" data-sort="bookings" style="white-space: nowrap;">資料筆數 <i class="fas fa-sort"></i></th>
+                            <th class="sortable number-header" data-sort="people" style="white-space: nowrap;">人數小計 <i class="fas fa-sort"></i></th>
+                            <th class="actions-header" style="white-space: nowrap;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="parkingStatsBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 詳情彈窗 -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><span id="modalParkingLot"></span> 停車場詳細資料</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>序號</th>
+                            <th>姓名</th>
+                            <th>公司名稱</th>
+                            <th>人數</th>
+                            <th>區域</th>
+                            <th>桌位</th>
+                            <th>停車場</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* 防止頁面彈性滾動 */
+        html, body {
+            overscroll-behavior: none;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* 主要容器樣式 */
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+            background-color: #f0f2f5;
+            transition: margin-left 0.3s ease;
+            height: 100vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
+
+        .main-content.expanded {
+            margin-left: 60px;
+        }
+
+        /* 統計卡片樣式 */
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: #1e88e5;
+            opacity: 0.8;
+        }
+
+        .stat-info {
+            flex: 1;
+        }
+
+        .stat-info h3 {
+            color: #595959;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-info p {
+            color: #1e88e5;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* 搜索框樣式 */
+        .search-box {
+            background: white;
+            border-radius: 8px;
+            padding: 0.8rem 1.2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box:focus-within {
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            border-color: #1e88e5;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            color: #595959;
+            width: 100%;
+            margin-left: 0.5rem;
+        }
+
+        .search-box i {
+            color: #1e88e5;
+        }
+
+        /* 表格容器樣式 */
+        .data-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+        }
+
+        .data-table {
+            overflow-x: auto;
+            overflow-y: visible;
+            margin: -1px;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            touch-action: pan-x pan-y;
+        }
+
+        #parkingStatsTable {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            table-layout: fixed; /* 使用固定表格布局 */
+        }
+
+        /* 設置各欄位的寬度比例 */
+        #parkingStatsTable th:nth-child(1) { width: 35%; } /* 停車場 */
+        #parkingStatsTable th:nth-child(2) { width: 25%; } /* 資料筆數 */
+        #parkingStatsTable th:nth-child(3) { width: 25%; } /* 人數小計 */
+        #parkingStatsTable th:nth-child(4) { width: 15%; } /* 操作 */
+
+        #parkingStatsTable th {
+            background: #1e88e5;
+            padding: 1rem;
+            font-weight: 500;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            white-space: nowrap;
+            transition: background-color 0.3s ease;
+        }
+
+        #parkingStatsTable th:first-child {
+            border-top-left-radius: 8px;
+        }
+
+        #parkingStatsTable th:last-child {
+            border-top-right-radius: 8px;
+        }
+
+        #parkingStatsTable td {
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            color: #595959;
+            line-height: 1.5;
+            white-space: nowrap; /* 防止文字換行 */
+            overflow: hidden;
+            text-overflow: ellipsis; /* 超出部分顯示省略號 */
+        }
+
+        /* 讓停車場名稱欄位在需要時可以換行 */
+        #parkingStatsTable td:first-child {
+            white-space: normal;
+            word-break: break-word;
+        }
+
+        #parkingStatsTable tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .number-cell {
+            text-align: right;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 500;
+            color: #1e88e5;
+        }
+
+        /* 彈窗樣式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            max-width: 90%;
+            width: 900px;
+            margin: 2rem auto;
+            max-height: calc(100vh - 4rem);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            color: #262626;
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .close {
+            font-size: 1.5rem;
+            color: #8c8c8c;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #f5222d;
+        }
+
+        .modal-table {
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .modal-table table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 800px;
+        }
+
+        .modal-table th,
+        .modal-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .modal-table th {
+            background: #1e88e5;
+            padding: 1rem;
+            font-weight: 500;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            white-space: nowrap;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-table th:first-child {
+            border-top-left-radius: 8px;
+        }
+
+        .modal-table th:last-child {
+            border-top-right-radius: 8px;
+        }
+
+        /* 排序圖標樣式 */
+        .sortable {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+        }
+
+        .sortable i {
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.2s ease;
+        }
+
+        .sort-asc i,
+        .sort-desc i {
+            color: #ffffff;
+        }
+
+        .sort-asc i {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .sortable:hover {
+            background-color: #1976d2;
+        }
+
+        /* 操作按鈕樣式 */
+        .btn-icon {
+            padding: 0.5rem;
+            border: none;
+            background: transparent;
+            color: #1e88e5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            transform: scale(1.2);
+            color: #096dd9;
+        }
+
+        /* 響應式調整 */
+        @media (max-width: 1200px) {
+            .dashboard-stats {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            #parkingStatsTable {
+                min-width: 800px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                padding: 1.5rem;
+            }
+
+            .stat-card {
+                padding: 1.2rem;
+            }
+
+            .stat-card i {
+                font-size: 2rem;
+            }
+
+            .stat-info p {
+                font-size: 1.5rem;
+            }
+
+            #parkingStatsTable {
+                min-width: 700px;
+            }
+            
+            #parkingStatsTable th,
+            #parkingStatsTable td {
+                padding: 0.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+                height: 100%;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                position: relative;
+                width: 100%;
+            }
+
+            .main-content.expanded {
+                margin-left: 0;
+            }
+
+            .dashboard-stats {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1rem;
+            }
+
+            .data-container {
+                padding: 0.5rem;
+                margin-bottom: 2rem;
+                height: auto;
+                overflow: hidden;
+                width: 100%;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .data-table {
+                height: auto;
+                overflow-x: auto;
+                overflow-y: visible;
+                -webkit-overflow-scrolling: touch;
+                width: 100%;
+                touch-action: pan-x pan-y;
+            }
+
+            .search-box {
+                margin-bottom: 1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 1rem auto;
+            }
+
+            #parkingStatsTable {
+                width: auto;
+                min-width: 600px;
+                border-spacing: 0;
+            }
+
+            /* 調整欄位寬度比例 */
+            #parkingStatsTable th:nth-child(1) { width: 40%; }
+            #parkingStatsTable th:nth-child(2) { width: 20%; }
+            #parkingStatsTable th:nth-child(3) { width: 20%; }
+            #parkingStatsTable th:nth-child(4) { width: 20%; }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 0.8rem;
+            }
+
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card i {
+                font-size: 1.8rem;
+            }
+
+            .stat-info h3 {
+                font-size: 1rem;
+            }
+
+            .stat-info p {
+                font-size: 1.3rem;
+            }
+
+            .search-box {
+                padding: 0.6rem 1rem;
+            }
+
+            .data-container {
+                padding: 0.5rem;
+                margin-bottom: 1rem;
+                width: 100%;
+            }
+
+            .data-table {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                width: 100%;
+                touch-action: pan-x pan-y;
+            }
+
+            .modal-content {
+                width: 98%;
+                margin: 0.5rem auto;
+            }
+
+            .modal-header {
+                padding: 1rem;
+            }
+
+            .modal-table {
+                padding: 1rem;
+            }
+
+            #parkingStatsTable {
+                min-width: 500px;
+                width: auto;
+                border-spacing: 0;
+            }
+
+            #parkingStatsTable th,
+            #parkingStatsTable td {
+                padding: 0.6rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 表格內容懸停提示 */
+        #parkingStatsTable td {
+            position: relative;
+        }
+
+        #parkingStatsTable td:hover::after {
+            content: attr(title);
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            z-index: 1000;
+            white-space: nowrap;
+            display: none;
+        }
+
+        #parkingStatsTable td[title]:hover::after {
+            display: block;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            let currentSort = {
+                column: '',
+                direction: ''
+            };
+
+            // 排序功能
+            function sortTable(column) {
+                const table = document.getElementById('parkingStatsTable');
+                const tbody = table.querySelector('tbody');
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+                const headers = table.querySelectorAll('th.sortable');
+
+                headers.forEach(header => {
+                    header.classList.remove('sort-asc', 'sort-desc');
+                });
+
+                let direction = 'asc';
+                if (currentSort.column === column && currentSort.direction === 'asc') {
+                    direction = 'desc';
+                }
+
+                currentSort = {
+                    column: column,
+                    direction: direction
+                };
+
+                const clickedHeader = table.querySelector(`th[data-sort="${column}"]`);
+                clickedHeader.classList.add(direction === 'asc' ? 'sort-asc' : 'sort-desc');
+
+                rows.sort((a, b) => {
+                    let aValue, bValue;
+                    
+                    switch(column) {
+                        case 'parking':
+                            aValue = a.cells[0].textContent;
+                            bValue = b.cells[0].textContent;
+                            break;
+                        case 'bookings':
+                            aValue = parseInt(a.cells[1].textContent);
+                            bValue = parseInt(b.cells[1].textContent);
+                            break;
+                        case 'people':
+                            aValue = parseInt(a.cells[2].textContent);
+                            bValue = parseInt(b.cells[2].textContent);
+                            break;
+                    }
+
+                    if (typeof aValue === 'number' && typeof bValue === 'number') {
+                        return direction === 'asc' ? aValue - bValue : bValue - aValue;
+                    } else {
+                        return direction === 'asc' 
+                            ? aValue.toString().localeCompare(bValue.toString(), 'zh-TW') 
+                            : bValue.toString().localeCompare(aValue.toString(), 'zh-TW');
+                    }
+                });
+
+                rows.forEach(row => tbody.appendChild(row));
+            }
+
+            // 綁定表頭點擊事件
+            $('.sortable').click(function() {
+                const column = $(this).data('sort');
+                sortTable(column);
+            });
+
+            // 載入停車場統計數據
+            function loadParkingStats() {
+                $.get('/api/parking-stats', function(response) {
+                    if (response.success) {
+                        const parkingStatsBody = $('#parkingStatsBody');
+                        parkingStatsBody.empty();
+                        
+                        let totalParkingLots = 0;
+                        let totalBookings = 0;
+                        let totalPeople = 0;
+                        
+                        response.data.forEach(item => {
+                            totalParkingLots++;
+                            totalBookings += item.booking_count;
+                            totalPeople += item.total_people;
+                            
+                            parkingStatsBody.append(`
+                                <tr>
+                                    <td>${item.parking_lot}</td>
+                                    <td class="number-cell">${item.booking_count}</td>
+                                    <td class="number-cell">${item.total_people}</td>
+                                    <td class="actions">
+                                        <button class="btn-icon view-details" data-parking="${item.parking_lot}">
+                                            <i class="fas fa-info-circle"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            `);
+                        });
+                        
+                        // 更新統計卡片
+                        $('#totalParkingLots').text(totalParkingLots);
+                        $('#totalBookings').text(totalBookings);
+                        $('#totalPeople').text(totalPeople);
+                        $('#avgPeoplePerLot').text((totalBookings / totalParkingLots).toFixed(1));
+                    }
+                });
+            }
+
+            // 載入特定停車場的詳細資料
+            function loadParkingDetails(parkingLot) {
+                $.get(`/api/parking-details/${encodeURIComponent(parkingLot)}`, function(response) {
+                    if (response.success) {
+                        const detailTableBody = $('#detailTableBody');
+                        detailTableBody.empty();
+                        
+                        $('#modalParkingLot').text(parkingLot);
+                        
+                        response.data.forEach((item, index) => {
+                            detailTableBody.append(`
+                                <tr>
+                                    <td class="number-cell">${index + 1}</td>
+                                    <td>${item.contact_name}</td>
+                                    <td>${item.company_name}</td>
+                                    <td class="number-cell">${item.people_count}</td>
+                                    <td>${item.table_layout}</td>
+                                    <td>${item.table_layout_detail}</td>
+                                    <td>${parkingLot}</td>
+                                </tr>
+                            `);
+                        });
+                        
+                        $('#detailModal').show();
+                    }
+                });
+            }
+
+            // 搜尋功能
+            $('#searchInput').on('keyup', function() {
+                const value = $(this).val().toLowerCase();
+                $('#parkingStatsBody tr').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+
+            // 優化表格滾動
+            const dataTable = document.querySelector('.data-table');
+            if (dataTable) {
+                dataTable.addEventListener('touchmove', function(e) {
+                    e.stopPropagation();
+                }, { passive: true });
+                
+                // 添加水平滾動支持
+                let startX = 0;
+                let scrollLeft = 0;
+
+                dataTable.addEventListener('touchstart', function(e) {
+                    startX = e.touches[0].pageX - this.offsetLeft;
+                    scrollLeft = this.scrollLeft;
+                }, { passive: true });
+
+                dataTable.addEventListener('touchmove', function(e) {
+                    if (!startX) return;
+                    e.stopPropagation();
+                    const x = e.touches[0].pageX - this.offsetLeft;
+                    const walk = (x - startX);
+                    this.scrollLeft = scrollLeft - walk;
+                }, { passive: true });
+
+                dataTable.addEventListener('touchend', function() {
+                    startX = null;
+                }, { passive: true });
+            }
+
+            // 移除舊的觸控事件處理
+            const mainContent = document.querySelector('.main-content');
+            if (mainContent) {
+                mainContent.style.overscrollBehavior = 'none';
+            }
+
+            // 初始載入
+            loadParkingStats();
+
+            // 綁定查看詳情按鈕事件
+            $(document).on('click', '.view-details', function() {
+                const parkingLot = $(this).data('parking');
+                loadParkingDetails(parkingLot);
+            });
+
+            // 關閉彈窗
+            $('.close').click(function() {
+                $('#detailModal').hide();
+            });
+
+            // 點擊彈窗外部關閉
+            $(window).click(function(event) {
+                if ($(event.target).is('#detailModal')) {
+                    $('#detailModal').hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

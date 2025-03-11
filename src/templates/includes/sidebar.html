@@ -1,0 +1,354 @@
+<!-- 側邊欄模板 -->
+<div class="sidebar">
+    <div class="sidebar-toggle" title="展開/收合選單">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="sidebar-header">
+        <i class="fas fa-calendar-alt"></i>
+        <span><center>桂田酒店-家宴<br>賓客名單管理系統</center></span>
+    </div>
+    <div class="user-profile">
+        <div class="avatar">
+            <i class="fas fa-user"></i>
+        </div>
+        <div class="user-info">
+            <span class="user-name">{{ session.get('full_name', '使用者') }}</span>
+            <span class="user-role">管理員</span>
+        </div>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="{{ url_for('dashboard') }}" {{ 'class=active' if request.endpoint == 'dashboard' }} 
+           title="查看系統主控台">
+            <i class="fas fa-home"></i> <span>主控台</span>
+            <div class="tooltip">查看系統主控台</div>
+        </a>        
+        <a href="{{ url_for('table_stats') }}" {{ 'class=active' if request.endpoint == 'table_stats' }}
+           title="查看桌位統計資訊">
+            <i class="fas fa-table"></i> <span>桌位統計</span>
+            <div class="tooltip">查看桌位統計資訊</div>
+        </a>
+        <a href="{{ url_for('parking_stats') }}" {{ 'class=active' if request.endpoint == 'parking_stats' }}
+           title="查看停車場使用統計">
+            <i class="fas fa-car"></i> <span>停車場統計</span>
+            <div class="tooltip">查看停車場使用統計</div>
+        </a>
+        <a href="{{ url_for('reports') }}" {{ 'class=active' if request.endpoint == 'reports' }}
+           title="查看統計報表資訊">
+            <i class="fas fa-chart-bar"></i> <span>統計報表</span>
+            <div class="tooltip">查看統計報表資訊</div>
+        </a>
+        <a href="{{ url_for('logout') }}" class="logout-btn" title="登出系統">
+            <i class="fas fa-sign-out-alt"></i> <span>登出系統</span>
+            <div class="tooltip">登出系統</div>
+        </a>
+    </nav>
+</div>
+
+<!-- 側邊欄樣式 -->
+<style>
+    /* 側邊欄基礎樣式 */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 250px;
+        background: #1e88e5;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* 側邊欄收摺狀態 */
+    .sidebar.collapsed {
+        width: 60px;
+    }
+
+    .sidebar.collapsed .sidebar-header span,
+    .sidebar.collapsed .user-info,
+    .sidebar.collapsed .sidebar-nav a span {
+        display: none;
+    }
+
+    .sidebar.collapsed .sidebar-nav a {
+        padding: 1rem;
+        justify-content: center;
+    }
+
+    .sidebar.collapsed .sidebar-nav a i {
+        margin: 0;
+    }
+
+    /* 切換按鈕樣式 */
+    .sidebar-toggle {
+        position: absolute;
+        top: 1rem;
+        right: -40px;
+        width: 40px;
+        height: 40px;
+        background: #1e88e5;
+        border-radius: 0 8px 8px 0;
+        box-shadow: 4px 0 8px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #fff;
+        transition: all 0.3s ease;
+        z-index: 1001;
+    }
+
+    .sidebar-toggle:hover {
+        color: #fff;
+        background: #1976d2;
+    }
+
+    /* 側邊欄內容樣式調整 */
+    .sidebar-header {
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: #1976d2;
+        color: #fff;
+    }
+
+    .sidebar-header i {
+        font-size: 1.5rem;
+        color: #fff;
+    }
+
+    .sidebar-header span {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+
+    .user-profile {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: #1e88e5;
+    }
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+    }
+
+    .user-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user-name {
+        color: #fff;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    .user-role {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.8rem;
+    }
+
+    .sidebar-nav {
+        flex: 1;
+        padding: 1rem 0;
+        overflow-y: auto;
+    }
+
+    .sidebar-nav a {
+        padding: 0.8rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.8);
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+        position: relative;
+    }
+
+    .sidebar-nav a:hover {
+        background: #1976d2;
+        color: #fff;
+        border-left-color: #fff;
+    }
+
+    .sidebar-nav a.active {
+        background: #1976d2;
+        color: #fff;
+        border-left-color: #fff;
+    }
+
+    .sidebar-nav a i {
+        width: 20px;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    .logout-btn {
+        margin-top: auto;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* 響應式調整 */
+    @media (max-width: 768px) {
+        .sidebar {
+            transform: translateX(-100%);
+        }
+        
+        .sidebar.collapsed {
+            transform: translateX(0);
+            width: 250px;
+        }
+
+        .sidebar.collapsed .sidebar-header span,
+        .sidebar.collapsed .user-info,
+        .sidebar.collapsed .sidebar-nav a span {
+            display: block;
+        }
+
+        .sidebar.collapsed .sidebar-nav a {
+            padding: 0.8rem 1.5rem;
+            justify-content: flex-start;
+        }
+
+        .sidebar.collapsed .sidebar-nav a i {
+            margin-right: 1rem;
+        }
+
+        .sidebar-toggle {
+            display: flex;
+            right: -40px;
+        }
+    }
+
+    /* 新的工具提示樣式 */
+    .tooltip {
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        margin-left: 10px;
+        pointer-events: none;
+        z-index: 1010;
+    }
+
+    .tooltip::before {
+        content: '';
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 5px solid transparent;
+        border-right-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .sidebar.collapsed .sidebar-nav a:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .sidebar:not(.collapsed) .tooltip {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        .tooltip {
+            display: none !important;
+        }
+    }
+</style>
+
+<!-- 側邊欄 JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+    const toggleBtn = document.querySelector('.sidebar-toggle');
+    
+    // 更新主內容區域狀態
+    function updateMainContentState(isCollapsed) {
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+            if (isCollapsed) {
+                mainContent.style.marginLeft = '250px';
+                mainContent.style.width = 'calc(100% - 250px)';
+            } else {
+                mainContent.style.marginLeft = '0';
+                mainContent.style.width = '100%';
+            }
+        } else {
+            if (isCollapsed) {
+                mainContent.style.marginLeft = '60px';
+                mainContent.style.width = 'calc(100% - 60px)';
+            } else {
+                mainContent.style.marginLeft = '250px';
+                mainContent.style.width = 'calc(100% - 250px)';
+            }
+        }
+        
+        // 強制重新計算佈局
+        mainContent.style.display = 'none';
+        mainContent.offsetHeight; // 觸發重排
+        mainContent.style.display = '';
+    }
+    
+    // 從 localStorage 獲取側邊欄狀態
+    const isExpanded = localStorage.getItem('sidebarExpanded') === 'true';
+    if (!isExpanded) {
+        sidebar.classList.add('collapsed');
+        updateMainContentState(true);
+    }
+    
+    // 切換側邊欄狀態
+    toggleBtn.addEventListener('click', function() {
+        const willCollapse = !sidebar.classList.contains('collapsed');
+        sidebar.classList.toggle('collapsed');
+        updateMainContentState(willCollapse);
+        
+        // 保存狀態到 localStorage
+        localStorage.setItem('sidebarExpanded', !willCollapse);
+    });
+
+    // 響應式處理
+    function handleResponsive() {
+        const isMobile = window.innerWidth <= 768;
+        const isCollapsed = sidebar.classList.contains('collapsed');
+        
+        if (isMobile) {
+            sidebar.classList.add('mobile');
+            updateMainContentState(isCollapsed);
+        } else {
+            sidebar.classList.remove('mobile');
+            updateMainContentState(isCollapsed);
+        }
+    }
+
+    // 監聽視窗大小變化
+    window.addEventListener('resize', handleResponsive);
+    handleResponsive();
+});
+</script> 
