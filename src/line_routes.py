@@ -559,7 +559,7 @@ def openai_with_tools(user_input, language, chat_history):
     )
 
     # 讀取系統提示詞
-    with open('greaten_systemword_v1.txt', 'r', encoding='utf-8') as f1:
+    with open(os.path.join(os.path.dirname(__file__), 'greaten_systemword_v1.txt'), 'r', encoding='utf-8') as f1:
         systemwords_1 = f1.read()
     systemwords_1 = systemwords_1.format(language=language)
     

@@ -1154,7 +1154,9 @@ body::-webkit-scrollbar-thumb:hover {
   .parking-info-container h2 {
     font-size: 1.5em;
   }
-
+  .company-name {
+    width: 100px;
+  }
   .search-container h1,
   .parking-info-container h1 {
     width: 80%;
@@ -1174,9 +1176,9 @@ body::-webkit-scrollbar-thumb:hover {
     font-size: 1.2rem;
   }
 
-
-
-  .intro-container {
+  .intro-container,
+  .search-container,
+  .parking-info-container {
     padding: 40px 0 40px 0;
     width: 100%;
     border-radius: 0;
