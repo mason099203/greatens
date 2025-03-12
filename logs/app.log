@@ -222,3 +222,135 @@
 2025-03-11 17:04:04 - root - INFO - 資料庫連線成功
 2025-03-11 17:04:04 - root - INFO - index.html中查詢: 田
 2025-03-11 17:04:04 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:04:04] "GET /search?contact_name=田 HTTP/1.1" 200 -
+2025-03-11 17:13:41 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9001
+ * Running on http://10.214.57.66:9001
+2025-03-11 17:13:41 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-11 17:13:41 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-11 17:13:44 - werkzeug - WARNING -  * Debugger is active!
+2025-03-11 17:13:44 - werkzeug - INFO -  * Debugger PIN: 141-825-106
+2025-03-11 17:13:44 - root - INFO - 收到首頁請求
+2025-03-11 17:13:44 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:44] "[36mGET / HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/sign.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/P1_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/P3_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/P2_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/P4_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/P5_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/P6_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/h.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/phome.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/p1.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/p2.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/p3.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/p4.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/p5.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/p6.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/greatengroup.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/logo_footer.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/logo_footer2.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/20250226table.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/park_v1.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/mvdlogo.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/mvdlogo_P.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/section_park_2.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/logo_footer2.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/20250226table.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/park_v1.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/mvdlogo.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/logo_footer.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:13:45 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:45] "[36mGET /images/mvdlogo_P.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:13:53 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 17:13:53 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 17:13:53 - root - INFO - 資料庫連線成功
+2025-03-11 17:13:53 - root - INFO - index.html中查詢: 田
+2025-03-11 17:13:53 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:53] "GET /search?contact_name=田 HTTP/1.1" 200 -
+2025-03-11 17:13:53 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:53] "[36mGET /images/P5_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:54 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:54] "[36mGET /images/P4_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:54 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:54] "[36mGET /images/P3_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:54 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:54] "[36mGET /images/P2_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:13:57 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:57] "GET /login HTTP/1.1" 200 -
+2025-03-11 17:13:57 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:13:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 17:14:01 - root - INFO - 使用者嘗試登入: 1, IP: 10.214.57.66
+2025-03-11 17:14:01 - root - INFO - 開始建立資料庫連線
+2025-03-11 17:14:01 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 17:14:01 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 17:14:02 - root - INFO - 資料庫連線成功
+2025-03-11 17:14:02 - root - INFO - 執行使用者查詢
+2025-03-11 17:14:02 - root - INFO - 查詢結果: 成功
+2025-03-11 17:14:02 - root - INFO - 使用者 1 登入成功 (IP: 10.214.57.66)
+2025-03-11 17:14:02 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:14:02] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-03-11 17:14:02 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 17:14:02 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 17:14:02 - root - INFO - 資料庫連線成功
+2025-03-11 17:14:02 - root - INFO - 成功讀取訂位資料，共 129 筆記錄
+2025-03-11 17:14:02 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:14:02] "GET /dashboard HTTP/1.1" 200 -
+2025-03-11 17:14:02 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:14:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 17:15:06 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:15:06] "GET /login HTTP/1.1" 200 -
+2025-03-11 17:15:06 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:15:06] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-03-11 17:15:06 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:15:06] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-11 17:15:13 - root - INFO - 使用者嘗試登入: 1, IP: 10.214.57.63
+2025-03-11 17:15:13 - root - INFO - 開始建立資料庫連線
+2025-03-11 17:15:13 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 17:15:13 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 17:15:13 - root - INFO - 資料庫連線成功
+2025-03-11 17:15:13 - root - INFO - 執行使用者查詢
+2025-03-11 17:15:13 - root - INFO - 查詢結果: 成功
+2025-03-11 17:15:13 - root - INFO - 使用者 1 登入成功 (IP: 10.214.57.63)
+2025-03-11 17:15:13 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:15:13] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-03-11 17:15:13 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 17:15:13 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 17:15:13 - root - INFO - 資料庫連線成功
+2025-03-11 17:15:13 - root - INFO - 成功讀取訂位資料，共 129 筆記錄
+2025-03-11 17:15:14 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:15:14] "GET /dashboard HTTP/1.1" 200 -
+2025-03-11 17:15:14 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:15:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 17:15:24 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:15:24] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 17:16:24 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 17:16:24 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 17:16:25 - root - INFO - 資料庫連線成功
+2025-03-11 17:16:25 - root - INFO - 成功讀取訂位資料，共 129 筆記錄
+2025-03-11 17:16:25 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:16:25] "GET /dashboard HTTP/1.1" 200 -
+2025-03-11 17:16:25 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:16:25] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 17:16:41 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:16:41] "GET /parking-stats HTTP/1.1" 200 -
+2025-03-11 17:16:41 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:16:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-11 17:16:41 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 17:16:41 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 17:16:41 - root - INFO - 資料庫連線成功
+2025-03-11 17:16:41 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:16:41] "GET /api/parking-stats HTTP/1.1" 200 -
+2025-03-11 17:16:47 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-11 17:16:47 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-11 17:16:48 - root - INFO - 資料庫連線成功
+2025-03-11 17:16:48 - werkzeug - INFO - 10.214.57.63 - - [11/Mar/2025 17:16:48] "GET /api/parking-details/P3 HTTP/1.1" 200 -
+2025-03-11 17:17:05 - root - INFO - 收到首頁請求
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET / HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/sign.png HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/P1_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/P2_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/P3_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/P4_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/P5_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/P6_0.png HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/phome.png HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/h.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/p1.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/p2.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/p3.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/p4.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/p5.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/p6.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/greatengroup.png HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/logo_footer.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/logo_footer2.png HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/20250226table.jpg HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/park_v1.png HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/mvdlogo_P.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/mvdlogo.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:17:05 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:05] "[36mGET /images/section_park_2.webp HTTP/1.1[0m" 304 -
+2025-03-11 17:17:08 - werkzeug - INFO - 10.214.57.66 - - [11/Mar/2025 17:17:08] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-03-11 17:17:56 - werkzeug - INFO -  * Detected change in 'd:\\ai_test\\project\\greatens_docker\\src\\app.py', reloading
+2025-03-11 17:17:56 - werkzeug - INFO -  * Detected change in 'd:\\ai_test\\project\\greatens_docker\\src\\app.py', reloading
+2025-03-11 17:17:57 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-11 17:18:00 - waitress - INFO - Serving on http://0.0.0.0:9001
