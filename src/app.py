@@ -157,7 +157,11 @@ def index():
     """
     try:
         # 記錄首頁請求
-        logger.info('收到首頁請求')
+                # 獲取用戶端 IP
+        client_ip = request.remote_addr
+        if request.headers.get('X-Forwarded-For'):
+            client_ip = request.headers.get('X-Forwarded-For').split(',')[0]
+        logger.info(f'IP: {client_ip} ,收到首頁請求')
         return send_file('index.html')
     except Exception as e:
         logger.error(f'提供首頁時發生錯誤: {str(e)}')
@@ -882,6 +886,11 @@ def reports():
 @app.route("/search", methods=["GET"])
 def search():
     contact_name = request.args.get("contact_name", "").strip()
+    client_ip = request.remote_addr
+    if request.headers.get('X-Forwarded-For'):
+        client_ip = request.headers.get('X-Forwarded-For').split(',')[0]
+    
+    logger.info(f'使用者search, IP: {client_ip}')
 
     if not contact_name:
         return jsonify({"error": "請提供 contact_name 參數"}), 400
@@ -906,7 +915,7 @@ def search():
         ORDER BY created_at DESC;
     """
     cursor.execute(query, (contact_name, '%' + contact_name + '%'))
-    logger.info(f'index.html中查詢: {contact_name}')
+    logger.info(f'IP: {client_ip}查詢: {contact_name}')
 
     data = cursor.fetchall()
 
@@ -1097,9 +1106,9 @@ def get_parking_details(parking_lot):
         return jsonify({'success': False, 'message': str(e)}), 500
 
 if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host=FLASK_HOST, port=FLASK_PORT)
+    # from waitress import serve
+    # serve(app, host=FLASK_HOST, port=FLASK_PORT)
 
-    # app.run(host=FLASK_HOST, port=FLASK_PORT, debug=True)
+    app.run(host=FLASK_HOST, port=9001, debug=True)
     # http://10.214.57.66:7860/dashboard
     # ngrok http 127.0.0.1:7860
