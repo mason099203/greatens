@@ -161,3 +161,61 @@
 2025-03-13 09:47:55 - root - INFO - 資料庫連線成功
 2025-03-13 09:47:55 - root - INFO - IP: 2001:b400:e4f8:3e1e:c830:533a:f2f7:c723中查詢: 診所
 2025-03-13 09:47:55 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:47:55] "GET /search?contact_name=診所 HTTP/1.1" 200 -
+2025-03-13 09:55:27 - root - INFO - IP: 127.0.0.1 ,收到首頁請求
+2025-03-13 09:55:27 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:27] "[36mGET / HTTP/1.0[0m" 304 -
+2025-03-13 09:55:27 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:27] "[36mGET /style.css HTTP/1.0[0m" 304 -
+2025-03-13 09:55:27 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:27] "[36mGET /images/P1_0.png HTTP/1.0[0m" 304 -
+2025-03-13 09:55:28 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:28] "[36mGET /images/P2_0.png HTTP/1.0[0m" 304 -
+2025-03-13 09:55:28 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:28] "[36mGET /images/P3_0.png HTTP/1.0[0m" 304 -
+2025-03-13 09:55:28 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:28] "[36mGET /images/P4_0.png HTTP/1.0[0m" 304 -
+2025-03-13 09:55:28 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:28] "[36mGET /images/P5_0.png HTTP/1.0[0m" 304 -
+2025-03-13 09:55:28 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:28] "[36mGET /images/section_park_2.webp HTTP/1.0[0m" 304 -
+2025-03-13 09:55:28 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:28] "[36mGET /images/greatengroup.png HTTP/1.0[0m" 304 -
+2025-03-13 09:55:28 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:28] "[36mGET /images/P6_0.png HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/phome.png HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/h.jpg HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/p1.jpg HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/p2.jpg HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/p3.jpg HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/p4.jpg HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/p5.jpg HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/p6.jpg HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/logo_footer.webp HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/logo_footer2.png HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/park_v1.png HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/20250226table.jpg HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/mvdlogo.webp HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/mvdlogo_P.webp HTTP/1.0[0m" 304 -
+2025-03-13 09:55:29 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:29] "[36mGET /images/sign.png HTTP/1.0[0m" 304 -
+2025-03-13 09:55:31 - root - INFO - IP: 127.0.0.1 ,收到首頁請求
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET / HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/sign.png HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/P1_0.png HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/P2_0.png HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/P3_0.png HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/P4_0.png HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/P5_0.png HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/P6_0.png HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/section_park_2.webp HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/greatengroup.png HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/phome.png HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/h.jpg HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/p1.jpg HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/p2.jpg HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/p3.jpg HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/p4.jpg HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/p5.jpg HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/logo_footer.webp HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/p6.jpg HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/logo_footer2.png HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/20250226table.jpg HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/park_v1.png HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/mvdlogo.webp HTTP/1.1[0m" 304 -
+2025-03-13 09:55:31 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:55:31] "[36mGET /images/mvdlogo_P.webp HTTP/1.1[0m" 304 -
+2025-03-13 09:56:38 - root - INFO - 使用者search, IP: 2001:b400:e4f8:3e1e:c830:533a:f2f7:c723
+2025-03-13 09:56:38 - root - INFO - 嘗試連接資料庫 (第 1 次)
+2025-03-13 09:56:38 - root - INFO - 連線設定: HOST=10.214.57.11, PORT=3306, DB=greatenDB
+2025-03-13 09:56:38 - root - INFO - 資料庫連線成功
+2025-03-13 09:56:38 - root - INFO - IP: 2001:b400:e4f8:3e1e:c830:533a:f2f7:c723中查詢: 診所？
+2025-03-13 09:56:38 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2025 09:56:38] "GET /search?contact_name=診所？ HTTP/1.1" 200 -
