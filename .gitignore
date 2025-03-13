@@ -1,5 +1,4 @@
 node_modules
 src/.env
 src/.env.example
-*.log
-logs/app.log
+logs/
