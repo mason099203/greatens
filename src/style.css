@@ -544,7 +544,7 @@ header {
 .parking-img-P5,
 .parking-img-P6,
 .parking-img-P7 {
-  display: none;
+  display: block;
 }
 
 #parking-p1,
@@ -638,27 +638,27 @@ header {
 
 .P2 {
   left: 58%;
-  top: 20%;
+  top: 10%;
 }
 
 .P3 {
   left: 33%;
-  top: 30%;
+  top: 20%;
 }
 
 .P4 {
-  left: 25%;
-  top: 60%;
+  left: 30%;
+  top: 30%;
 }
 
 .P5 {
-  left: 71%;
-  top: 70%;
+  left: 23%;
+  top: 65%;
 }
 
 .P6 {
-  left: 10%;
-  top: 66%;
+  left: 6%;
+  top: 73%;
 }
 
 .P7 {
@@ -1105,28 +1105,28 @@ body::-webkit-scrollbar-thumb:hover {
   }
 
   .P2 {
-    left: 58%;
-    top: 21%;
+    left: 61%;
+    top: 12%;
   }
 
   .P3 {
-    left: 34%;
-    top: 30%;
+    left: 32%;
+    top: 24%;
   }
 
   .P4 {
-    left: 25%;
-    top: 61%;
+    left: 30%;
+    top: 32%;
   }
 
   .P5 {
-    left: 71%;
-    top: 71%;
+    left: 23%;
+    top: 65%;
   }
 
   .P6 {
-    left: 12%;
-    top: 68%;
+    left: 8%;
+    top: 75%;
   }
 
   .P7 {
