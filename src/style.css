@@ -544,7 +544,7 @@ header {
 .parking-img-P5,
 .parking-img-P6,
 .parking-img-P7 {
-  display: block;
+  display: none;
 }
 
 #parking-p1,

@@ -68,7 +68,7 @@ app = Flask(__name__)
 CORS(app)
 
 # 初始化 LINE 路由
-init_line_routes(app)
+# init_line_routes(app)
 
 FLASK_HOST = os.getenv("FLASK_HOST", "0.0.0.0")
 FLASK_PORT = os.getenv("FLASK_PORT", "")
